@@ -1,4 +1,4 @@
-# The-Windows-Intel-Fastest-Mouse-Clicker
+# The Fastest Mouse Clicker for Windows (formerly The Windows Intel Fastest Mouse Clicker)
 
 The fastest hardware-limited mouse clicker for Windows with command line support.
 
