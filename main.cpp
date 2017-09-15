@@ -318,12 +318,12 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	windClass.hIcon			= LoadIcon(windClass.hInstance,MAKEINTRESOURCE(101));
 	windClass.hCursor			= LoadCursor(NULL,IDC_ARROW);
 	windClass.hbrBackground	= (HBRUSH)GetStockObject(WHITE_BRUSH);
-	windClass.lpszClassName	= "The Windows Intel Fastest Mouse Clicker";
+	windClass.lpszClassName	= "The Fastest Mouse Clicker for Windows";
 
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Windows Intel Fastest Mouse Clicker","The Windows Intel Fastest Mouse Clicker", WS_OVERLAPPEDWINDOW, 100, 100,438,446, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows", WS_OVERLAPPEDWINDOW, 100, 100,438,446, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","status (read-only): idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	numberClicks = CreateWindow("Static","# clicks (read-only)",WS_VISIBLE|WS_CHILD,5,40,410,20,hWnd,0,0,0);
@@ -619,30 +619,37 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 		switch(LOWORD(wp))
 		{
 		case HELP_BTN:
-			MessageBox(hWnd, "The Windows Intel Fastest Mouse Clicker version 1.8.0.0 built with Intel compiler.\n\n"
-				"'status (read-only):', the topmost text field, is either 'idle' or 'clicking'.\n\n"
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.8.2.0.\n\n"
+				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE 'TRIGGER KEY' (SEE BELOW).\n\n"
+				"The fields you can not modify:\n"
+				"'status (read-only)', the topmost text field, is either 'idle' or 'clicking'.\n"
 				"'# clicks (read-only)', the top text field, indicates number of clicks.\n\n"
+				"THE FIELDS YOU CAN MODIFY (CALLED THE CLICKING PARAMETERS: THEY COULD BE SET FROM THE COMMAND LINE TOO, SEE BELOW).\n\n"
 				"'clicks/s', the middle text field, is the frequency of the clicks in clicks per second. "
 				"Frequency can be as high as 99 thousands (99999) clicks per second. "
 				"You may enter fractional frequencies. For example, 0.5 is one click every two seconds.\n\n"
-				"'trigger key' button, below that, is the trigger key. Click on it and then press a key (or hit a mouse button). "
+				"'trigger key', below that, is the trigger key. Click on it and then press a key (or hit a mouse button). "
 				"That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made. "
 				"Default number in the button, 13, is the 'Enter' key (for example, 32 is the 'Space' key, 112 is the 'F1' key, "
 				"for more Virtual-Key Codes see https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731.aspx).\n\n"
 				"'stop at', the lower text field, is the number of clicks before the clicking will automatically stop. "
 				"0 is default and means infinity, i.e. clicking will never stop.\n\n"
-				"Note: You can't have the same mouse button be the trigger and clicker.\n"
-				"Note: You can't change the trigger key if you chose the left mouse button; you must restart the program.\n"
-				"Note: The trigger key still works when this program is minimized. You must close the program to stop a trigger key from clicking.\n\n"
-				"*NEW* Command line has been supported: TheFastestMouseClicker.exe -c <clicks/s> -t <trigger key> -s <stop at> -m {p|t} -b {l|m|r},\n"
-				"where '-m {p|t}' is the 'trigger key mode' {'press'|'toggle'} and '-b {l|m|r}' is the 'mouse button to click' {'left'|'middle'|'right'}. "
-				"One may specify any part of arguments; unspecified or unrecognized values will be treated as defaults (see them by running the app without command line, "
-				"e.g. from Windows programs menu).\n\n"
-				"'STOP!' button stops toggled clicking mandatory.\n\n"
+				"'trigger key mode' is a radio-button group, you can select either 'press' or 'toggle' mode of clicking.\n\n"
+				"'mouse button to click' is a radio-button group too, you can select either 'left', 'middle' or 'right' button.\n\n"
+				"Note 1: You can't have the same mouse button be the trigger and clicker.\n"
+				"Note 2: You can't change the trigger key if you chose the left mouse button; you must restart the program.\n"
+				"Note 3: The trigger key still works when this program is minimized. You must close the program to stop a trigger key from clicking.\n\n"
+				"ADDITIONAL BUTTONS YOU CAN PRESS.\n\n"
+				"'STOP!' button stops toggled clicking mandatory.\n"
 				"'Help' button displays this help window.\n\n"
+				"*NEW* COMMAND LINE HAS BEEN SUPPORTED TO SET ALL THE CLICKING PARAMETERS DESCRIBED ABOVE.\n\n"
+				"TheFastestMouseClicker.exe -c <clicks/s> -t <trigger key> -s <stop at> -m {p|t} -b {l|m|r},\n"
+				"where '-m {p|t}' is the 'trigger key mode' {'press'|'toggle'} and '-b {l|m|r}' is the 'mouse button to click' {'left'|'middle'|'right'}. "
+				"You may specify any part of arguments; unspecified or unrecognized values will be treated as defaults (see them by running the app without command line, "
+				"e.g. from Windows programs menu).\n\n"
 				"Copyright (c) 2017-2018 Open Source Developer Masha Novedad.\n"
 				"https://sourceforge.net/projects/fast-mouse-clicker-pro/",
-				"Help - The Windows Intel Fastest Mouse Clicker", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
+				"Help - The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
 			break;
 		case R_M_L_GROUP:
 			mouseToClick=0;
