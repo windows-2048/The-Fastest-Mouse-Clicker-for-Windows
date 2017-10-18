@@ -297,15 +297,139 @@ void parse_command_line(LPCSTR command_line, int& clicks_per_second, int& trigge
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+static char g_appRoot[MAX_PATH];
+
+bool fillAppDataPath(char szPath[MAX_PATH], const char* subFile)
+{
+	if (g_appRoot[0] != 0)
+	{
+		strcpy(szPath, g_appRoot);
+		size_t ilen = strlen(szPath);
+		strcpy(&szPath[ilen], subFile);
+		return true;
+	}
+
+	DWORD nModPathSize = ::GetModuleFileNameA(NULL, szPath, MAX_PATH);
+
+	if (nModPathSize == 0)
+		return false;
+
+	if (nModPathSize >= MAX_PATH)
+		return false;
+
+	if (g_appRoot[0] == 0)
+	{
+		size_t pLast = nModPathSize - 1;
+		while (szPath[pLast] != '\\')
+			--pLast;
+
+		memcpy(g_appRoot, szPath, pLast);
+		g_appRoot[pLast] = 0;
+	}
+
+	if (subFile == NULL)
+		return true; // this running executable pathname was requested
+
+	return fillAppDataPath(szPath, subFile);
+}
+
+void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
+{
+	pBuffer = NULL; szBuffer = 0;
+
+	char lszPath[MAX_PATH];
+
+	if (!fillAppDataPath(lszPath, subFile))
+		return;
+
+	FILE* fp = fopen(lszPath, "rb");
+
+	if (fp == NULL)
+		return;
+
+	int n = fseek(fp, 0, SEEK_END);
+
+	if (n < 0)
+		return;
+
+	size_t nFileSize = (size_t)ftell(fp);
+
+	n = fseek(fp, 0, SEEK_SET);
+
+	if (n < 0)
+		return;
+
+	if (nFileSize > 1024)
+		return;
+
+	pBuffer = new char[1024];
+
+	memset(pBuffer, 0, 1024);
+
+	size_t nsiz = fread_s(pBuffer, 1024, nFileSize, 1, fp);
+
+	if (nsiz != 1)
+	{
+		delete[] pBuffer;
+		pBuffer = NULL;
+		return;
+	}
+
+	szBuffer = nFileSize;
+}
+
+bool saveMemToSubFile(const char* subFile, char*& pBuffer, size_t szBuffer)
+{
+	char lszPath[MAX_PATH];
+
+	if (!fillAppDataPath(lszPath, subFile))
+		return false;
+
+	FILE* fp = fopen(lszPath, "wb");
+
+	if (fp == NULL)
+		return false;
+
+	size_t nwr = fwrite(pBuffer, szBuffer, 1, fp);
+
+	if (nwr != 1)
+		return false;
+
+	delete[] pBuffer;
+	pBuffer = 0;
+
+	return true;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+static bool s_bHasCommandLine = false;
+
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
+	memset(g_appRoot, 0, MAX_PATH);
+
 	int my_clicks_per_second = 10;
 	int my_trigger_key = 0x0D;
 	int my_stop_at = 0;
 	Mode my_mode = Mode_Press;
 	Button my_button = Button_Left;
 
-	parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button);
+	char* my_pBuffer = NULL;
+	size_t my_szBuffer = 0;
+
+	loadSubFileToMem("\\settings.dat", my_pBuffer, my_szBuffer);
+
+	if ((my_pBuffer != NULL) && (my_szBuffer == 1024))
+		parse_command_line(my_pBuffer, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button);
+
+	if (strlen(command_line) >= 4)
+	{
+		parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button);
+		s_bHasCommandLine = true;
+	}
 
 	//copy-pasta windows stuff below
 	hInstance=instanceH;
@@ -619,7 +743,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 		switch(LOWORD(wp))
 		{
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.8.2.0.\n\n"
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.0.0.\n\n"
 				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE 'TRIGGER KEY' (SEE BELOW).\n\n"
 				"The fields you can not modify:\n"
 				"'status (read-only)', the topmost text field, is either 'idle' or 'clicking'.\n"
@@ -750,6 +874,35 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 		// When it's time for the window to go away
 	case WM_DESTROY:
 		{
+			if (!s_bHasCommandLine)
+			{
+				// DONE: how to get these parameters from Windows GUI controls?
+				char winTxt[1024];
+
+				memset(winTxt, 0, 1024);
+				GetWindowText(inputFrequency, winTxt, 1024);
+				int my_clicks_per_second = atoi(winTxt);
+
+				memset(winTxt, 0, 1024);
+				GetWindowText(triggerButton, winTxt, 1024);
+				int my_trigger_key = atoi(winTxt);
+
+				memset(winTxt, 0, 1024);
+				GetWindowText(stopAt, winTxt, 1024);
+				int my_stop_at = atoi(winTxt);
+
+				Mode my_mode = doToggle ? Mode_Toggle : Mode_Press;
+
+				Button my_button = (mouseToClick == 0) ? Button_Left : ((mouseToClick == 1) ? Button_Middle : Button_Right);
+
+				char* outBuffer = new char[1024];
+				memset(outBuffer, 0, 1024);
+
+				int npr = _snprintf(outBuffer, 1024, "-c %d -t %d -s %d -m %s -b %s", my_clicks_per_second, my_trigger_key, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"));
+
+				saveMemToSubFile("\\settings.dat", outBuffer, 1024);
+			}
+
 			DeleteObject(s_hFont);
 			s_hFont = NULL;
 			quit=true;
