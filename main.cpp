@@ -743,7 +743,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 		switch(LOWORD(wp))
 		{
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.0.0.\n\n"
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.1.0.\n\n"
 				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE 'TRIGGER KEY' (SEE BELOW).\n\n"
 				"The fields you can not modify:\n"
 				"'status (read-only)', the topmost text field, is either 'idle' or 'clicking'.\n"
