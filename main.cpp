@@ -16,6 +16,7 @@ HWND inputFrequency;
 HWND stopAt;
 HWND triggerButton;
 HWND stopButton;
+HWND resetButton;
 HWND helpButton;
 HWND groupBox;
 HWND toggle;
@@ -56,6 +57,7 @@ unsigned char keyUpTrig[VK_OEM_CLEAR];
 #define STOP_BTN 2000
 #define INPUT_TEXT 3000
 #define OUTPUT_TEXT 4000
+#define RESET_BTN 4500
 #define HELP_BTN 5000
 
 #define T_P_GROUP 6000
@@ -66,15 +68,15 @@ unsigned char keyUpTrig[VK_OEM_CLEAR];
 
 LARGE_INTEGER countsOnLastFrame;
 LARGE_INTEGER currentCounts;
-float frameTime = 0.0f;
-float frequency = 100.0f;
+double frameTime = 0.0;
+double frequency = 100.0;
 int stopAtNum = 0;
 char triggerText[4]="13";
-float countsToSeconds(__int64 a)
+double countsToSeconds(__int64 a)
 {
 	LARGE_INTEGER temp;
 	QueryPerformanceFrequency(&temp); // = counts/second
-	return (float)(double(a)/double(temp.QuadPart));
+	return (double)(double(a)/double(temp.QuadPart));
 }
 
 
@@ -219,7 +221,15 @@ bool has_only_digits(const std::string& s)
 	return s.find_first_not_of("0123456789") == std::string::npos;
 }
 
-void parse_command_line(LPCSTR command_line, int& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button)
+bool has_only_digits_dot(const std::string& s)
+{
+	 std::string::size_type n = s.find_first_not_of("0123456789");
+
+	 if (n != std::string::npos)
+		 return (s[n] == '.') || (s[n] == ' ');
+}
+
+void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button)
 {
 	std::vector<std::string> parameters = split(erase_multiple_spaces(command_line), ' ');
 
@@ -229,9 +239,9 @@ void parse_command_line(LPCSTR command_line, int& clicks_per_second, int& trigge
 		{
 			if ((i + 1) < parameters.size())
 			{
-				if (has_only_digits(parameters[i + 1]))
+				if (has_only_digits_dot(parameters[i + 1]))
 				{
-					clicks_per_second = atoi(parameters[i + 1].c_str());
+					clicks_per_second = atof(parameters[i + 1].c_str());
 				}
 			}
 		}
@@ -403,6 +413,12 @@ bool saveMemToSubFile(const char* subFile, char*& pBuffer, size_t szBuffer)
 	return true;
 }
 
+void _ftoa_s(double val, char* buf, size_t sz, int)
+{
+	int n = _sprintf_p(buf, sz, "%5.2f", val);
+	int m = n;
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 static bool s_bHasCommandLine = false;
@@ -411,7 +427,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 {
 	memset(g_appRoot, 0, MAX_PATH);
 
-	int my_clicks_per_second = 10;
+	double my_clicks_per_second = 10;
 	int my_trigger_key = 0x0D;
 	int my_stop_at = 0;
 	Mode my_mode = Mode_Press;
@@ -455,8 +471,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	triggerKey = CreateWindow("Static","trigger key",WS_VISIBLE|WS_CHILD,5,80,410,20,hWnd,0,0,0);
 	clicksStopAt = CreateWindow("Static","stop at",WS_VISIBLE|WS_CHILD,5,100,410,20,hWnd,0,0,0);
 
-	char numStrInputFrequency[6];
-	_itoa_s(my_clicks_per_second, numStrInputFrequency, 6, 10);
+	char numStrInputFrequency[9];
+	_ftoa_s(my_clicks_per_second, numStrInputFrequency, 9, 10);
 
 	char numStrStopAt[6];
 	_itoa_s(my_stop_at, numStrStopAt, 6, 10);
@@ -466,11 +482,12 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	_itoa_s(my_trigger_key, triggerText, 4, 10);
 
 	outputWindow =		CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, 170, 40, 80, 20, hWnd, (HMENU)OUTPUT_TEXT, 0, 0);
-	inputFrequency =	CreateWindow("Edit", numStrInputFrequency, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 180, 60, 60, 20, hWnd, (HMENU)INPUT_TEXT, 0, 0);
+	inputFrequency =	CreateWindow("Edit", numStrInputFrequency, WS_VISIBLE | WS_CHILD | WS_BORDER, 170, 60, 80, 20, hWnd, (HMENU)INPUT_TEXT, 0, 0);
 	triggerButton =		CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 190, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN, 0, 0);
 	stopAt =			CreateWindow("Edit", numStrStopAt, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 100, 80, 20, hWnd, (HMENU)STOP_AT_TEXT, 0, 0);
 	stopButton =		CreateWindow("Button","STOP!",WS_VISIBLE | WS_CHILD,5,125,410,50,hWnd,(HMENU)STOP_BTN,0,0);
-	helpButton =		CreateWindow("Button","Help",WS_VISIBLE | WS_CHILD,5,180,410,50,hWnd,(HMENU)HELP_BTN,0,0);
+	resetButton =		CreateWindow("Button","Reset to defaults", WS_VISIBLE | WS_CHILD, 5, 180, 410/2, 50, hWnd, (HMENU)RESET_BTN, 0, 0);
+	helpButton =		CreateWindow("Button","Help",WS_VISIBLE | WS_CHILD,5+410/2,180,410/2,50,hWnd,(HMENU)HELP_BTN,0,0);
 
 	groupBox = CreateWindow("Button","trigger key mode",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,240,410,65,hWnd,(HMENU)T_P_GROUP,0,0);
 	press = CreateWindow("Button","press",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP,10,260,400,20,hWnd,(HMENU)T_P_GROUP,0,0);
@@ -483,7 +500,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	SendMessage(hWnd, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 
-	SendMessage(inputFrequency,EM_LIMITTEXT,5,0);
+	SendMessage(inputFrequency,EM_LIMITTEXT,8,0);
 
 	if (my_mode == Mode_Toggle)
 		doToggle = true;
@@ -714,16 +731,21 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			}
 
 			GetDlgItemText(hWnd,GetDlgCtrlID(inputFrequency),numStr,11);
-			frequency = float(atof(numStr));
-			
-			GetDlgItemText(hWnd,GetDlgCtrlID(stopAt),numStr,11);
-			stopAtNum = float(atof(numStr));
 
-			//if(frequency < 1.0f)
-			//{
-			//	frequency = 1.0f;
-			//	SetDlgItemText(hWnd,GetDlgCtrlID(inputFrequency),"1");
-			//}
+			frequency = double(atof(numStr));
+			bool bodd = has_only_digits_dot(std::string(numStr));
+
+			if (!bodd)
+			{
+				if (frequency <= 0.0)
+					frequency = 10.0;
+				char abuf[9];
+				_ftoa_s(frequency, abuf, 9, 10);
+				SetDlgItemText(hWnd,GetDlgCtrlID(inputFrequency),abuf);
+			}
+
+			GetDlgItemText(hWnd, GetDlgCtrlID(stopAt), numStr, 11);
+			stopAtNum = int(atof(numStr));
 		}
 		handleMessages();
 		prevStatus = status;
@@ -742,8 +764,60 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 	case WM_COMMAND:
 		switch(LOWORD(wp))
 		{
+		case RESET_BTN:
+			{
+				numClicks = 0;
+				numClicksSinceStop = 0;
+
+				double my_clicks_per_second = 10;
+				int my_trigger_key = 0x0D;
+				int my_stop_at = 0;
+				Mode my_mode = Mode_Press;
+				Button my_button = Button_Left;
+
+				char numStrInputFrequency[9];
+				_ftoa_s(my_clicks_per_second, numStrInputFrequency, 9, 10);
+
+				char numStrStopAt[6];
+				_itoa_s(my_stop_at, numStrStopAt, 6, 10);
+
+				char numStrTriggerButton[4];
+				_itoa_s(my_trigger_key, numStrTriggerButton, 4, 10);
+				_itoa_s(my_trigger_key, triggerText, 4, 10);
+
+				SetWindowTextA(outputWindow, "0");
+				SetWindowTextA(inputFrequency, numStrInputFrequency);
+				SetWindowTextA(stopAt, numStrStopAt);
+				SetWindowTextA(triggerButton, numStrTriggerButton);
+
+				if (my_mode == Mode_Toggle)
+					doToggle = true;
+				else
+					doToggle = false;
+				SendMessage(doToggle ? toggle : press, BM_CLICK, 0, 0);
+
+				if (my_button == Button_Left)
+				{
+					mouseToClick = 0;
+					SendMessage(leftM, BM_CLICK, 0, 0);
+				}
+				if (my_button == Button_Middle)
+				{
+					mouseToClick = 1;
+					SendMessage(middleM, BM_CLICK, 0, 0);
+				}
+				if (my_button == Button_Right)
+				{
+					mouseToClick = 2;
+					SendMessage(rightM, BM_CLICK, 0, 0);
+				}
+
+				//ShowWindow(hWnd, show);
+				UpdateWindow(hWnd);
+			}
+			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.1.0.\n\n"
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.3.0.\n\n"
 				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE 'TRIGGER KEY' (SEE BELOW).\n\n"
 				"The fields you can not modify:\n"
 				"'status (read-only)', the topmost text field, is either 'idle' or 'clicking'.\n"
@@ -765,6 +839,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				"Note 3: The trigger key still works when this program is minimized. You must close the program to stop a trigger key from clicking.\n\n"
 				"ADDITIONAL BUTTONS YOU CAN PRESS.\n\n"
 				"'STOP!' button stops toggled clicking mandatory.\n"
+				"'Reset to defaults' button sets all the clicking parameters back to default values. Note parameters auto-save on application exit is supported.\n"
 				"'Help' button displays this help window.\n\n"
 				"*NEW* COMMAND LINE HAS BEEN SUPPORTED TO SET ALL THE CLICKING PARAMETERS DESCRIBED ABOVE.\n\n"
 				"TheFastestMouseClicker.exe -c <clicks/s> -t <trigger key> -s <stop at> -m {p|t} -b {l|m|r},\n"
@@ -848,6 +923,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			SendMessage(stopAt, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(triggerButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(stopButton, WM_SETFONT, (WPARAM)s_hFontBold, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(resetButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(helpButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(groupBox, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(toggle, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
@@ -881,7 +957,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 
 				memset(winTxt, 0, 1024);
 				GetWindowText(inputFrequency, winTxt, 1024);
-				int my_clicks_per_second = atoi(winTxt);
+				double my_clicks_per_second = atof(winTxt);
 
 				memset(winTxt, 0, 1024);
 				GetWindowText(triggerButton, winTxt, 1024);
@@ -898,7 +974,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				char* outBuffer = new char[1024];
 				memset(outBuffer, 0, 1024);
 
-				int npr = _snprintf(outBuffer, 1024, "-c %d -t %d -s %d -m %s -b %s", my_clicks_per_second, my_trigger_key, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"));
+				int npr = _snprintf(outBuffer, 1024, "-c %5.2f -t %d -s %d -m %s -b %s", my_clicks_per_second, my_trigger_key, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"));
 
 				saveMemToSubFile("\\settings.dat", outBuffer, 1024);
 			}
