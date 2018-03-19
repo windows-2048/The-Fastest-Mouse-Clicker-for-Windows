@@ -817,35 +817,36 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.3.0.\n\n"
-				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE 'TRIGGER KEY' (SEE BELOW).\n\n"
-				"The fields you can not modify:\n"
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.5.0.\n\n"
+				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE 'trigger key' (SEE BELOW). Reading the entire Help is optional.\n\n"
+				"THE FIELDS YOU CAN NOT MODIFY.\n\n"
 				"'status (read-only)', the topmost text field, is either 'idle' or 'clicking'.\n"
 				"'# clicks (read-only)', the top text field, indicates number of clicks.\n\n"
 				"THE FIELDS YOU CAN MODIFY (CALLED THE CLICKING PARAMETERS: THEY COULD BE SET FROM THE COMMAND LINE TOO, SEE BELOW).\n\n"
 				"'clicks/s', the middle text field, is the frequency of the clicks in clicks per second. "
-				"Frequency can be as high as 99 thousands (99999) clicks per second. "
-				"You may enter fractional frequencies. For example, 0.5 is one click every two seconds.\n\n"
+				"Frequency can be as high as 99 thousands (99999) clicks per second.\n"
+				"*NEW* YOU MAY ENTER FRACTIONAL FREQUENCIES. For example, 0.5 is one click every two seconds.\n\n"
 				"'trigger key', below that, is the trigger key. Click on it and then press a key (or hit a mouse button). "
 				"That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made. "
 				"Default number in the button, 13, is the 'Enter' key (for example, 32 is the 'Space' key, 112 is the 'F1' key, "
 				"for more Virtual-Key Codes see https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731.aspx).\n\n"
 				"'stop at', the lower text field, is the number of clicks before the clicking will automatically stop. "
-				"0 is default and means infinity, i.e. clicking will never stop.\n\n"
-				"'trigger key mode' is a radio-button group, you can select either 'press' or 'toggle' mode of clicking.\n\n"
+				"0 is default and means infinity, i.e. clicking will never stop.\n"
+				"'trigger key mode' is a radio-button group, you can select either 'press' or 'toggle' mode of clicking.\n"
 				"'mouse button to click' is a radio-button group too, you can select either 'left', 'middle' or 'right' button.\n\n"
 				"Note 1: You can't have the same mouse button be the trigger and clicker.\n"
 				"Note 2: You can't change the trigger key if you chose the left mouse button; you must restart the program.\n"
 				"Note 3: The trigger key still works when this program is minimized. You must close the program to stop a trigger key from clicking.\n\n"
-				"ADDITIONAL BUTTONS YOU CAN PRESS.\n\n"
+				"ADDITIONAL BUTTONS AND FEATURES.\n\n"
 				"'STOP!' button stops toggled clicking mandatory.\n"
-				"'Reset to defaults' button sets all the clicking parameters back to default values. Note parameters auto-save on application exit is supported.\n"
+				"*NEW* 'Reset to defaults' button sets all the clicking parameters back to default values.\n"
 				"'Help' button displays this help window.\n\n"
-				"*NEW* COMMAND LINE HAS BEEN SUPPORTED TO SET ALL THE CLICKING PARAMETERS DESCRIBED ABOVE.\n\n"
+				"*NEW* COMMAND LINE HAS BEEN SUPPORTED TO SET ALL THE CLICKING PARAMETERS DESCRIBED ABOVE.\n"
 				"TheFastestMouseClicker.exe -c <clicks/s> -t <trigger key> -s <stop at> -m {p|t} -b {l|m|r},\n"
 				"where '-m {p|t}' is the 'trigger key mode' {'press'|'toggle'} and '-b {l|m|r}' is the 'mouse button to click' {'left'|'middle'|'right'}. "
 				"You may specify any part of arguments; unspecified or unrecognized values will be treated as defaults (see them by running the app without command line, "
 				"e.g. from Windows programs menu).\n\n"
+				"*NEW* All the clicking parameters are auto-saved between run-times.\n\n"
 				"Copyright (c) 2017-2018 Open Source Developer Masha Novedad.\n"
 				"https://sourceforge.net/projects/fast-mouse-clicker-pro/",
 				"Help - The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
@@ -894,19 +895,19 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			InvalidateRect(hWnd,NULL,TRUE);
 
 			const CHAR* fontName = "Helvetica";
-			const long nFontSize = 10;
+			const long nFontSize = 16;
 
 			HDC hdc = GetDC(hWnd);
 
 			LOGFONTA logFont = {0};
-			logFont.lfHeight = -MulDiv(nFontSize, GetDeviceCaps(hdc, LOGPIXELSY), 72);
+			logFont.lfHeight = -nFontSize;
 			logFont.lfWeight = FW_NORMAL;
 			strcpy(logFont.lfFaceName, fontName);
 
 			s_hFont = CreateFontIndirect(&logFont);
 
 			LOGFONTA logFontBold = {0};
-			logFontBold.lfHeight = -MulDiv(nFontSize, GetDeviceCaps(hdc, LOGPIXELSY), 72);
+			logFontBold.lfHeight = -nFontSize;
 			logFontBold.lfWeight = FW_BOLD;
 			strcpy(logFontBold.lfFaceName, fontName);
 

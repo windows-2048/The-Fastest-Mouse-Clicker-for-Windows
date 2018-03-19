@@ -29,3 +29,5 @@ e.g. from Windows programs menu).
 interfere parameters from the command line.
 
 * NEW * Reset to default parameters button added.
+
+* NEW * Fractional values for clicks/s parameter are supported. It allows you to click once in two seconds for example.
