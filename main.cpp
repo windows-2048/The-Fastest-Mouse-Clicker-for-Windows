@@ -170,7 +170,7 @@ void my_mouse_event(_In_ DWORD     dwFlags,
 
 	if (ret != nCnt)
 	{
-		SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"status (read-only): error in SendInput()");
+		SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: error in SendInput()");
 	}
 }
 
@@ -465,9 +465,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows", WS_OVERLAPPEDWINDOW, 100, 100,438,446, NULL, NULL, instanceH, NULL);
 
-	statusText = CreateWindow("Static","status (read-only): idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
-	numberClicks = CreateWindow("Static","# clicks (read-only)",WS_VISIBLE|WS_CHILD,5,40,410,20,hWnd,0,0,0);
-	clicksPerSecond = CreateWindow("Static","clicks/s",WS_VISIBLE|WS_CHILD,5,60,410,20,hWnd,0,0,0);
+	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
+	numberClicks = CreateWindow("Static","number of clicks",WS_VISIBLE|WS_CHILD,5,40,410,20,hWnd,0,0,0);
+	clicksPerSecond = CreateWindow("Static","clicks per second",WS_VISIBLE|WS_CHILD,5,60,410,20,hWnd,0,0,0);
 	triggerKey = CreateWindow("Static","trigger key",WS_VISIBLE|WS_CHILD,5,80,410,20,hWnd,0,0,0);
 	clicksStopAt = CreateWindow("Static","stop at",WS_VISIBLE|WS_CHILD,5,100,410,20,hWnd,0,0,0);
 
@@ -541,7 +541,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			status = 1;
 			if(status != prevStatus)
 			{
-				SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"status (read-only): please hit trigger key");				
+				SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: please hit the trigger key");				
 			}
 
 			memset(keyDown,0,VK_OEM_CLEAR);
@@ -651,7 +651,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					status = 2;
 					if(status != prevStatus)
 					{
-						SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"status (read-only): clicking");
+						SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: clicking");
 					}
 					if(switchFlag)
 					{
@@ -724,7 +724,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					}
 					if(status != prevStatus)
 					{
-						SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"status (read-only): idle");
+						SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: idle");
 					}
 				}
 				countsOnLastFrame=currentCounts;
@@ -817,34 +817,34 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.7.0.\n\n"
-				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE 'trigger key' (13 = Enter). Reading the entire Help is optional.\n\n"
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.8.0.\n\n"
+				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional.\n\n"
 				"THE FIELDS YOU CAN NOT MODIFY.\n\n"
-				"'status (read-only)', the topmost text field, is either 'idle' or 'clicking'.\n"
-				"'# clicks (read-only)', the top text field, indicates number of clicks.\n\n"
+				"<clicking status>, the topmost text field, is either getting 'idle' or 'clicking'.\n"
+				"<number of clicks>, the top text field, indicates total number of clicks performed.\n\n"
 				"THE FIELDS YOU CAN MODIFY (CALLED THE CLICKING PARAMETERS: THEY COULD BE SET FROM THE COMMAND LINE TOO, SEE BELOW).\n\n"
-				"'clicks/s', the middle text field, is the frequency of the clicks in clicks per second. "
+				"<clicks per second>, the middle text field, is the frequency of the clicks in clicks per second. "
 				"Frequency can be as high as 99 thousands (99999) clicks per second.\n"
 				"*NEW* YOU MAY ENTER FRACTIONAL FREQUENCIES. For example, 0.5 is one click every two seconds.\n"
-				"'trigger key', below that, is the trigger key. Click on it and then press a key (or hit a mouse button). "
+				"<trigger key>, below that, is the key to trigger the mouse events. Click on it and then press a key (or hit a mouse button). "
 				"That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made. "
 				"Default number in the button, 13, is the 'Enter' key (for example, 32 is the 'Space' key, 112 is the 'F1' key, "
 				"for more Virtual-Key Codes see https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731.aspx).\n"
-				"'stop at', the lower text field, is the number of clicks before the clicking will automatically stop. "
+				"<stop at>, the lower text field, is the number of clicks before the clicking will automatically stop. "
 				"0 is default and means infinity, i.e. clicking will never stop.\n"
-				"'trigger key mode' is a radio-button group, you can select either 'press' or 'toggle' mode of clicking.\n"
-				"'mouse button to click' is a radio-button group too, you can select either 'left', 'middle' or 'right' button.\n"
+				"<trigger key mode> is a radio-button group, you can select either 'press' or 'toggle' mode of clicking.\n"
+				"<mouse button to click> is a radio-button group too, you can select either 'left', 'middle' or 'right' button.\n"
 				"Note 1: You can't have the same mouse button be the trigger and clicker.\n"
-				"Note 2: You can't change the trigger key if you chose the left mouse button; you must press the Reset to defaults button.\n"
-				"Note 3: The trigger key still works when this program is minimized. You must close the program to stop a trigger key from clicking.\n\n"
+				"Note 2: You can't change the <trigger key> if you chose the left mouse button; you must press the <Reset to defaults> button.\n"
+				"Note 3: The <trigger key> still works when this program is minimized. You must close the program to stop a <trigger key> from clicking.\n\n"
 				"ADDITIONAL BUTTONS AND FEATURES.\n\n"
-				"'STOP!' button stops toggled clicking mandatory.\n"
-				"'Help' button displays this help window.\n"
-				"*NEW* 'Reset to defaults' button sets all the clicking parameters back to default values.\n"
+				"<STOP!> button stops toggled clicking mandatory.\n"
+				"<Help> button displays this help window.\n"
+				"*NEW* <Reset to defaults> button sets all the clicking parameters back to default values.\n"
 				"*NEW* COMMAND LINE HAS BEEN SUPPORTED TO SET ALL THE CLICKING PARAMETERS DESCRIBED ABOVE.\n"
-				"TheFastestMouseClicker.exe -c <clicks/s> -t <trigger key> -s <stop at> -m {p|t} -b {l|m|r},\n"
-				"where '-m {p|t}' is the 'trigger key mode' {'press'|'toggle'} and '-b {l|m|r}' is the 'mouse button to click' {'left'|'middle'|'right'}. "
-				"Unspecified or unrecognized values will be treated as defaults (see them by pressing the 'Reset to defaults' button).\n"
+				"TheFastestMouseClicker.exe -c <clicks per second> -t <trigger key> -s <stop at> -m <trigger key mode> -b <mouse button to click>,\n"
+				"where <trigger key mode> is either 'p' = 'press' or 't' = 'toggle' and the <mouse button to click> is either l = 'left' or 'm' = 'middle' or 'r' = 'right'.\n"
+				"Unspecified or unrecognized values will be treated as defaults (see them by pressing the <Reset to defaults> button).\n"
 				"*NEW* All the clicking parameters are auto-saved between run-times.\n\n"
 				"Copyright (c) 2017-2018 Open Source Developer Masha Novedad.\n"
 				"https://sourceforge.net/projects/fast-mouse-clicker-pro/",
