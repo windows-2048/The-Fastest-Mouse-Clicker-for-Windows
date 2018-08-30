@@ -16,7 +16,7 @@ fires this array to a computer hardware at once. Furthermore, my program
 High Resolution Timer, to completely eliminate any idle moments that
 could be spent otherwise to the mouse clicks.
 
-* NEW * Command line has been supported:
+* NEW Command line has been supported:
 TheFastestMouseClicker.exe -c <clicks/s> -t <trigger key> -s <stop at> -m {p|t} -b {l|m|r},
 where
 '-m {p|t}' is the 'trigger key mode' {'press'|'toggle'},
@@ -25,9 +25,9 @@ One may specify any part of arguments; unspecified or unrecognized values will b
 as defaults (see them by running the app without command line,
 e.g. from Windows programs menu).
 
-* NEW * Auto-save all the clicking parameters has been added! This feature does not
+* NEW Auto-save all the clicking parameters has been added! This feature does not
 interfere parameters from the command line.
 
-* NEW * Reset to default parameters button added.
+* NEW Reset to default parameters button added.
 
-* NEW * Fractional values for clicks/s parameter are supported. It allows you to click once in two seconds for example.
+* NEW Fractional values for clicks/s parameter are supported. It allows you to click once in two seconds for example.
