@@ -31,3 +31,5 @@ interfere parameters from the command line.
 * NEW Reset to default parameters button added.
 
 * NEW Fractional values for clicks/s parameter are supported. It allows you to click once in two seconds for example.
+
+This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and (first mirror is here)[https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/]. See them for binaries download.

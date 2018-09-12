@@ -227,6 +227,8 @@ bool has_only_digits_dot(const std::string& s)
 
 	 if (n != std::string::npos)
 		 return (s[n] == '.') || (s[n] == ' ');
+
+	 return true;
 }
 
 void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button)
@@ -817,7 +819,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows version 1.9.8.0.\n\n"
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 1.9.9.0.\n\n"
 				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional.\n\n"
 				"THE FIELDS YOU CAN NOT MODIFY.\n\n"
 				"<clicking status>, the topmost text field, is either getting 'idle' or 'clicking'.\n"
