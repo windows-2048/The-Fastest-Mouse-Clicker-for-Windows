@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows (formerly The Windows Intel Fastest Mouse Clicker)
 
-The fastest hardware-limited mouse clicker for Windows with command line support.
+The fastest hardware-limit mouse clicker for Windows with command line support and random clicking capabilities.
 
 This is a very simple application that does just one task but does it
 perfectly. The program emulates Windows mouse clicks once a triggered
@@ -31,5 +31,10 @@ interfere parameters from the command line.
 * NEW Reset to default parameters button added.
 
 * NEW Fractional values for clicks/s parameter are supported. It allows you to click once in two seconds for example.
+
+* NEW Button "Batch folder" has been added to open a directory with *.bat files quickly; it simplifies command line usage a lot.
+
+* NEW Random clicking has been implemented. Just click the "Batch folder" button and see remarks in the *.bat files reside there in order how to use command line arguments and to enable random clicking.
+
 
 This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and [first mirror is here](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/). See them for binaries download.

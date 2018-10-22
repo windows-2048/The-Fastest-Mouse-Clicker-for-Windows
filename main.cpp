@@ -9,6 +9,7 @@
 #include <cmath>
 using namespace std;
 
+
 HWND hWnd;
 HWND button;
 HWND outputWindow;
@@ -18,6 +19,7 @@ HWND triggerButton;
 HWND stopButton;
 HWND resetButton;
 HWND helpButton;
+HWND folderButton;
 HWND groupBox;
 HWND toggle;
 HWND press;
@@ -59,6 +61,7 @@ unsigned char keyUpTrig[VK_OEM_CLEAR];
 #define OUTPUT_TEXT 4000
 #define RESET_BTN 4500
 #define HELP_BTN 5000
+#define FOLDER_BTN 5500
 
 #define T_P_GROUP 6000
 #define R_M_L_GROUP 7000
@@ -94,6 +97,42 @@ void handleMessages()
 HFONT s_hFont = NULL;
 HFONT s_hFontBold = NULL;
 
+struct BoundingRect
+{
+	LONG x;
+	LONG dx;
+	LONG y;
+	LONG dy;
+	BoundingRect() : x(0), dx(0), y(0), dy(0)  {}
+	bool isValid() { return (x >= 0) && (dx > 0) && (y >= 0) && (dy > 0); }
+} s_boundRect;
+
+void SetMsgStatus(HWND hWnd, int hId, const char* msg)
+{
+	char spbuf[256];
+
+	if (s_boundRect.isValid())
+		_snprintf(spbuf, 256, "random clicking status: %s", msg);
+	else
+		_snprintf(spbuf, 256, "clicking status: %s", msg);
+
+	SetDlgItemText(hWnd, hId, spbuf);
+}
+
+LONG s_dx = 0;
+LONG s_dy = 0;
+DWORD s_dwFlags = 0;
+
+int CalculateAbsoluteCoordinateX(int x)
+{
+	return (x * 65536) / GetSystemMetrics(SM_CXSCREEN);
+}
+
+int CalculateAbsoluteCoordinateY(int y)
+{
+	return (y * 65536) / GetSystemMetrics(SM_CYSCREEN);
+}
+
 void my_mouse_event(_In_ DWORD     dwFlags,
 					_In_ DWORD     dx,
 					_In_ DWORD     dy,
@@ -102,76 +141,178 @@ void my_mouse_event(_In_ DWORD     dwFlags,
 					_In_ UINT nCnt = 1)
 {
 	INPUT input[4096];
+	memset(input, 0, 4096 * sizeof(INPUT));
+
+	if (nCnt > 1000)
+		nCnt = 1000; // Avoid input buffer out-of-range ( total number of events may by nCnt * 2 or * 3
+
 	input[0].type = INPUT_MOUSE;
+
 	input[0].mi.dx = dx;
 	input[0].mi.dy = dy;
 	input[0].mi.dwFlags = dwFlags;
+
 	input[0].mi.mouseData = dwData;
 	input[0].mi.time = 0;
 	input[0].mi.dwExtraInfo = dwExtraInfo;
 
-	if (nCnt > 1)
+	if (!(dwFlags & MOUSEEVENTF_ABSOLUTE)) // Usual follow mouse
 	{
-		nCnt = 1 + (nCnt - 1) * 2;
-
-		for (UINT i = 1; i < nCnt; ++i)
+		if (
+			(dwFlags & MOUSEEVENTF_LEFTDOWN)
+			|| (dwFlags & MOUSEEVENTF_MIDDLEDOWN)
+			|| (dwFlags & MOUSEEVENTF_RIGHTDOWN)
+			)
 		{
-			input[i].type = input[0].type;
-			input[i].mi.dx = input[0].mi.dx;
-			input[i].mi.dy = input[0].mi.dy;
-			input[i].mi.dwFlags = input[0].mi.dwFlags;
-			input[i].mi.mouseData = input[0].mi.mouseData;
-			input[i].mi.time = input[0].mi.time;
-			input[i].mi.dwExtraInfo = input[0].mi.dwExtraInfo;
+			// All done above
+			UINT nCntExtra = 0;
 
-			// Replace all down by up
+			UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
 
-			if (input[0].mi.dwFlags & MOUSEEVENTF_LEFTDOWN)
+			if (ret != (1 + nCntExtra))
+				SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "error in SendInput()");
+
+			return;
+		}
+
+		if (
+			(dwFlags & MOUSEEVENTF_LEFTUP)
+			|| (dwFlags & MOUSEEVENTF_MIDDLEUP)
+			|| (dwFlags & MOUSEEVENTF_RIGHTUP)
+			)
+		{
+			UINT nCntExtra = (nCnt - 1) * 2; // reserved index for DOWN, UP
+
+			for (UINT iExtra = 0; iExtra < nCntExtra; iExtra += 2)
 			{
-				if ((i % 2) == 1)
-					input[i].mi.dwFlags|= MOUSEEVENTF_LEFTUP;
+				input[1 + iExtra].type = INPUT_MOUSE;
+
+				input[1 + iExtra].mi.dx = dx;
+				input[1 + iExtra].mi.dy = dy;
+
+				input[1 + iExtra].mi.mouseData = dwData;
+				input[1 + iExtra].mi.time = 0;
+				input[1 + iExtra].mi.dwExtraInfo = dwExtraInfo;
+
+				input[1 + iExtra + 1] = input[1 + iExtra];
+
+				if (dwFlags & MOUSEEVENTF_LEFTUP)
+				{
+					input[1 + iExtra].mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
+					input[1 + iExtra + 1].mi.dwFlags = MOUSEEVENTF_LEFTUP;
+				}
+
+				if (dwFlags & MOUSEEVENTF_MIDDLEUP)
+				{
+					input[1 + iExtra].mi.dwFlags = MOUSEEVENTF_MIDDLEDOWN;
+					input[1 + iExtra + 1].mi.dwFlags = MOUSEEVENTF_MIDDLEUP;
+				}
+
+				if (dwFlags & MOUSEEVENTF_RIGHTUP)
+				{
+					input[1 + iExtra].mi.dwFlags = MOUSEEVENTF_RIGHTDOWN;
+					input[1 + iExtra + 1].mi.dwFlags = MOUSEEVENTF_RIGHTUP;
+				}
 			}
 
-			if (input[0].mi.dwFlags & MOUSEEVENTF_MIDDLEDOWN)
+			UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
+
+			if (ret != (1 + nCntExtra))
+				SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "error in SendInput()");
+
+			return;
+		}
+	}
+	else // (dwFlags & MOUSEEVENTF_ABSOLUTE) is true
+	{
+		if (
+			(dwFlags & MOUSEEVENTF_LEFTDOWN)
+			|| (dwFlags & MOUSEEVENTF_MIDDLEDOWN)
+			|| (dwFlags & MOUSEEVENTF_RIGHTDOWN)
+			)
+		{
+			input[1] = input[0]; // Preceed DOWN by MOVE
+
+			input[0].mi.dwFlags &= ~MOUSEEVENTF_LEFTDOWN;
+			input[0].mi.dwFlags &= ~MOUSEEVENTF_MIDDLEDOWN;
+			input[0].mi.dwFlags &= ~MOUSEEVENTF_RIGHTDOWN;
+			input[0].mi.dwFlags |= MOUSEEVENTF_MOVE;
+
+			UINT nCntExtra = 1;
+
+			UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
+
+			if (ret != (1 + nCntExtra))
+				SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "error in SendInput()");
+
+			return;
+		}
+
+		if (
+			(dwFlags & MOUSEEVENTF_LEFTUP)
+			|| (dwFlags & MOUSEEVENTF_MIDDLEUP)
+			|| (dwFlags & MOUSEEVENTF_RIGHTUP)
+			)
+		{
+			UINT nCntExtra = (nCnt - 1) * 3; // Reserved index for MOVE, DOWN, UP
+
+			LONG cur_dx = 0;
+			LONG cur_dy = 0;
+
+			for (UINT iExtra = 0; iExtra < nCntExtra; iExtra += 3) // Add extra MOVE, DOWN, UP
 			{
-				if ((i % 2) == 1)
-					input[i].mi.dwFlags|= MOUSEEVENTF_MIDDLEUP;
+				if ((iExtra % 3) == 0)
+				{
+					cur_dx = CalculateAbsoluteCoordinateX(s_boundRect.x + (rand() % s_boundRect.dx));
+					cur_dy = CalculateAbsoluteCoordinateY(s_boundRect.y + (rand() % s_boundRect.dy));
+				}
+
+				input[1 + iExtra].type = INPUT_MOUSE;
+
+				input[1 + iExtra].mi.dx = cur_dx;
+				input[1 + iExtra].mi.dy = cur_dy;
+				input[1 + iExtra].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE;
+
+				input[1 + iExtra].mi.mouseData = dwData;
+				input[1 + iExtra].mi.time = 0;
+				input[1 + iExtra].mi.dwExtraInfo = dwExtraInfo;
+
+				input[1 + iExtra + 1] = input[1 + iExtra];
+				input[1 + iExtra + 2] = input[1 + iExtra];
+
+				if (dwFlags & MOUSEEVENTF_LEFTUP)
+				{
+					input[1 + iExtra + 1].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTDOWN;
+					input[1 + iExtra + 2].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTUP;
+				}
+
+				if (dwFlags & MOUSEEVENTF_MIDDLEDOWN)
+				{
+					input[1 + iExtra + 1].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MIDDLEDOWN;
+					input[1 + iExtra + 2].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MIDDLEDOWN;
+				}
+
+				if (dwFlags & MOUSEEVENTF_RIGHTUP)
+				{
+					input[1 + iExtra + 1].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_RIGHTDOWN;
+					input[1 + iExtra + 2].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_RIGHTUP;
+				}
+
 			}
 
-			if (input[0].mi.dwFlags & MOUSEEVENTF_RIGHTDOWN)
-			{
-				if ((i % 2) == 1)
-					input[i].mi.dwFlags|= MOUSEEVENTF_RIGHTUP;
-			}
+			UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
 
-			// Replace all up by down
+			if (ret != (1 + nCntExtra))
+				SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "error in SendInput()");
 
-			if (input[0].mi.dwFlags & MOUSEEVENTF_LEFTUP)
-			{
-				if ((i % 2) == 1)
-					input[i].mi.dwFlags|= MOUSEEVENTF_LEFTDOWN;
-			}
-
-			if (input[0].mi.dwFlags & MOUSEEVENTF_MIDDLEUP)
-			{
-				if ((i % 2) == 1)
-					input[i].mi.dwFlags|= MOUSEEVENTF_MIDDLEDOWN;
-			}
-
-			if (input[0].mi.dwFlags & MOUSEEVENTF_RIGHTUP)
-			{
-				if ((i % 2) == 1)
-					input[i].mi.dwFlags|= MOUSEEVENTF_RIGHTDOWN;
-			}
+			return;
 		}
 	}
 
-	UINT ret = SendInput(nCnt, input, sizeof(INPUT));
+	// Control flow should not reach this line
+	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "internal error in my_mouse_event()");
 
-	if (ret != nCnt)
-	{
-		SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: error in SendInput()");
-	}
+	return;
 }
 
 enum Mode
@@ -231,7 +372,7 @@ bool has_only_digits_dot(const std::string& s)
 	 return true;
 }
 
-void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button)
+void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button, BoundingRect& boundRect)
 {
 	std::vector<std::string> parameters = split(erase_multiple_spaces(command_line), ' ');
 
@@ -304,6 +445,17 @@ void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& tri
 				{
 					button = Button_Right;
 				}
+			}
+		}
+
+		if (parameters[i] == "-r")
+		{
+			if ((i + 4) < parameters.size())
+			{
+				boundRect.x = atoi(parameters[i + 1].c_str());
+				boundRect.y = atoi(parameters[i + 2].c_str());
+				boundRect.dx = atoi(parameters[i + 3].c_str());
+				boundRect.dy = atoi(parameters[i + 4].c_str());
 			}
 		}
 	}
@@ -425,6 +577,7 @@ void _ftoa_s(double val, char* buf, size_t sz, int)
 
 static bool s_bHasCommandLine = false;
 
+
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
 	memset(g_appRoot, 0, MAX_PATH);
@@ -440,12 +593,14 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	loadSubFileToMem("\\settings.dat", my_pBuffer, my_szBuffer);
 
-	if ((my_pBuffer != NULL) && (my_szBuffer == 1024))
-		parse_command_line(my_pBuffer, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button);
+	BoundingRect dummy_boundRect;
 
-	if (strlen(command_line) >= 4)
+	if ((my_pBuffer != NULL) && (my_szBuffer == 1024))
+		parse_command_line(my_pBuffer, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, dummy_boundRect);
+
+	if (strlen(command_line) >= 4) // "-t 1" for example
 	{
-		parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button);
+		parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, s_boundRect);
 		s_bHasCommandLine = true;
 	}
 
@@ -468,6 +623,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows", WS_OVERLAPPEDWINDOW, 100, 100,438,446, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
+	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 	numberClicks = CreateWindow("Static","number of clicks",WS_VISIBLE|WS_CHILD,5,40,410,20,hWnd,0,0,0);
 	clicksPerSecond = CreateWindow("Static","clicks per second",WS_VISIBLE|WS_CHILD,5,60,410,20,hWnd,0,0,0);
 	triggerKey = CreateWindow("Static","trigger key",WS_VISIBLE|WS_CHILD,5,80,410,20,hWnd,0,0,0);
@@ -488,8 +644,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	triggerButton =		CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 190, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN, 0, 0);
 	stopAt =			CreateWindow("Edit", numStrStopAt, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 100, 80, 20, hWnd, (HMENU)STOP_AT_TEXT, 0, 0);
 	stopButton =		CreateWindow("Button","STOP!",WS_VISIBLE | WS_CHILD,5,125,410,50,hWnd,(HMENU)STOP_BTN,0,0);
-	resetButton =		CreateWindow("Button","Reset to defaults", WS_VISIBLE | WS_CHILD, 5, 180, 410/2, 50, hWnd, (HMENU)RESET_BTN, 0, 0);
-	helpButton =		CreateWindow("Button","Help",WS_VISIBLE | WS_CHILD,5+410/2,180,410/2,50,hWnd,(HMENU)HELP_BTN,0,0);
+	resetButton =		CreateWindow("Button","Reset to defaults", WS_VISIBLE | WS_CHILD, 5, 180, 410/3, 50, hWnd, (HMENU)RESET_BTN, 0, 0);
+	helpButton =		CreateWindow("Button","Help",WS_VISIBLE | WS_CHILD,5+5+410/3,180,410/3-5,50,hWnd,(HMENU)HELP_BTN,0,0);
+	folderButton =		CreateWindow("Button", "Batch folder", WS_VISIBLE | WS_CHILD, 5+5+410/3+410/3, 180, 410/3-3, 50, hWnd, (HMENU)FOLDER_BTN, 0, 0);
 
 	groupBox = CreateWindow("Button","trigger key mode",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,240,410,65,hWnd,(HMENU)T_P_GROUP,0,0);
 	press = CreateWindow("Button","press",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP,10,260,400,20,hWnd,(HMENU)T_P_GROUP,0,0);
@@ -543,7 +700,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			status = 1;
 			if(status != prevStatus)
 			{
-				SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: please hit the trigger key");				
+				SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "please hit the trigger key");
 			}
 
 			memset(keyDown,0,VK_OEM_CLEAR);
@@ -653,20 +810,33 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					status = 2;
 					if(status != prevStatus)
 					{
-						SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: clicking");
+						SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "clicking");
 					}
 					if(switchFlag)
 					{
+						if (s_boundRect.isValid())
+						{
+							s_dx = CalculateAbsoluteCoordinateX(s_boundRect.x + (rand() % s_boundRect.dx));
+							s_dy = CalculateAbsoluteCoordinateY(s_boundRect.y + (rand() % s_boundRect.dy));
+							s_dwFlags = MOUSEEVENTF_ABSOLUTE;
+						}
+						else
+						{
+							s_dx = 0;
+							s_dy = 0;
+							s_dwFlags = 0;
+						}
+
 						switch(mouseToClick)
 						{
 						case 0:
-							my_mouse_event(MOUSEEVENTF_LEFTDOWN,0,0,0,0,nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_LEFTDOWN | s_dwFlags, s_dx, s_dy, 0, NULL, 1); // On mouse DOWN no extra generation of events - see UP
 							break;
 						case 1:
-							my_mouse_event(MOUSEEVENTF_MIDDLEDOWN,0,0,0,0,nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_MIDDLEDOWN | s_dwFlags, s_dx, s_dy, 0, NULL, 1);
 							break;
 						case 2:
-							my_mouse_event(MOUSEEVENTF_RIGHTDOWN,0,0,0,0,nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_RIGHTDOWN | s_dwFlags, s_dx, s_dy, 0, NULL, 1);
 							break;
 						};
 						
@@ -677,13 +847,13 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 						switch(mouseToClick)
 						{
 						case 0:
-							my_mouse_event(MOUSEEVENTF_LEFTUP,0,0,0,0,nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_LEFTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks); // On mouse UP we DO extra generation of events
 							break;
 						case 1:
-							my_mouse_event(MOUSEEVENTF_MIDDLEUP,0,0,0,0,nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_MIDDLEUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
 							break;
 						case 2:
-							my_mouse_event(MOUSEEVENTF_RIGHTUP,0,0,0,0,nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_RIGHTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
 							break;
 						};
 						
@@ -700,13 +870,13 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					switch(mouseToClick)
 					{
 					case 0:
-						my_mouse_event(MOUSEEVENTF_LEFTUP,0,0,0,0,nBatchClicks);
+						my_mouse_event(MOUSEEVENTF_LEFTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks); // On mouse UP we DO extra generation of events
 						break;
 					case 1:
-						my_mouse_event(MOUSEEVENTF_MIDDLEUP,0,0,0,0,nBatchClicks);
+						my_mouse_event(MOUSEEVENTF_MIDDLEUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
 						break;
 					case 2:
-						my_mouse_event(MOUSEEVENTF_RIGHTUP,0,0,0,0,nBatchClicks);
+						my_mouse_event(MOUSEEVENTF_RIGHTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
 						break;
 					};
 					switchFlag=true;
@@ -726,7 +896,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					}
 					if(status != prevStatus)
 					{
-						SetDlgItemText(hWnd,GetDlgCtrlID(statusText),"clicking status: idle");
+						SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 					}
 				}
 				countsOnLastFrame=currentCounts;
@@ -819,38 +989,48 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 1.9.9.0.\n\n"
-				"YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional.\n\n"
-				"THE FIELDS YOU CAN NOT MODIFY.\n\n"
-				"<clicking status>, the topmost text field, is either getting 'idle' or 'clicking'.\n"
-				"<number of clicks>, the top text field, indicates total number of clicks performed.\n\n"
-				"THE FIELDS YOU CAN MODIFY (CALLED THE CLICKING PARAMETERS: THEY COULD BE SET FROM THE COMMAND LINE TOO, SEE BELOW).\n\n"
-				"<clicks per second>, the middle text field, is the frequency of the clicks in clicks per second. "
-				"Frequency can be as high as 99 thousands (99999) clicks per second.\n"
-				"*NEW* YOU MAY ENTER FRACTIONAL FREQUENCIES. For example, 0.5 is one click every two seconds.\n"
-				"<trigger key>, below that, is the key to trigger the mouse events. Click on it and then press a key (or hit a mouse button). "
-				"That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made. "
-				"Default number in the button, 13, is the 'Enter' key (for example, 32 is the 'Space' key, 112 is the 'F1' key, "
-				"for more Virtual-Key Codes see https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731.aspx).\n"
-				"<stop at>, the lower text field, is the number of clicks before the clicking will automatically stop. "
-				"0 is default and means infinity, i.e. clicking will never stop.\n"
-				"<trigger key mode> is a radio-button group, you can select either 'press' or 'toggle' mode of clicking.\n"
-				"<mouse button to click> is a radio-button group too, you can select either 'left', 'middle' or 'right' button.\n"
-				"Note 1: You can't have the same mouse button be the trigger and clicker.\n"
-				"Note 2: You can't change the <trigger key> if you chose the left mouse button; you must press the <Reset to defaults> button.\n"
-				"Note 3: The <trigger key> still works when this program is minimized. You must close the program to stop a <trigger key> from clicking.\n\n"
-				"ADDITIONAL BUTTONS AND FEATURES.\n\n"
-				"<STOP!> button stops toggled clicking mandatory.\n"
-				"<Help> button displays this help window.\n"
-				"*NEW* <Reset to defaults> button sets all the clicking parameters back to default values.\n"
-				"*NEW* COMMAND LINE HAS BEEN SUPPORTED TO SET ALL THE CLICKING PARAMETERS DESCRIBED ABOVE.\n"
-				"TheFastestMouseClicker.exe -c <clicks per second> -t <trigger key> -s <stop at> -m <trigger key mode> -b <mouse button to click>,\n"
-				"where <trigger key mode> is either 'p' = 'press' or 't' = 'toggle' and the <mouse button to click> is either l = 'left' or 'm' = 'middle' or 'r' = 'right'.\n"
-				"Unspecified or unrecognized values will be treated as defaults (see them by pressing the <Reset to defaults> button).\n"
-				"*NEW* All the clicking parameters are auto-saved between run-times.\n\n"
-				"Copyright (c) 2017-2018 Open Source Developer Masha Novedad.\n"
-				"https://sourceforge.net/projects/fast-mouse-clicker-pro/",
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.0.0.0 (with random clicking support)."
+				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
+				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
+				"\n\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
+				" It is shown as <random clicking status> only when all the rectangle sizes to click randomly inside it are specified in the command line correctly."
+				" Just press the [Batch folder] button and see the remarks in file run_clicker_with_random_clicking.bat."
+				"\n<number of clicks>, the top text field, indicates total number of clicks performed."
+				"\n\nTHE FIELDS YOU CAN MODIFY (CALLED THE CLICKING PARAMETERS: THEY COULD BE SET FROM THE COMMAND LINE TOO, SEE BELOW)."
+				"\n\n<clicks per second>, the middle text field, is the frequency of the clicks measured in clicks per second."
+				" This frequency can be as high as 100 thousands (100000) clicks per second."
+				" FRACTIONAL frequences are supported. For example, 0.5 corresponds to 1 click every 2 seconds, 0.25 - to 1 click every 4 seconds, etc."
+				"\n<trigger key>, below that, is the keyboard key to trigger the mouse events. Just click on it and then press arbitrary key (or hit a mouse button)."
+				" That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made."
+				" This behavior corresponds to <trigger key mode> = 'press', see how it changes on 'toggle' value below."
+				" Default number in the button, 13, is the 'Enter' key code (for example, 32 is the 'Space' key code, 112 is the 'F1' key code, etc."
+				" For all the key codes see https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731.aspx)."
+				"\n<stop at>, the lower text field, is the number of clicks before the clicking will automatically stop."
+				" 0 is the default and means infinity, i.e. clicking will never stop."
+				"\n<trigger key mode> is a radio-button group, you can select either 'press' or 'toggle' mode of clicking."
+				" In the 'press' mode (default), the mouse events are emitted only when the corresponding trigger key is kept pressed."
+				" In the 'toogle' mode, the mouse events are emitted between subsequent short hits to the key."
+				"\n<mouse button to click> is a radio-button group too, you can select either 'left', 'middle' or 'right' mouse button that will generate the clicks."
+				"\nNote 1: You can't have the same mouse button be the trigger and clicker."
+				"\nNote 2: You can't change the <trigger key> if you chose the left mouse button; you must press the [Reset to defaults] button."
+				"\nNote 3: The <trigger key> still works when this program is minimized. You must close the program to stop a <trigger key> from clicking."
+				"\n*NEW* All the clicking parameters are saved automatically between application run-times."
+				"\n\nADDITIONAL BUTTONS AND FEATURES."
+				"\n\n[STOP!] button stops toggled clicking mandatory."
+				"\n[Help] button displays this help window."
+				"\n*NEW* [Reset to defaults] button sets all the clicking parameters back to their default values."
+				"\n*NEW* [Batch folder] button opens the folder in File Explorer where all the batch files reside typically."
+				"\n*NEW* To get help on the command line arguments, just press the [Batch folder] button and see the remarks in *.bat files you find there."
+				"\n\nCopyright (c) 2017-2018 Open Source Developer Masha Novedad."
+				"\nhttps://sourceforge.net/projects/fast-mouse-clicker-pro/",
 				"Help - The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
+			break;
+		case FOLDER_BTN:
+			{
+				char strBatchFolder[MAX_PATH];
+				fillAppDataPath(strBatchFolder, "");
+				ShellExecuteA(NULL, "open", strBatchFolder, NULL, NULL, SW_SHOWNORMAL);
+			}
 			break;
 		case R_M_L_GROUP:
 			mouseToClick=0;
@@ -927,6 +1107,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			SendMessage(stopButton, WM_SETFONT, (WPARAM)s_hFontBold, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(resetButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(helpButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(folderButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(groupBox, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(toggle, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(press, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
