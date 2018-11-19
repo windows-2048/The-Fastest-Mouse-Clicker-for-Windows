@@ -989,7 +989,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.0.0.0 (with random clicking support)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.0.0.1 (with random clicking support)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
