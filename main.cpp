@@ -577,6 +577,28 @@ void _ftoa_s(double val, char* buf, size_t sz, int)
 
 static bool s_bHasCommandLine = false;
 
+#include <stdarg.h>  // For va_start, etc.
+
+std::string string_format(const std::string fmt, ...) {
+	int size = ((int)fmt.size()) * 2 + 50;   // Use a rubric appropriate for your code
+	std::string str;
+	va_list ap;
+	while (1) {     // Maximum two passes on a POSIX system...
+		str.resize(size);
+		va_start(ap, fmt);
+		int n = vsnprintf((char *)str.data(), size, fmt.c_str(), ap);
+		va_end(ap);
+		if (n > -1 && n < size) {  // Everything worked
+			str.resize(n);
+			return str;
+		}
+		if (n > -1)  // Needed size returned
+			size = n + 1;   // For null char
+		else
+			size *= 2;      // Guess at a larger size (OS specific)
+	}
+	return str;
+}
 
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
@@ -649,8 +671,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	folderButton =		CreateWindow("Button", "Batch folder", WS_VISIBLE | WS_CHILD, 5+5+410/3+410/3, 180, 410/3-3, 50, hWnd, (HMENU)FOLDER_BTN, 0, 0);
 
 	groupBox = CreateWindow("Button","trigger key mode",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,240,410,65,hWnd,(HMENU)T_P_GROUP,0,0);
-	press = CreateWindow("Button","press",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP,10,260,400,20,hWnd,(HMENU)T_P_GROUP,0,0);
-	toggle = CreateWindow("Button","toggle",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON,10,280,400,20,hWnd,(HMENU)T_P_GROUP,0,0);
+	press = CreateWindow("Button", string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, 10, 260, 400, 20, hWnd, (HMENU)T_P_GROUP, 0, 0);
+	toggle = CreateWindow("Button", string_format("toggle (clicking begin: single hit <%d>, end: Ctrl+<%d>)", my_trigger_key, my_trigger_key).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 10, 280, 400, 20, hWnd, (HMENU)T_P_GROUP, 0, 0);
 
 	rmlGroupBox = CreateWindow("Button","mouse button to click",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,310,410,85,hWnd,(HMENU)R_M_L_GROUP,0,0);
 	leftM = CreateWindow("Button","left",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP,10,330,400,20,hWnd,(HMENU)R_M_L_GROUP,0,0);	
@@ -751,6 +773,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					_itoa_s(i,triggerText,4,10);
 					SetFocus(outputWindow);
 					SetDlgItemText(hWnd,GetDlgCtrlID(triggerButton),triggerText);
+					my_trigger_key = atoi(triggerText);
+					SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
+					SetWindowTextA(toggle, string_format("toggle (clicking begin: single hit <%d>, end: Ctrl+<%d>)", my_trigger_key, my_trigger_key).c_str());
 					waitingForTrigger = false;
 					clickedOnceForTriggerFlag = false;
 					break;
@@ -767,15 +792,30 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 			char numStr[12];
 
-			//to ensure no problems with starting and stopping the toggle state:
-			if(toggleState == 0 && GetAsyncKeyState(atoi(triggerText)))
-				toggleState = 1;
-			if(toggleState == 1 && !GetAsyncKeyState(atoi(triggerText)))
-				toggleState = 2;
-			if(toggleState == 2 && GetAsyncKeyState(atoi(triggerText)))
-				toggleState = 3;
-			if(toggleState == 3 && !GetAsyncKeyState(atoi(triggerText)))
-				toggleState = 0;
+			if (!doToggle)
+			{
+				//to ensure no problems with starting and stopping the toggle state:
+				if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)))
+					toggleState = 1;
+				if (toggleState == 1 && !GetAsyncKeyState(atoi(triggerText)))
+					toggleState = 2;
+				if (toggleState == 2 && GetAsyncKeyState(atoi(triggerText)))
+					toggleState = 3;
+				if (toggleState == 3 && !GetAsyncKeyState(atoi(triggerText)))
+					toggleState = 0;
+			}
+			else
+			{
+				//to ensure no problems with starting and stopping the toggle state:
+				if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)) && !GetAsyncKeyState(VK_CONTROL))
+					toggleState = 1;
+				if (toggleState == 1 && !GetAsyncKeyState(atoi(triggerText)) && !GetAsyncKeyState(VK_CONTROL))
+					toggleState = 2;
+				if (toggleState == 2 && GetAsyncKeyState(atoi(triggerText)) && GetAsyncKeyState(VK_CONTROL))
+					toggleState = 3;
+				if (toggleState == 3 && !GetAsyncKeyState(atoi(triggerText)) && GetAsyncKeyState(VK_CONTROL))
+					toggleState = 0;
+			}
 
 			if(frameTime>1.0f/(frequency*2.0f))
 			{
@@ -962,6 +1002,9 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				SetWindowTextA(stopAt, numStrStopAt);
 				SetWindowTextA(triggerButton, numStrTriggerButton);
 
+				SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
+				SetWindowTextA(toggle, string_format("toggle (clicking begin: single hit <%d>, end: Ctrl+<%d>)", my_trigger_key, my_trigger_key).c_str());
+
 				if (my_mode == Mode_Toggle)
 					doToggle = true;
 				else
@@ -989,39 +1032,40 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.0.0.1 (with random clicking support)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.3.0 (random clicking; different keys for toggle mode)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
-				"\n\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
+				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
 				" It is shown as <random clicking status> only when all the rectangle sizes to click randomly inside it are specified in the command line correctly."
 				" Just press the [Batch folder] button and see the remarks in file run_clicker_with_random_clicking.bat."
 				"\n<number of clicks>, the top text field, indicates total number of clicks performed."
 				"\n\nTHE FIELDS YOU CAN MODIFY (CALLED THE CLICKING PARAMETERS: THEY COULD BE SET FROM THE COMMAND LINE TOO, SEE BELOW)."
-				"\n\n<clicks per second>, the middle text field, is the frequency of the clicks measured in clicks per second."
+				"\n<clicks per second>, the middle text field, is the frequency of the clicks measured in clicks per second."
 				" This frequency can be as high as 100 thousands (100000) clicks per second."
 				" FRACTIONAL frequences are supported. For example, 0.5 corresponds to 1 click every 2 seconds, 0.25 - to 1 click every 4 seconds, etc."
 				"\n<trigger key>, below that, is the keyboard key to trigger the mouse events. Just click on it and then press arbitrary key (or hit a mouse button)."
 				" That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made."
 				" This behavior corresponds to <trigger key mode> = 'press', see how it changes on 'toggle' value below."
-				" Default number in the button, 13, is the 'Enter' key code (for example, 32 is the 'Space' key code, 112 is the 'F1' key code, etc."
+				" Default number shown in the button, 13, is the 'Enter' key code (for example, 32 is the 'Space' key code, 112 is the 'F1' key code, etc."
 				" For all the key codes see https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731.aspx)."
 				"\n<stop at>, the lower text field, is the number of clicks before the clicking will automatically stop."
 				" 0 is the default and means infinity, i.e. clicking will never stop."
 				"\n<trigger key mode> is a radio-button group, you can select either 'press' or 'toggle' mode of clicking."
 				" In the 'press' mode (default), the mouse events are emitted only when the corresponding trigger key is kept pressed."
-				" In the 'toogle' mode, the mouse events are emitted between subsequent short hits to the key."
+				" In the 'toogle' mode, the mouse events are emitted between subsequent short hits to the <trigger key> and Ctrl+<trigger key>."
 				"\n<mouse button to click> is a radio-button group too, you can select either 'left', 'middle' or 'right' mouse button that will generate the clicks."
 				"\nNote 1: You can't have the same mouse button be the trigger and clicker."
 				"\nNote 2: You can't change the <trigger key> if you chose the left mouse button; you must press the [Reset to defaults] button."
 				"\nNote 3: The <trigger key> still works when this program is minimized. You must close the program to stop a <trigger key> from clicking."
 				"\n*NEW* All the clicking parameters are saved automatically between application run-times."
 				"\n\nADDITIONAL BUTTONS AND FEATURES."
-				"\n\n[STOP!] button stops toggled clicking mandatory."
+				"\n[STOP!] button stops toggled clicking mandatory."
 				"\n[Help] button displays this help window."
 				"\n*NEW* [Reset to defaults] button sets all the clicking parameters back to their default values."
 				"\n*NEW* [Batch folder] button opens the folder in File Explorer where all the batch files reside typically."
 				"\n*NEW* To get help on the command line arguments, just press the [Batch folder] button and see the remarks in *.bat files you find there."
-				"\n\nCopyright (c) 2017-2018 Open Source Developer Masha Novedad."
+				"\n*NEW* Different keys for <trigger key mode> = 'toggle': if <trigger key> begins the clicking, then Ctrl+<trigger key> stops it."
+				"\n\nCopyright (c) 2018-2019 Open Source Developer Masha Novedad."
 				"\nhttps://sourceforge.net/projects/fast-mouse-clicker-pro/",
 				"Help - The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
 			break;
@@ -1048,7 +1092,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case T_P_GROUP:
-			toggleState=0;
+			//toggleState=0;
 			if((HWND)lp == toggle)
 			{
 				doToggle = true;
