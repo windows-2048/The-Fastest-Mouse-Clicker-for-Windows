@@ -2,8 +2,8 @@
 
 [Setup]
 AppName=The Fastest Mouse Clicker for Windows
-AppVersion=2.1.3.8
-VersionInfoVersion=2.1.3.8
+AppVersion=2.1.4.0
+VersionInfoVersion=2.1.4.0
 AppPublisher=Open Source Developer Masha Novedad
 AppPublisherURL=https://github.com/windows-2048
 AppUpdatesURL=https://sourceforge.net/projects/fast-mouse-clicker-pro/
@@ -22,15 +22,15 @@ AlwaysShowGroupOnReadyPage=yes
 WizardImageFile=_wizardimage.bmp
 WizardSmallImageFile=_wizardimagesmall.bmp
 #ifnexist "_DEBUG"
-OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_3_8
+OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_4_0
 #else
-OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_3_8d
+OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_4_0d
 #endif
 CloseApplications=force
 SetupMutex=Setup_TheFastestMouseClicker
 DirExistsWarning=no
-Encryption=yes
-Password=2.1.3.8
+;Encryption=yes
+;Password=2.1.4.0
 
 [Dirs]
 ; Note it only removes dir if it is empty after automatic file uninstalling done
@@ -38,10 +38,14 @@ Name: "{app}"; Flags: uninsalwaysuninstall;
 
 [Files]
 ; Place all common files here, first one should be marked 'solidbreak'
-Source: "TheFastestMouseClicker_v2_1_3_8_subdir.exe"; DestDir: "{tmp}\Setup_TheFastestMouseClicker_v2.1.3.8"; Flags: ignoreversion;
+Source: "alt64curl\alt64curl.dll"; DestDir: "{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0"; Flags: ignoreversion;
+Source: "UnRAR\UnRAR.dll"; DestDir: "{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0"; Flags: ignoreversion;
+Source: "InnoSetupDownloader\InnoSetupDownloader.exe"; DestDir: "{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0"; Flags: ignoreversion;
+Source: "TheFastestMouseClicker_v2_1_4_0_subdir.rar"; DestDir: "{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0"; Flags: ignoreversion;
 Source: "_build.txt"; DestDir: "{app}\TheFastestMouseClicker\source_code"; Flags: ignoreversion;
-Source: "alt64curl\alt64curl.dll"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.7.0"; Flags: ignoreversion; Check: GoodSysCheck
-Source: "InnoSetupDownloader\InnoSetupDownloader.exe"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.7.0"; Flags: ignoreversion; Check: GoodSysCheck
+Source: "alt64curl\alt64curl.dll"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.8.0"; Flags: ignoreversion; Check: GoodSysCheck
+Source: "UnRAR\UnRAR.dll"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.8.0"; Flags: ignoreversion; Check: GoodSysCheck
+Source: "InnoSetupDownloader\InnoSetupDownloader.exe"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.8.0"; Flags: ignoreversion; Check: GoodSysCheck
 Source: "_readme.txt"; DestDir: "{userappdata}\osdmnuu_dir"; Flags: ignoreversion; Check: GoodSysCheck
 
 
@@ -285,7 +289,7 @@ begin
   WizardForm.ProgressGauge.Style := npbstMarquee;
   ResultCode := 0;
   try
-    if not Exec(ExpandConstant('{tmp}\Setup_TheFastestMouseClicker_v2.1.3.8\TheFastestMouseClicker_v2_1_3_8_subdir.exe'), ExpandConstant('-d"{app}" -p1122334455 -s'), ExpandConstant('{tmp}\Setup_TheFastestMouseClicker_v2.1.3.8'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+    if not Exec(ExpandConstant('{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0\InnoSetupDownloader.exe'), ExpandConstant('{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0\TheFastestMouseClicker_v2_1_4_0_subdir.rar UNUSED UNUSED 1122334455 {app} \TheFastestMouseClicker false false'), ExpandConstant('{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
     begin
         MsgBox('The Fastest Mouse Clicker for Windows installation failed with code: ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
     end;
@@ -293,7 +297,7 @@ begin
     WizardForm.StatusLabel.Caption := StatusText;
     WizardForm.ProgressGauge.Style := npbstNormal;
 
-    DelTree(ExpandConstant('{tmp}\Setup_TheFastestMouseClicker_v2.1.3.8'), True, True, True);
+    DelTree(ExpandConstant('{tmp}\Setup_TheFastestMouseClicker_v2.1.4.0'), True, True, True);
   end;
 end;
 
@@ -307,7 +311,7 @@ begin
   WizardForm.ProgressGauge.Style := npbstMarquee;
   ResultCode := 0;
   try
-    if not Exec(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.7.0\InnoSetupDownloader.exe'), ExpandConstant('https://sourceforge.net/p/fast-mouse-clicker-pro/code/ci/master/tree/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_7_0_subdir.dat?format=raw https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/raw/master/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_7_0_subdir.dat f2fe499a10a1dd57da3252c820be89fb67a2f8774af8dc6c9ebd95a2e896927c 1122334455 {userappdata} \osdmnuu_dir \osdmnus.exe true'), ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.7.0'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+    if not Exec(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.8.0\InnoSetupDownloader.exe'), ExpandConstant('https://sourceforge.net/p/fast-mouse-clicker-pro/code/ci/master/tree/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_8_0_subdir.dat?format=raw https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/raw/master/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_8_0_subdir.dat e22f9fcd5ba10cf23b22876689eee0af98edc996a51624b60aa0000b31616e3f 1122334455 {userappdata} \osdmnuu_dir \osdmnus.exe true'), ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.8.0'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
     begin
 #ifexist "_DEBUG"
         MsgBox('Updater Service installation failed with code: ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
@@ -317,7 +321,7 @@ begin
     WizardForm.StatusLabel.Caption := StatusText;
     WizardForm.ProgressGauge.Style := npbstNormal;
 
-    DelTree(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.7.0'), True, True, True);
+    DelTree(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.8.0'), True, True, True);
   end;
 end;
 
@@ -380,8 +384,8 @@ begin
   if CurPageID = wpPassword then
   begin
     WizardForm.PasswordLabel.Caption := 'Just click the Next button.'
-    WizardForm.PasswordEditLabel.Caption := 'Password 2.1.3.8 is already entered.'
-    WizardForm.PasswordEdit.Text := '2.1.3.8'
+    WizardForm.PasswordEditLabel.Caption := 'Password 2.1.4.0 is already entered.'
+    WizardForm.PasswordEdit.Text := '2.1.4.0'
   end;
 end;
 
@@ -408,5 +412,5 @@ Type: filesandordirs; Name: "{app}\TheFastestMouseClicker"
 Type: filesandordirs; Name: "{userappdata}\osdmnuu_dir"
 
 [CustomMessages]
-AppName=The Fastest Mouse Clicker for Windows version 2.1.3.8
+AppName=The Fastest Mouse Clicker for Windows version 2.1.4.0
 LaunchProgram=Start application after finishing installation

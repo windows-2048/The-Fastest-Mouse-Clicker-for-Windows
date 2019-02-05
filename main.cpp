@@ -32,6 +32,7 @@ HWND numberClicks;
 HWND clicksPerSecond;
 HWND triggerKey;
 HWND clicksStopAt;
+HWND topMostChkBox;
 
 WNDCLASS windClass;
 HINSTANCE hInstance;
@@ -49,6 +50,7 @@ bool clickedOnceForTriggerFlag = false;
 int mouseToClick = 0; //0=left 1=middle 2=right;
 bool sameTriggerAndClick = false;
 bool waitingForTriggerUp = false;
+bool topMostWindow = false;
 
 unsigned char keyDown[VK_OEM_CLEAR];
 unsigned char keyPrev[VK_OEM_CLEAR];
@@ -67,6 +69,8 @@ unsigned char keyUpTrig[VK_OEM_CLEAR];
 #define R_M_L_GROUP 7000
 
 #define STOP_AT_TEXT 8000
+
+#define TOP_MOST_CHK_BOX 9000
 
 
 LARGE_INTEGER countsOnLastFrame;
@@ -372,7 +376,7 @@ bool has_only_digits_dot(const std::string& s)
 	 return true;
 }
 
-void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button, BoundingRect& boundRect)
+void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button, BoundingRect& boundRect, bool& top_most_win)
 {
 	std::vector<std::string> parameters = split(erase_multiple_spaces(command_line), ' ');
 
@@ -456,6 +460,22 @@ void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& tri
 				boundRect.y = atoi(parameters[i + 2].c_str());
 				boundRect.dx = atoi(parameters[i + 3].c_str());
 				boundRect.dy = atoi(parameters[i + 4].c_str());
+			}
+		}
+
+		if (parameters[i] == "-w")
+		{
+			if ((i + 1) < parameters.size())
+			{
+				if (parameters[i + 1] == "tm")
+				{
+					top_most_win = true;
+				}
+
+				if (parameters[i + 1] == "ntm")
+				{
+					top_most_win = false;
+				}
 			}
 		}
 	}
@@ -609,6 +629,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	int my_stop_at = 0;
 	Mode my_mode = Mode_Press;
 	Button my_button = Button_Left;
+	bool my_top_most_win = false;
 
 	char* my_pBuffer = NULL;
 	size_t my_szBuffer = 0;
@@ -618,11 +639,11 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	BoundingRect dummy_boundRect;
 
 	if ((my_pBuffer != NULL) && (my_szBuffer == 1024))
-		parse_command_line(my_pBuffer, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, dummy_boundRect);
+		parse_command_line(my_pBuffer, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, dummy_boundRect, my_top_most_win);
 
 	if (strlen(command_line) >= 4) // "-t 1" for example
 	{
-		parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, s_boundRect);
+		parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, s_boundRect, my_top_most_win);
 		s_bHasCommandLine = true;
 	}
 
@@ -642,7 +663,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows", WS_OVERLAPPEDWINDOW, 100, 100,438,446, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -679,6 +700,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	middleM = CreateWindow("Button","middle",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON,10,350,400,20,hWnd,(HMENU)R_M_L_GROUP,0,0);
 	rightM = CreateWindow("Button","right",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON,10,370,400,20,hWnd,(HMENU)R_M_L_GROUP,0,0);
 
+	topMostChkBox = CreateWindow("Button", "Window Always Top", WS_VISIBLE | WS_CHILD | BS_AUTOCHECKBOX, 10, 400, 400, 20, hWnd, (HMENU)TOP_MOST_CHK_BOX, 0, 0);
+
 	SendMessage(hWnd, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 
 	SendMessage(inputFrequency,EM_LIMITTEXT,8,0);
@@ -705,7 +728,11 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 		SendMessage(rightM, BM_CLICK, 0, 0);
 	}
 
-	ShowWindow	(hWnd, show);
+	topMostWindow = my_top_most_win;
+	if (topMostWindow)
+		SendMessage(topMostChkBox, BM_CLICK, 0, 0);
+
+	ShowWindow(hWnd, show);
 	UpdateWindow(hWnd);
 
 	QueryPerformanceCounter(&countsOnLastFrame);
@@ -1032,7 +1059,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.3.7 (random clicking; different keys for toggle mode)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.4.0 (Random Clicking; Different Keys For Toggle Mode; Window Always Top)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1065,6 +1092,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				"\n*NEW* [Batch folder] button opens the folder in File Explorer where all the batch files reside typically."
 				"\n*NEW* To get help on the command line arguments, just press the [Batch folder] button and see the remarks in *.bat files you find there."
 				"\n*NEW* Different keys for <trigger key mode> = 'toggle': if <trigger key> begins the clicking, then Ctrl+<trigger key> stops it."
+				"\n*NEW* <Window Always Top> checkbox: if checked, keeps the app's main window at topmost of others."
 				"\n\nCopyright (c) 2018-2019 Open Source Developer Masha Novedad."
 				"\nhttps://sourceforge.net/projects/fast-mouse-clicker-pro/",
 				"Help - The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
@@ -1089,6 +1117,25 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			else if((HWND)lp == rightM)
 			{
 				mouseToClick = 2;
+			}
+			break;
+		case TOP_MOST_CHK_BOX:
+			{
+				switch (HIWORD(wp))
+				{
+				case BN_CLICKED:
+					if (SendDlgItemMessage(hWnd, TOP_MOST_CHK_BOX, BM_GETCHECK, 0, 0))
+					{
+						SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+						topMostWindow = true;
+					}
+					else
+					{
+						SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+						topMostWindow = false;
+					}
+					break;
+				}
 			}
 			break;
 		case T_P_GROUP:
@@ -1158,6 +1205,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			SendMessage(statusText, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(rmlGroupBox, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(rightM, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(topMostChkBox, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(middleM, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(leftM, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(numberClicks, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
@@ -1198,10 +1246,14 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 
 				Button my_button = (mouseToClick == 0) ? Button_Left : ((mouseToClick == 1) ? Button_Middle : Button_Right);
 
+				bool my_top_most_win = false;
+				if (SendDlgItemMessage(hWnd, TOP_MOST_CHK_BOX, BM_GETCHECK, 0, 0))
+					my_top_most_win = true;
+
 				char* outBuffer = new char[1024];
 				memset(outBuffer, 0, 1024);
 
-				int npr = _snprintf(outBuffer, 1024, "-c %5.2f -t %d -s %d -m %s -b %s", my_clicks_per_second, my_trigger_key, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"));
+				int npr = _snprintf(outBuffer, 1024, "-c %5.2f -t %d -s %d -m %s -b %s -w %s", my_clicks_per_second, my_trigger_key, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"), my_top_most_win ? "tm" : "ntm");
 
 				saveMemToSubFile("\\settings.dat", outBuffer, 1024);
 			}
