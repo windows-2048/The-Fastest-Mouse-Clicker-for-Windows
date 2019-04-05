@@ -1,3 +1,9 @@
+/**************************************************************************
+* The Fastest Mouse Clicker for Windows version 2.1.4.0
+* Copyright (c) 2018-2019 by Open Source Developer Masha Novedad
+* Released under GNU Public License GPLv3
+**************************************************************************/
+
 #undef UNICODE
 #undef _UNICODE
 #include "Windows.h"
