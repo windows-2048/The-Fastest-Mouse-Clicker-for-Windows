@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.1.4.0
+* The Fastest Mouse Clicker for Windows version 2.1.5.1
 * Copyright (c) 2018-2019 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -1065,7 +1065,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.5.0 (Random Clicking; Different Keys For Toggle Mode; Window Always Top)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.5.1 (Random Clicking; Different Keys For Toggle Mode; Window Always Top)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
