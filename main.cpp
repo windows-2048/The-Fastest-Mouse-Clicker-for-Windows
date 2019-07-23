@@ -681,8 +681,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	char numStrInputFrequency[9];
 	_ftoa_s(my_clicks_per_second, numStrInputFrequency, 9, 10);
 
-	char numStrStopAt[6];
-	_itoa_s(my_stop_at, numStrStopAt, 6, 10);
+	char numStrStopAt[12];
+	_itoa_s(my_stop_at, numStrStopAt, 12, 10);
 
 	char numStrTriggerButton[4];
 	_itoa_s(my_trigger_key, numStrTriggerButton, 4, 10);
@@ -1023,8 +1023,8 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				char numStrInputFrequency[9];
 				_ftoa_s(my_clicks_per_second, numStrInputFrequency, 9, 10);
 
-				char numStrStopAt[6];
-				_itoa_s(my_stop_at, numStrStopAt, 6, 10);
+				char numStrStopAt[12];
+				_itoa_s(my_stop_at, numStrStopAt, 12, 10);
 
 				char numStrTriggerButton[4];
 				_itoa_s(my_trigger_key, numStrTriggerButton, 4, 10);
