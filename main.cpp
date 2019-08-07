@@ -22,6 +22,7 @@ HWND outputWindow;
 HWND inputFrequency;
 HWND stopAt;
 HWND triggerButton;
+HWND triggerButton2;
 HWND stopButton;
 HWND resetButton;
 HWND helpButton;
@@ -50,6 +51,7 @@ int numClicksSinceStop = 0;
 bool doToggle = false;
 unsigned char toggleState = 0;
 bool waitingForTrigger = false;
+bool waitingForTrigger2 = false;
 int status = 0;
 int prevStatus = 0;
 bool clickedOnceForTriggerFlag = false;
@@ -64,6 +66,7 @@ unsigned char keyTrig[VK_OEM_CLEAR];
 unsigned char keyUpTrig[VK_OEM_CLEAR];
 
 #define TRIGGER_BTN 1000
+#define TRIGGER_BTN2 1001
 #define STOP_BTN 2000
 #define INPUT_TEXT 3000
 #define OUTPUT_TEXT 4000
@@ -85,6 +88,7 @@ double frameTime = 0.0;
 double frequency = 100.0;
 int stopAtNum = 0;
 char triggerText[4]="13";
+char triggerText2[4] = "32";
 double countsToSeconds(__int64 a)
 {
 	LARGE_INTEGER temp;
@@ -382,7 +386,7 @@ bool has_only_digits_dot(const std::string& s)
 	 return true;
 }
 
-void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& stop_at, Mode& mode, Button& button, BoundingRect& boundRect, bool& top_most_win)
+void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& trigger_key, int& trigger_key2, int& stop_at, Mode& mode, Button& button, BoundingRect& boundRect, bool& top_most_win)
 {
 	std::vector<std::string> parameters = split(erase_multiple_spaces(command_line), ' ');
 
@@ -406,6 +410,17 @@ void parse_command_line(LPCSTR command_line, double& clicks_per_second, int& tri
 				if (has_only_digits(parameters[i + 1]))
 				{
 					trigger_key = atoi(parameters[i + 1].c_str());
+				}
+			}
+		}
+
+		if (parameters[i] == "-t2")
+		{
+			if ((i + 1) < parameters.size())
+			{
+				if (has_only_digits(parameters[i + 1]))
+				{
+					trigger_key2 = atoi(parameters[i + 1].c_str());
 				}
 			}
 		}
@@ -632,6 +647,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	double my_clicks_per_second = 10;
 	int my_trigger_key = 0x0D;
+	int my_trigger_key2 = 0x20;
 	int my_stop_at = 0;
 	Mode my_mode = Mode_Press;
 	Button my_button = Button_Left;
@@ -645,11 +661,11 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	BoundingRect dummy_boundRect;
 
 	if ((my_pBuffer != NULL) && (my_szBuffer == 1024))
-		parse_command_line(my_pBuffer, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, dummy_boundRect, my_top_most_win);
+		parse_command_line(my_pBuffer, my_clicks_per_second, my_trigger_key, my_trigger_key2, my_stop_at, my_mode, my_button, dummy_boundRect, my_top_most_win);
 
 	if (strlen(command_line) >= 4) // "-t 1" for example
 	{
-		parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_stop_at, my_mode, my_button, s_boundRect, my_top_most_win);
+		parse_command_line(command_line, my_clicks_per_second, my_trigger_key, my_trigger_key2, my_stop_at, my_mode, my_button, s_boundRect, my_top_most_win);
 		s_bHasCommandLine = true;
 	}
 
@@ -688,9 +704,14 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	_itoa_s(my_trigger_key, numStrTriggerButton, 4, 10);
 	_itoa_s(my_trigger_key, triggerText, 4, 10);
 
+	char numStrTriggerButton2[4];
+	_itoa_s(my_trigger_key2, numStrTriggerButton2, 4, 10);
+	_itoa_s(my_trigger_key2, triggerText2, 4, 10);
+
 	outputWindow =		CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, 170, 40, 80, 20, hWnd, (HMENU)OUTPUT_TEXT, 0, 0);
 	inputFrequency =	CreateWindow("Edit", numStrInputFrequency, WS_VISIBLE | WS_CHILD | WS_BORDER, 170, 60, 80, 20, hWnd, (HMENU)INPUT_TEXT, 0, 0);
-	triggerButton =		CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 190, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN, 0, 0);
+	triggerButton =		CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN, 0, 0);
+	triggerButton2 =	CreateWindow("Button", numStrTriggerButton2, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 210, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN2, 0, 0);
 	stopAt =			CreateWindow("Edit", numStrStopAt, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 100, 80, 20, hWnd, (HMENU)STOP_AT_TEXT, 0, 0);
 	stopButton =		CreateWindow("Button","STOP!",WS_VISIBLE | WS_CHILD,5,125,410,50,hWnd,(HMENU)STOP_BTN,0,0);
 	resetButton =		CreateWindow("Button","Reset to defaults", WS_VISIBLE | WS_CHILD, 5, 180, 410/3, 50, hWnd, (HMENU)RESET_BTN, 0, 0);
@@ -699,7 +720,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	groupBox = CreateWindow("Button","trigger key mode",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,240,410,65,hWnd,(HMENU)T_P_GROUP,0,0);
 	press = CreateWindow("Button", string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, 10, 260, 400, 20, hWnd, (HMENU)T_P_GROUP, 0, 0);
-	toggle = CreateWindow("Button", string_format("toggle (clicking begin: single hit <%d>, end: Ctrl+<%d>)", my_trigger_key, my_trigger_key).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 10, 280, 400, 20, hWnd, (HMENU)T_P_GROUP, 0, 0);
+	toggle = CreateWindow("Button", string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 10, 280, 400, 20, hWnd, (HMENU)T_P_GROUP, 0, 0);
 
 	rmlGroupBox = CreateWindow("Button","mouse button to click",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,310,410,85,hWnd,(HMENU)R_M_L_GROUP,0,0);
 	leftM = CreateWindow("Button","left",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP,10,330,400,20,hWnd,(HMENU)R_M_L_GROUP,0,0);	
@@ -750,7 +771,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 	while(!quit)
 	{			
-		if(waitingForTrigger)
+		if (waitingForTrigger || waitingForTrigger2)
 		{
 			status = 1;
 			if(status != prevStatus)
@@ -803,18 +824,39 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 							sameTriggerAndClick=true;
 						break;
 					};
-					_itoa_s(i,triggerText,4,10);
-					SetFocus(outputWindow);
-					SetDlgItemText(hWnd,GetDlgCtrlID(triggerButton),triggerText);
-					my_trigger_key = atoi(triggerText);
-					SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
-					SetWindowTextA(toggle, string_format("toggle (clicking begin: single hit <%d>, end: Ctrl+<%d>)", my_trigger_key, my_trigger_key).c_str());
-					waitingForTrigger = false;
+					if (waitingForTrigger)
+					{
+						_itoa_s(i, triggerText, 4, 10);
+						SetFocus(outputWindow);
+						SetDlgItemText(hWnd, GetDlgCtrlID(triggerButton), triggerText);
+						my_trigger_key = atoi(triggerText);
+						char winTxt[1024];
+						memset(winTxt, 0, 1024);
+						GetWindowText(triggerButton2, winTxt, 1024);
+						my_trigger_key2 = atoi(winTxt);
+						SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
+						SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str());
+						waitingForTrigger = false;
+					}
+					if (waitingForTrigger2)
+					{
+						_itoa_s(i, triggerText2, 4, 10);
+						SetFocus(outputWindow);
+						SetDlgItemText(hWnd, GetDlgCtrlID(triggerButton2), triggerText2);
+						my_trigger_key2 = atoi(triggerText2);
+						char winTxt[1024];
+						memset(winTxt, 0, 1024);
+						GetWindowText(triggerButton, winTxt, 1024);
+						my_trigger_key = atoi(winTxt);
+						SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
+						SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str());
+						waitingForTrigger2 = false;
+					}
 					clickedOnceForTriggerFlag = false;
 					break;
 				}
 			}
-			if(waitingForTrigger == false)
+			if ((waitingForTrigger == false) && (waitingForTrigger2 == false))
 				continue;
 		}
 		else
@@ -840,13 +882,13 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			else
 			{
 				//to ensure no problems with starting and stopping the toggle state:
-				if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)) && !GetAsyncKeyState(VK_CONTROL))
+				if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)))
 					toggleState = 1;
-				if (toggleState == 1 && !GetAsyncKeyState(atoi(triggerText)) && !GetAsyncKeyState(VK_CONTROL))
+				if (toggleState == 1 && !GetAsyncKeyState(atoi(triggerText)))
 					toggleState = 2;
-				if (toggleState == 2 && GetAsyncKeyState(atoi(triggerText)) && GetAsyncKeyState(VK_CONTROL))
+				if (toggleState == 2 && GetAsyncKeyState(atoi(triggerText2)))
 					toggleState = 3;
-				if (toggleState == 3 && !GetAsyncKeyState(atoi(triggerText)) && GetAsyncKeyState(VK_CONTROL))
+				if (toggleState == 3 && !GetAsyncKeyState(atoi(triggerText2)))
 					toggleState = 0;
 			}
 
@@ -1011,11 +1053,21 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 		{
 		case RESET_BTN:
 			{
+				toggleState = 0;
+				waitingForTrigger = false;
+				waitingForTrigger2 = false;
+				status = 0;
+				prevStatus = 0;
+				clickedOnceForTriggerFlag = false;
+				sameTriggerAndClick = false;
+				waitingForTriggerUp = false;
+
 				numClicks = 0;
 				numClicksSinceStop = 0;
 
 				double my_clicks_per_second = 10;
 				int my_trigger_key = 0x0D;
+				int my_trigger_key2 = 0x20;
 				int my_stop_at = 0;
 				Mode my_mode = Mode_Press;
 				Button my_button = Button_Left;
@@ -1030,13 +1082,18 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				_itoa_s(my_trigger_key, numStrTriggerButton, 4, 10);
 				_itoa_s(my_trigger_key, triggerText, 4, 10);
 
+				char numStrTriggerButton2[4];
+				_itoa_s(my_trigger_key2, numStrTriggerButton2, 4, 10);
+				_itoa_s(my_trigger_key2, triggerText2, 4, 10);
+
 				SetWindowTextA(outputWindow, "0");
 				SetWindowTextA(inputFrequency, numStrInputFrequency);
 				SetWindowTextA(stopAt, numStrStopAt);
 				SetWindowTextA(triggerButton, numStrTriggerButton);
+				SetWindowTextA(triggerButton2, numStrTriggerButton2);
 
 				SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
-				SetWindowTextA(toggle, string_format("toggle (clicking begin: single hit <%d>, end: Ctrl+<%d>)", my_trigger_key, my_trigger_key).c_str());
+				SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str());
 
 				if (my_mode == Mode_Toggle)
 					doToggle = true;
@@ -1145,6 +1202,9 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case T_P_GROUP:
+			toggleState = 0;
+			status = 0;
+			prevStatus = 0;
 			//toggleState=0;
 			if((HWND)lp == toggle)
 			{
@@ -1157,12 +1217,21 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			break;
 		case STOP_BTN:
 			toggleState = 0;
+			status = 0;
+			prevStatus = 0;
 			break;
 		case TRIGGER_BTN:
 			if(status!=2 && !waitingForTrigger)
 			{
 				toggleState = 0;
 				waitingForTrigger = true;
+			}
+			break;
+		case TRIGGER_BTN2:
+			if (status != 2 && !waitingForTrigger2)
+			{
+				toggleState = 0;
+				waitingForTrigger2 = true;
 			}
 			break;
 		}
@@ -1201,6 +1270,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			SendMessage(inputFrequency, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(stopAt, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(triggerButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(triggerButton2, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(stopButton, WM_SETFONT, (WPARAM)s_hFontBold, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(resetButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(helpButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
@@ -1245,6 +1315,10 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				int my_trigger_key = atoi(winTxt);
 
 				memset(winTxt, 0, 1024);
+				GetWindowText(triggerButton2, winTxt, 1024);
+				int my_trigger_key2 = atoi(winTxt);
+
+				memset(winTxt, 0, 1024);
 				GetWindowText(stopAt, winTxt, 1024);
 				int my_stop_at = atoi(winTxt);
 
@@ -1259,7 +1333,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				char* outBuffer = new char[1024];
 				memset(outBuffer, 0, 1024);
 
-				int npr = _snprintf(outBuffer, 1024, "-c %5.2f -t %d -s %d -m %s -b %s -w %s", my_clicks_per_second, my_trigger_key, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"), my_top_most_win ? "tm" : "ntm");
+				int npr = _snprintf(outBuffer, 1024, "-c %5.2f -t %d -t2 %d -s %d -m %s -b %s -w %s", my_clicks_per_second, my_trigger_key, my_trigger_key2, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"), my_top_most_win ? "tm" : "ntm");
 
 				saveMemToSubFile("\\settings.dat", outBuffer, 1024);
 			}
