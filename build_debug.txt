@@ -1,0 +1,2 @@
+Project includes MSVC 2013 solution *.sln so open it in Visual Studio and build it. There are no external dependencies.
+id5mzZvGmjh2erJVyMpAt2HG8kuocCwbhUAaYXatKYUo5AQRqKXUqbbB9Uzwn
