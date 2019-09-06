@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.1.5.1
+* The Fastest Mouse Clicker for Windows version 2.1.5.2
 * Copyright (c) 2018-2019 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -691,7 +691,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 	numberClicks = CreateWindow("Static","number of clicks",WS_VISIBLE|WS_CHILD,5,40,410,20,hWnd,0,0,0);
 	clicksPerSecond = CreateWindow("Static","clicks per second",WS_VISIBLE|WS_CHILD,5,60,410,20,hWnd,0,0,0);
-	triggerKey = CreateWindow("Static","trigger key",WS_VISIBLE|WS_CHILD,5,80,410,20,hWnd,0,0,0);
+	triggerKey = CreateWindow("Static","begin/end trigger keys",WS_VISIBLE|WS_CHILD,5,80,410,20,hWnd,0,0,0);
 	clicksStopAt = CreateWindow("Static","stop at",WS_VISIBLE|WS_CHILD,5,100,410,20,hWnd,0,0,0);
 
 	char numStrInputFrequency[9];
@@ -1122,7 +1122,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.5.1 (Random Clicking; Different Keys For Toggle Mode; Window Always Top)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.5.2 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1133,7 +1133,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				"\n<clicks per second>, the middle text field, is the frequency of the clicks measured in clicks per second."
 				" This frequency can be as high as 100 thousands (100000) clicks per second."
 				" FRACTIONAL frequences are supported. For example, 0.5 corresponds to 1 click every 2 seconds, 0.25 - to 1 click every 4 seconds, etc."
-				"\n<trigger key>, below that, is the keyboard key to trigger the mouse events. Just click on it and then press arbitrary key (or hit a mouse button)."
+				"\n<begin/end trigger keys>, below that, are the keyboard keys to trigger the mouse events. Just click on them and press an arbitrary key (or hit a mouse button)."
 				" That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made."
 				" This behavior corresponds to <trigger key mode> = 'press', see how it changes on 'toggle' value below."
 				" Default number shown in the button, 13, is the 'Enter' key code (for example, 32 is the 'Space' key code, 112 is the 'F1' key code, etc."
@@ -1142,7 +1142,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				" 0 is the default and means infinity, i.e. clicking will never stop."
 				"\n<trigger key mode> is a radio-button group, you can select either 'press' or 'toggle' mode of clicking."
 				" In the 'press' mode (default), the mouse events are emitted only when the corresponding trigger key is kept pressed."
-				" In the 'toogle' mode, the mouse events are emitted between subsequent short hits to the <trigger key> and Ctrl+<trigger key>."
+				" In the 'toogle' mode, the mouse events are emitted between subsequent short hits to the <begin trigger key> and <end trigger key>."
 				"\n<mouse button to click> is a radio-button group too, you can select either 'left', 'middle' or 'right' mouse button that will generate the clicks."
 				"\nNote 1: You can't have the same mouse button be the trigger and clicker."
 				"\nNote 2: You can't change the <trigger key> if you chose the left mouse button; you must press the [Reset to defaults] button."
@@ -1154,7 +1154,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				"\n*NEW* [Reset to defaults] button sets all the clicking parameters back to their default values."
 				"\n*NEW* [Batch folder] button opens the folder in File Explorer where all the batch files reside typically."
 				"\n*NEW* To get help on the command line arguments, just press the [Batch folder] button and see the remarks in *.bat files you find there."
-				"\n*NEW* Different keys for <trigger key mode> = 'toggle': if <trigger key> begins the clicking, then Ctrl+<trigger key> stops it."
+				"\n*NEW* Independent keys for <trigger key mode> = 'toggle': if <begin trigger key> begins the clicking, then <end trigger key> stops it."
 				"\n*NEW* <Window Always Top> checkbox: if checked, keeps the app's main window at topmost of others."
 				"\n\nCopyright (c) 2018-2019 Open Source Developer Masha Novedad."
 				"\nhttps://sourceforge.net/projects/fast-mouse-clicker-pro/",

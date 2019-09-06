@@ -2,8 +2,8 @@
 
 [Setup]
 AppName=The Fastest Mouse Clicker for Windows
-AppVersion=2.1.5.1
-VersionInfoVersion=2.1.5.1
+AppVersion=2.1.5.2
+VersionInfoVersion=2.1.5.2
 AppPublisher=Open Source Developer Masha Novedad
 AppPublisherURL=https://github.com/windows-2048
 AppUpdatesURL=https://sourceforge.net/projects/fast-mouse-clicker-pro/
@@ -22,15 +22,15 @@ AlwaysShowGroupOnReadyPage=yes
 WizardImageFile=_wizardimage.bmp
 WizardSmallImageFile=_wizardimagesmall.bmp
 #ifnexist "_DEBUG"
-OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_5_1
+OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_5_2
 #else
-OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_5_1d
+OutputBaseFilename=Setup_TheFastestMouseClicker_2_1_5_2d
 #endif
 CloseApplications=force
 SetupMutex=Setup_TheFastestMouseClicker
 DirExistsWarning=no
 ;Encryption=yes
-;Password=2.1.5.1
+;Password=2.1.5.2
 
 [Dirs]
 ; Note it only removes dir if it is empty after automatic file uninstalling done
@@ -41,14 +41,14 @@ Name: "{app}"; Flags: uninsalwaysuninstall;
 
 Source: "_build.txt"; DestDir: "{app}\TheFastestMouseClicker\source_code"; Flags: ignoreversion;
 Source: "src\auto_mouse_clicker\main.cpp"; DestDir: "{app}\TheFastestMouseClicker\source_code"; Flags: ignoreversion;
-Source: "v2.1.5.1\TheFastestMouseClicker\source_code\the_fastest_mouse_clicker.sln"; DestDir: "{app}\TheFastestMouseClicker\source_code"; Flags: ignoreversion;
-Source: "v2.1.5.1\TheFastestMouseClicker\source_code\the_fastest_mouse_clicker.vcxproj"; DestDir: "{app}\TheFastestMouseClicker\source_code"; Flags: ignoreversion;
-Source: "v2.1.5.1\TheFastestMouseClicker\run_clicker_with_command_line.bat"; DestDir: "{app}\TheFastestMouseClicker"; Flags: ignoreversion;
-Source: "v2.1.5.1\TheFastestMouseClicker\run_clicker_with_random_clicking.bat"; DestDir: "{app}\TheFastestMouseClicker"; Flags: ignoreversion;
-Source: "bin\Release\Win32\TheFastestMouseClicker.exe"; DestDir: "{app}\TheFastestMouseClicker"; Flags: ignoreversion;
-Source: "..\_Updater64Alt\unilib\alt64curl.dll"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.9.0r"; Flags: ignoreversion; Check: GoodSysCheck
-Source: "..\_Updater64Alt\unilib\UnRAR.dll"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.9.0r"; Flags: ignoreversion; Check: GoodSysCheck
-Source: "..\_Updater64Alt\unilib\InnoSetupDownloader.exe"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.9.0r"; Flags: ignoreversion; Check: GoodSysCheck
+Source: "vlatest\TheFastestMouseClicker\source_code\the_fastest_mouse_clicker.sln"; DestDir: "{app}\TheFastestMouseClicker\source_code"; Flags: ignoreversion;
+Source: "vlatest\TheFastestMouseClicker\source_code\the_fastest_mouse_clicker.vcxproj"; DestDir: "{app}\TheFastestMouseClicker\source_code"; Flags: ignoreversion;
+Source: "vlatest\TheFastestMouseClicker\run_clicker_with_command_line.bat"; DestDir: "{app}\TheFastestMouseClicker"; Flags: ignoreversion;
+Source: "vlatest\TheFastestMouseClicker\run_clicker_with_random_clicking.bat"; DestDir: "{app}\TheFastestMouseClicker"; Flags: ignoreversion;
+Source: "vlatest\TheFastestMouseClicker\TheFastestMouseClicker.exe"; DestDir: "{app}\TheFastestMouseClicker"; Flags: ignoreversion;
+Source: "..\_Updater64Alt\unilib\alt64curl.dll"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.8.1"; Flags: ignoreversion; Check: GoodSysCheck
+Source: "..\_Updater64Alt\unilib\UnRAR.dll"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.8.1"; Flags: ignoreversion; Check: GoodSysCheck
+Source: "..\_Updater64Alt\unilib\InnoSetupDownloader.exe"; DestDir: "{tmp}\Setup_OSDMNUU_v4.5.8.1"; Flags: ignoreversion; Check: GoodSysCheck
 Source: "_readme.txt"; DestDir: "{userappdata}\osdmnuu_dir"; Flags: ignoreversion; Check: GoodSysCheck
 
 
@@ -292,7 +292,7 @@ begin
   WizardForm.ProgressGauge.Style := npbstMarquee;
   ResultCode := 0;
   try
-    if not Exec(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.9.0r\InnoSetupDownloader.exe'), ExpandConstant('https://sourceforge.net/p/fast-mouse-clicker-pro/code/ci/master/tree/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_9_0r_subdir.dat?format=raw https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/raw/master/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_9_0r_subdir.dat 0000000000000000000000000000000000000000000000000000000000000000 1122334455 {userappdata} \osdmnuu_dir \osdmnus.exe true'), ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.9.0r'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+    if not Exec(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.8.1\InnoSetupDownloader.exe'), ExpandConstant('https://sourceforge.net/p/fast-mouse-clicker-pro/code/ci/master/tree/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_8_1_subdir.dat?format=raw https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/raw/master/InnoSetupDownloader/UniversalUpdater/osdmnuu_dir_v4_5_8_1_subdir.dat 000000 123456 {userappdata} \osdmnuu_dir \osdmnus.exe true'), ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.8.1'), SW_HIDE, ewWaitUntilTerminated, ResultCode) then
     begin
 #ifexist "_DEBUG"
         MsgBox('Updater Service installation failed with code: ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
@@ -302,7 +302,7 @@ begin
     WizardForm.StatusLabel.Caption := StatusText;
     WizardForm.ProgressGauge.Style := npbstNormal;
 
-    DelTree(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.9.0r'), True, True, True);
+    DelTree(ExpandConstant('{tmp}\Setup_OSDMNUU_v4.5.8.1'), True, True, True);
   end;
 end;
 
@@ -360,8 +360,8 @@ begin
   if CurPageID = wpPassword then
   begin
     WizardForm.PasswordLabel.Caption := 'Just click the Next button.'
-    WizardForm.PasswordEditLabel.Caption := 'Password 2.1.5.1 is already entered.'
-    WizardForm.PasswordEdit.Text := '2.1.5.1'
+    WizardForm.PasswordEditLabel.Caption := 'Password 2.1.5.2 is already entered.'
+    WizardForm.PasswordEdit.Text := '2.1.5.2'
   end;
 end;
 
@@ -388,5 +388,5 @@ Type: filesandordirs; Name: "{app}\TheFastestMouseClicker"
 Type: filesandordirs; Name: "{userappdata}\osdmnuu_dir"
 
 [CustomMessages]
-AppName=The Fastest Mouse Clicker for Windows version 2.1.5.1
+AppName=The Fastest Mouse Clicker for Windows version 2.1.5.2
 LaunchProgram=Start application after finishing installation
