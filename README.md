@@ -38,4 +38,6 @@ interfere parameters from the command line.
 
 * NEW Different, INDEPENDENT trigger keys to begin/end the clicking in toggle mode.
 
+# Download the latest Windows installer binaries
+
 This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and [first mirror is here](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/). See them for Windows installer binaries to download.
