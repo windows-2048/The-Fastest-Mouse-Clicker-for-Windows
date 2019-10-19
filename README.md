@@ -40,4 +40,7 @@ interfere parameters from the command line.
 
 # Download the latest Windows installer binaries
 
+Version 2.1.5.3 has been released. This is a bug-fix release. Update as soon as possible
+----------------------------------------------------------------------------------------
+
 This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and [first mirror is here](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/). See them for Windows installer binaries to download.
