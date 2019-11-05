@@ -1,6 +1,6 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.1.5.3
-* Copyright (c) 2018-2019 by Open Source Developer Masha Novedad
+* The Fastest Mouse Clicker for Windows version 2.1.6.0
+* Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
 
@@ -573,9 +573,9 @@ void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
 
 	memset(pBuffer, 0, 1024);
 
-	size_t nsiz = fread_s(pBuffer, 1024, nFileSize, 1, fp);
+	size_t ncnt = fread(pBuffer, nFileSize, 1, fp);
 
-	if (nsiz != 1)
+	if (ncnt != 1)
 	{
 		delete[] pBuffer;
 		pBuffer = NULL;
@@ -610,7 +610,7 @@ bool saveMemToSubFile(const char* subFile, char*& pBuffer, size_t szBuffer)
 
 void _ftoa_s(double val, char* buf, size_t sz, int)
 {
-	int n = _sprintf_p(buf, sz, "%5.2f", val);
+	int n = sprintf(buf, "%5.2f", val);
 	int m = n;
 }
 
@@ -945,13 +945,13 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 						switch(mouseToClick)
 						{
 						case 0:
-							my_mouse_event(MOUSEEVENTF_LEFTDOWN | s_dwFlags, s_dx, s_dy, 0, NULL, 1); // On mouse DOWN no extra generation of events - see UP
+							my_mouse_event(MOUSEEVENTF_LEFTDOWN | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, 1); // On mouse DOWN no extra generation of events - see UP
 							break;
 						case 1:
-							my_mouse_event(MOUSEEVENTF_MIDDLEDOWN | s_dwFlags, s_dx, s_dy, 0, NULL, 1);
+							my_mouse_event(MOUSEEVENTF_MIDDLEDOWN | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, 1);
 							break;
 						case 2:
-							my_mouse_event(MOUSEEVENTF_RIGHTDOWN | s_dwFlags, s_dx, s_dy, 0, NULL, 1);
+							my_mouse_event(MOUSEEVENTF_RIGHTDOWN | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, 1);
 							break;
 						};
 						
@@ -962,13 +962,13 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 						switch(mouseToClick)
 						{
 						case 0:
-							my_mouse_event(MOUSEEVENTF_LEFTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks); // On mouse UP we DO extra generation of events
+							my_mouse_event(MOUSEEVENTF_LEFTUP | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, nBatchClicks); // On mouse UP we DO extra generation of events
 							break;
 						case 1:
-							my_mouse_event(MOUSEEVENTF_MIDDLEUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_MIDDLEUP | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, nBatchClicks);
 							break;
 						case 2:
-							my_mouse_event(MOUSEEVENTF_RIGHTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
+							my_mouse_event(MOUSEEVENTF_RIGHTUP | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, nBatchClicks);
 							break;
 						};
 						
@@ -985,13 +985,13 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					switch(mouseToClick)
 					{
 					case 0:
-						my_mouse_event(MOUSEEVENTF_LEFTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks); // On mouse UP we DO extra generation of events
+						my_mouse_event(MOUSEEVENTF_LEFTUP | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, nBatchClicks); // On mouse UP we DO extra generation of events
 						break;
 					case 1:
-						my_mouse_event(MOUSEEVENTF_MIDDLEUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
+						my_mouse_event(MOUSEEVENTF_MIDDLEUP | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, nBatchClicks);
 						break;
 					case 2:
-						my_mouse_event(MOUSEEVENTF_RIGHTUP | s_dwFlags, s_dx, s_dy, 0, NULL, nBatchClicks);
+						my_mouse_event(MOUSEEVENTF_RIGHTUP | s_dwFlags, s_dx, s_dy, 0, (ULONG_PTR)NULL, nBatchClicks);
 						break;
 					};
 					switchFlag=true;
@@ -1122,7 +1122,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.5.3 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.6.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1156,7 +1156,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				"\n*NEW* To get help on the command line arguments, just press the [Batch folder] button and see the remarks in *.bat files you find there."
 				"\n*NEW* Independent keys for <trigger key mode> = 'toggle': if <begin trigger key> begins the clicking, then <end trigger key> stops it."
 				"\n*NEW* <Window Always Top> checkbox: if checked, keeps the app's main window at topmost of others."
-				"\n\nCopyright (c) 2018-2019 Open Source Developer Masha Novedad."
+				"\n\nCopyright (c) 2016-2020 Open Source Developer Masha Novedad."
 				"\nhttps://sourceforge.net/projects/fast-mouse-clicker-pro/",
 				"Help - The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
 			break;
