@@ -40,7 +40,7 @@ interfere parameters from the command line.
 
 # Download the latest Windows installer binaries
 
-VERSION 2.1.6.0: THIS IS A GREAT BUG-FIX RELEASE. THE CLICKER HAS BEEN COMPILED STATICALLY BY GCC/MINGW32. UPDATE AS SOON AS POSSIBLE.
---------------------------------------------------------------------------------------------------------------------------------------
+VERSION 2.1.6.0: THIS IS A GREAT BUG-FIX RELEASE. THE CLICKER HAS BEEN COMPILED BY GCC/MINGW32. UPDATE AS SOON AS POSSIBLE.
+---------------------------------------------------------------------------------------------------------------------------
 
 This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and [first mirror is here](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/). See them for Windows installer binaries to download.
