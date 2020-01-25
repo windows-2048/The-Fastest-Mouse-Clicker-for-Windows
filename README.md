@@ -9,12 +9,6 @@ quickly with theoretical speed limit reached. I have rewritten this
 program inspired by a currently obsolete project "Fast Mouse Clicker" by
  xytor.
 
-![The Fastest Mouse Clicker for Windows version 2.1.7.0 on Windows: what's new](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/raw/master/screenshots_new/v2.1.7.0/TFMCfW_2_1_7_0w_s1_1322x986.png)
-
-![The Fastest Mouse Clicker for Windows version 2.1.7.0 under Wine on Linux](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/raw/master/screenshots_new/v2.1.7.0/TFMCfW_2_1_7_0w_s1w_1322x986.png)
-
-![The Fastest Mouse Clicker for Windows version 2.1.7.0 on Windows: what's important](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/raw/master/screenshots_new/v2.1.7.0/TFMCfW_2_1_7_0w_s2_1322x986.png)
-
 My application utilizes the cutting-edge feature of the SendInput()
 system call that aggregates some 100-1000 mouse events in one array and
 fires this array to a computer hardware at once. Furthermore, my program
@@ -46,7 +40,7 @@ interfere parameters from the command line.
 
 # Download the latest Windows installer binaries
 
-VERSION 2.1.7.0: THIS IS A GREAT BUG-FIX RELEASE. THE CLICKER HAS BEEN COMPILED BY GCC/MINGW32. UPDATE AS SOON AS POSSIBLE.
----------------------------------------------------------------------------------------------------------------------------
+Version 2.1.8.0: fixed Reset to defaults button behavior for Window Always Top checkbox
+---------------------------------------------------------------------------------------
 
 This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and [first mirror is here](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/). See them for Windows installer binaries to download.
