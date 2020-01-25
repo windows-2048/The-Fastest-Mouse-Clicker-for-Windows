@@ -1,9 +1,8 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.1.7.0 test
+* The Fastest Mouse Clicker for Windows version 2.1.8.0
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
-
 
 #undef UNICODE
 #undef _UNICODE
@@ -1118,12 +1117,16 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 					SendMessage(rightM, BM_CLICK, 0, 0);
 				}
 
+				LRESULT chkState = SendMessage(topMostChkBox, BM_GETCHECK, 0, 0);
+				if (chkState == BST_CHECKED)
+					SendMessage(topMostChkBox, BM_SETCHECK, BST_UNCHECKED, 0);
+
 				//ShowWindow(hWnd, show);
 				UpdateWindow(hWnd);
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.7.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.8.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
