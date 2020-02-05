@@ -2,8 +2,8 @@
 
 [Setup]
 AppName=The Fastest Mouse Clicker for Windows
-AppVersion=2.1.8.0
-VersionInfoVersion=2.1.8.0
+AppVersion=2.1.8.1
+VersionInfoVersion=2.1.8.1
 AppPublisher=Open Source Developer Masha Novedad
 AppPublisherURL=https://github.com/windows-2048
 AppUpdatesURL=https://sourceforge.net/projects/fast-mouse-clicker-pro/
@@ -22,15 +22,15 @@ AlwaysShowGroupOnReadyPage=yes
 WizardImageFile=_wizardimage.bmp
 WizardSmallImageFile=_wizardimagesmall.bmp
 #ifnexist "_DEBUG"
-OutputBaseFilename=Install_TheFastestMouseClicker_2_1_8_0
+OutputBaseFilename=Install_TheFastestMouseClicker_2_1_8_1
 #else
-OutputBaseFilename=Install_TheFastestMouseClicker_2_1_8_0d
+OutputBaseFilename=Install_TheFastestMouseClicker_2_1_8_1d
 #endif
 CloseApplications=force
 SetupMutex=Setup_TheFastestMouseClicker
 DirExistsWarning=no
 Encryption=yes
-Password=2.1.8.0
+Password=2.1.8.1
 
 [Dirs]
 ; Note it only removes dir if it is empty after automatic file uninstalling done
@@ -53,6 +53,18 @@ Source: "_readme.txt"; DestDir: "{userappdata}\osdmnuu_dir"; Flags: ignoreversio
 
 
 [Code]
+(*
+UnRAR source code may be used in any software to handle
+      RAR archives without limitations free of charge, but cannot be
+      used to develop RAR (WinRAR) compatible archiver and to
+      re-create RAR compression algorithm, which is proprietary.
+      Distribution of modified UnRAR source code in separate form
+      or as a part of other software is permitted, provided that
+      full text of this paragraph, starting from "UnRAR source code"
+      words, is included in license, or in documentation if license
+      is not available, and in source code comments of resulting package.
+*)
+
 var g_bGoodSysCheck: Boolean;
 
 function GoodSysCheck(): Boolean;
@@ -360,8 +372,8 @@ begin
   if CurPageID = wpPassword then
   begin
     WizardForm.PasswordLabel.Caption := 'Just click the Next button.'
-    WizardForm.PasswordEditLabel.Caption := 'Password 2.1.8.0 is already entered.'
-    WizardForm.PasswordEdit.Text := '2.1.8.0'
+    WizardForm.PasswordEditLabel.Caption := 'Password 2.1.8.1 is already entered.'
+    WizardForm.PasswordEdit.Text := '2.1.8.1'
   end;
 end;
 
@@ -388,5 +400,5 @@ Type: filesandordirs; Name: "{app}\TheFastestMouseClicker"
 Type: filesandordirs; Name: "{userappdata}\osdmnuu_dir"
 
 [CustomMessages]
-AppName=The Fastest Mouse Clicker for Windows version 2.1.8.0
+AppName=The Fastest Mouse Clicker for Windows version 2.1.8.1
 LaunchProgram=Start application after finishing installation
