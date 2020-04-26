@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.1.8.1
+* The Fastest Mouse Clicker for Windows version 2.5.0.0
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -24,6 +24,7 @@ HWND stopAt;
 HWND triggerButton;
 HWND triggerButton2;
 HWND stopButton;
+HWND runGroupAppButton;
 HWND resetButton;
 HWND helpButton;
 HWND folderButton;
@@ -68,6 +69,7 @@ unsigned char keyUpTrig[VK_OEM_CLEAR];
 #define TRIGGER_BTN 1000
 #define TRIGGER_BTN2 1001
 #define STOP_BTN 2000
+#define RUNGROUPAPP_BTN 2500
 #define INPUT_TEXT 3000
 #define OUTPUT_TEXT 4000
 #define RESET_BTN 4500
@@ -685,7 +687,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.0.0", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -713,7 +715,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	triggerButton =		CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN, 0, 0);
 	triggerButton2 =	CreateWindow("Button", numStrTriggerButton2, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 210, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN2, 0, 0);
 	stopAt =			CreateWindow("Edit", numStrStopAt, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 100, 80, 20, hWnd, (HMENU)STOP_AT_TEXT, 0, 0);
-	stopButton =		CreateWindow("Button","STOP!",WS_VISIBLE | WS_CHILD,5,125,410,50,hWnd,(HMENU)STOP_BTN,0,0);
+	stopButton =		CreateWindow("Button","STOP!",WS_VISIBLE | WS_CHILD,5,125,410/2-3,50,hWnd,(HMENU)STOP_BTN,0,0);
+	runGroupAppButton = CreateWindow("Button", "Run group app", WS_VISIBLE | WS_CHILD, 5+410/2+3, 125, 410/2-3, 50, hWnd, (HMENU)RUNGROUPAPP_BTN, 0, 0);
 	resetButton =		CreateWindow("Button","Reset to defaults", WS_VISIBLE | WS_CHILD, 5, 180, 410/3, 50, hWnd, (HMENU)RESET_BTN, 0, 0);
 	helpButton =		CreateWindow("Button","Help",WS_VISIBLE | WS_CHILD,5+5+410/3,180,410/3-5,50,hWnd,(HMENU)HELP_BTN,0,0);
 	folderButton =		CreateWindow("Button", "Batch folder", WS_VISIBLE | WS_CHILD, 5+5+410/3+410/3, 180, 410/3-3, 50, hWnd, (HMENU)FOLDER_BTN, 0, 0);
@@ -1126,7 +1129,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows 2.1.8.1 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.0.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1224,6 +1227,50 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			status = 0;
 			prevStatus = 0;
 			break;
+		case RUNGROUPAPP_BTN:
+			{
+				WCHAR path[MAX_PATH];
+				memset(path, 0, MAX_PATH * sizeof(WCHAR));
+				DWORD plen = GetModuleFileNameW(NULL, path, MAX_PATH);
+				if (plen == 0)
+					return 0;
+				size_t i = MAX_PATH;
+				--i;
+				while (path[i] != L'\\')
+					--i;
+				path[i] = L'\0';
+				BOOL BRes = SetCurrentDirectoryW(path);
+				if (!BRes)
+					return 0;
+
+				DWORD dwCreationFlags = 0;
+				DWORD waitRes = 0;
+				DWORD dwExitCode = 0;
+
+				STARTUPINFOW si;
+				PROCESS_INFORMATION pi;
+
+				ZeroMemory(&si, sizeof(si));
+				si.cb = sizeof(si);
+				ZeroMemory(&pi, sizeof(pi));
+
+				if (CreateProcessW(
+					L"TheFastestMouseGroupClicker.exe"   // Module name (TODO: alternate data stream welcome)
+					, L""        // Command line TODO: host, port, weak-encrypted-sha256Image
+					, NULL           // Process handle not inheritable
+					, NULL           // Thread handle not inheritable
+					, FALSE          // Set handle inheritance to FALSE
+					, dwCreationFlags              // No creation flags
+					, NULL           // Use parent's environment block
+					, NULL		// Use parent's starting directory 
+					, &si            // Pointer to STARTUPINFO structure
+					, &pi
+					)           // Pointer to PROCESS_INFORMATION structure
+					)
+					DestroyWindow(hWnd);
+				return 0;
+			}
+			break;
 		case TRIGGER_BTN:
 			if(status!=2 && !waitingForTrigger)
 			{
@@ -1276,6 +1323,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			SendMessage(triggerButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(triggerButton2, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(stopButton, WM_SETFONT, (WPARAM)s_hFontBold, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(runGroupAppButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(resetButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(helpButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(folderButton, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
