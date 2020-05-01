@@ -4,6 +4,9 @@ The Fastest Mouse Clicker for Windows v2.5.1.0
 * BRAND NEW Group App to record/play sequences of clicks!
 * Fixed Help text to reflect brand new 'Run group app' button.
 
+![The Fastest Mouse Clicker v2.5.1.0 single app screenshot](screenshots_new/v2.5.0.0/TFMCfW_2_5_0_0w_s1_1322x986.png?raw=true)
+![The Fastest Mouse Clicker v2.5.1.0 group app screenshot](screenshots_new/v2.5.0.0/TFMCfW_2_5_0_0w_s1h_1322x986.png?raw=true)
+
 The world's fastest auto clicker. Command line. Parameters auto-save
 --------------------------------------------------------------------
 
