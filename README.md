@@ -1,9 +1,11 @@
-The Fastest Mouse Clicker for Windows v2.5.0.0
+The Fastest Mouse Clicker for Windows v2.5.1.0
 ----------------------------------------------
 
 * BRAND NEW Group App to record/play sequences of clicks!
+* Fixed Help text to reflect brand new 'Run group app' button.
 
-The fastest hardware-limit mouse clicker for Windows with command line support and random clicking capabilities.
+The world's fastest auto clicker. Command line. Parameters auto-save
+--------------------------------------------------------------------
 
 This is a very simple application that does just one task but does it
 perfectly. The program emulates Windows mouse clicks once a triggered
@@ -46,7 +48,7 @@ interfere parameters from the command line.
 
 # Download the latest Windows installer binaries
 
-Version 2.5.0.0: BRAND NEW Group App to record/play sequences of clicks!
+Version 2.5.1.0: BRAND NEW Group App to record/play sequences of clicks!
 ------------------------------------------------------------------------
 
 This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and [first mirror is here](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/). See them for Windows installer binaries to download.
