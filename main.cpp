@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.5.1.0
+* The Fastest Mouse Clicker for Windows version 2.5.2.0
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -13,8 +13,10 @@
 #include <iterator>
 #include <algorithm>
 #include <cmath>
+#include <mutex>
 using namespace std;
 
+std::mutex mtx;
 
 HWND hWnd;
 HWND button;
@@ -156,6 +158,14 @@ void my_mouse_event(_In_ DWORD     dwFlags,
 					_In_ ULONG_PTR dwExtraInfo,
 					_In_ UINT nCnt = 1)
 {
+	int local_status = 0;
+
+	mtx.lock();
+	local_status = status;
+	mtx.unlock();
+	if (local_status == 0)
+		return;
+
 	INPUT input[4096];
 	memset(input, 0, 4096 * sizeof(INPUT));
 
@@ -230,6 +240,12 @@ void my_mouse_event(_In_ DWORD     dwFlags,
 					input[1 + iExtra + 1].mi.dwFlags = MOUSEEVENTF_RIGHTUP;
 				}
 			}
+
+			mtx.lock();
+			local_status = status;
+			mtx.unlock();
+			if (local_status == 0)
+				return;
 
 			UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
 
@@ -315,6 +331,12 @@ void my_mouse_event(_In_ DWORD     dwFlags,
 				}
 
 			}
+
+			mtx.lock();
+			local_status = status;
+			mtx.unlock();
+			if (local_status == 0)
+				return;
 
 			UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
 
@@ -643,8 +665,53 @@ std::string string_format(const std::string fmt, ...) {
 	return str;
 }
 
+//////////////////////////////////////////////////////////////////
+
+#define APPLICATION_INSTANCE_MUTEX_NAME "TheFastestMouseClicker"
+
+void CheckAlreadyRunning()
+{
+	//Make sure at most one instance of the tool is running
+	HANDLE hMutexOneInstance(::CreateMutex(NULL, TRUE, APPLICATION_INSTANCE_MUTEX_NAME));
+	bool bAlreadyRunning((::GetLastError() == ERROR_ALREADY_EXISTS));
+	if (hMutexOneInstance == NULL || bAlreadyRunning)
+	{
+		if (hMutexOneInstance)
+		{
+			::ReleaseMutex(hMutexOneInstance);
+			::CloseHandle(hMutexOneInstance);
+		}
+		::ExitProcess(2);
+	}
+}
+
+DWORD WINAPI MyThreadFunction(LPVOID lpParam)
+{
+	while (true)
+	{
+		if (GetAsyncKeyState(atoi(triggerText2)))
+		{
+			mtx.lock();
+			toggleState = 0;
+			status = 0;
+			prevStatus = 2;
+			BlockInput(TRUE);
+			Sleep(100);
+			BlockInput(FALSE);
+			mtx.unlock();
+			SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
+		}
+
+		Sleep(10);
+	}
+
+	return 0;
+}
+
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
+	CheckAlreadyRunning();
+
 	memset(g_appRoot, 0, MAX_PATH);
 
 	double my_clicks_per_second = 10;
@@ -687,7 +754,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.1.0", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.2.0", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -772,12 +839,39 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	memset(keyTrig,0,VK_OEM_CLEAR);
 	memset(keyUpTrig,0,VK_OEM_CLEAR);
 
+	DWORD dwThreadIdArray = 0;
+
+	HANDLE hThreadArray = (HANDLE)CreateThread(
+		NULL                   // default security attributes
+		, 0                      // use default stack size
+		, MyThreadFunction       // thread function name
+		, NULL          // argument to thread function
+		, 0                      // use default creation flags
+		, &dwThreadIdArray
+		);
+
 	while(!quit)
-	{			
+	{	
+		if (GetAsyncKeyState(atoi(triggerText2)))
+		{
+			mtx.lock();
+			toggleState = 0;
+			status = 0;
+			prevStatus = 2;
+			mtx.unlock();
+			SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
+		}
+
 		if (waitingForTrigger || waitingForTrigger2)
 		{
-			status = 1;
-			if(status != prevStatus)
+			int local_status = 0;
+			int local_prevStatus = 0;
+			mtx.lock();
+			local_status = status = 1;
+			local_prevStatus = prevStatus;
+			mtx.unlock();
+
+			if(local_status != local_prevStatus)
 			{
 				SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "please hit the trigger key");
 			}
@@ -872,18 +966,28 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 
 			if (!doToggle)
 			{
+				mtx.lock();
 				//to ensure no problems with starting and stopping the toggle state:
 				if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)))
 					toggleState = 1;
 				if (toggleState == 1 && !GetAsyncKeyState(atoi(triggerText)))
+				{
 					toggleState = 2;
+				}
 				if (toggleState == 2 && GetAsyncKeyState(atoi(triggerText)))
 					toggleState = 3;
 				if (toggleState == 3 && !GetAsyncKeyState(atoi(triggerText)))
+				{
 					toggleState = 0;
+					BlockInput(TRUE);
+					Sleep(100);
+					BlockInput(FALSE);
+				}
+				mtx.unlock();
 			}
 			else
 			{
+				mtx.lock();
 				//to ensure no problems with starting and stopping the toggle state:
 				if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)))
 					toggleState = 1;
@@ -893,20 +997,15 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					toggleState = 3;
 				if (toggleState == 3 && !GetAsyncKeyState(atoi(triggerText2)))
 					toggleState = 0;
+				mtx.unlock();
 			}
 
 			if(frameTime>1.0f/(frequency*2.0f))
 			{
 				UINT nBatchClicks = 1;
 
-				if (frequency >= 10000)
-					nBatchClicks = 100 + UINT(floor((frequency - 10000) / 100));
-				else if (frequency >= 5000)
-					nBatchClicks = 50 + UINT(floor((frequency - 5000) / 100));
-				else if (frequency >= 1000)
-					nBatchClicks = 10 + UINT(floor((frequency - 1000) / 100));
-				else if (frequency >= 100)
-					nBatchClicks = 1 + UINT(floor((frequency - 100) / 100));
+				if (frequency >= 1000)
+					nBatchClicks = 1 + UINT(floor((frequency - 1000) / 1000));
 				else
 					nBatchClicks = 1;
 
@@ -915,7 +1014,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					if(doToggle)
 					{
 						numClicksSinceStop = 0;
+						mtx.lock();
 						toggleState = 0;
+						mtx.unlock();
 					}
 					else
 					{
@@ -923,10 +1024,21 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 					}
 				}
 
-				if((doToggle && toggleState>=2) || !doToggle && GetAsyncKeyState(atoi(triggerText)) && !waitingForTriggerUp)
+				unsigned char local_toggleState = 0;
+				mtx.lock();
+				local_toggleState = toggleState;
+				mtx.unlock();
+
+				if((doToggle && local_toggleState>=2) || !doToggle && GetAsyncKeyState(atoi(triggerText)) && !waitingForTriggerUp)
 				{
-					status = 2;
-					if(status != prevStatus)
+					int local_status = 0;
+					int local_prevStatus = 0;
+					mtx.lock();
+					local_status = status = 2;
+					local_prevStatus = prevStatus;
+					mtx.unlock();
+
+					if(local_status != local_prevStatus)
 					{
 						SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "clicking");
 					}
@@ -1006,15 +1118,22 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 				}
 				else
 				{
-					status = 0;
+					int local_status = 0;
+					int local_prevStatus = 0;
+					mtx.lock();
+					local_status = status = 0;
+					local_prevStatus = prevStatus;
+					mtx.unlock();
+
+					if (local_status != local_prevStatus)
+					{
+						SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
+					}
+
 					numClicksSinceStop = 0;
 					if(!GetAsyncKeyState(atoi(triggerText)))
 					{
 						waitingForTriggerUp = false;
-					}
-					if(status != prevStatus)
-					{
-						SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 					}
 				}
 				countsOnLastFrame=currentCounts;
@@ -1038,7 +1157,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			stopAtNum = int(atof(numStr));
 		}
 		handleMessages();
+		mtx.lock();
 		prevStatus = status;
+		mtx.unlock();
 
 		Sleep(1);
 	}
@@ -1049,6 +1170,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 {
 	HDC dc;   
 	PAINTSTRUCT ps;
+	int local_status = 0;
 	switch (msg)
 	{
 	case WM_COMMAND:
@@ -1056,11 +1178,15 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 		{
 		case RESET_BTN:
 			{
+				mtx.lock();
 				toggleState = 0;
-				waitingForTrigger = false;
-				waitingForTrigger2 = false;
 				status = 0;
 				prevStatus = 0;
+				mtx.unlock();
+
+				waitingForTrigger = false;
+				waitingForTrigger2 = false;
+
 				clickedOnceForTriggerFlag = false;
 				sameTriggerAndClick = false;
 				waitingForTriggerUp = false;
@@ -1129,7 +1255,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.1.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.2.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1210,9 +1336,11 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case T_P_GROUP:
+			mtx.lock();
 			toggleState = 0;
 			status = 0;
 			prevStatus = 0;
+			mtx.unlock();
 			//toggleState=0;
 			if((HWND)lp == toggle)
 			{
@@ -1224,9 +1352,12 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}			
 			break;
 		case STOP_BTN:
+			mtx.lock();
 			toggleState = 0;
 			status = 0;
-			prevStatus = 0;
+			prevStatus = 2;
+			mtx.unlock();
+			SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 			break;
 		case RUNGROUPAPP_BTN:
 			{
@@ -1273,16 +1404,26 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case TRIGGER_BTN:
-			if(status!=2 && !waitingForTrigger)
+			mtx.lock();
+			local_status = status;
+			mtx.unlock();
+			if(local_status!=2 && !waitingForTrigger)
 			{
+				mtx.lock();
 				toggleState = 0;
+				mtx.unlock();
 				waitingForTrigger = true;
 			}
 			break;
 		case TRIGGER_BTN2:
-			if (status != 2 && !waitingForTrigger2)
+			mtx.lock();
+			local_status = status;
+			mtx.unlock();
+			if (local_status != 2 && !waitingForTrigger2)
 			{
+				mtx.lock();
 				toggleState = 0;
+				mtx.unlock();
 				waitingForTrigger2 = true;
 			}
 			break;
