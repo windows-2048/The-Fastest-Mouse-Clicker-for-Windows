@@ -38,4 +38,7 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 ## Downloads
 
-Coming soon.
+Download Windows installer: [Install_TheFastestMouseClicker_2.5.2.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.2.0.exe?inline=false)
+
+SHA256(Install_TheFastestMouseClicker_2.5.2.0.exe)= 24954288408731cf917207439817f0b7f07bf216f6548df821ea49715b17bb97
+

@@ -1,8 +1,9 @@
-The Fastest Mouse Clicker for Windows v2.5.1.0
+The Fastest Mouse Clicker for Windows v2.5.2.0
 ----------------------------------------------
 
 * BRAND NEW Group App to record/play sequences of clicks!
 * Fixed Help text to reflect brand new 'Run group app' button.
+* Fixed 'Can't stop the clicking' bug.
 
 ![The Fastest Mouse Clicker v2.5.1.0 single app screenshot](screenshots_new/v2.5.0.0/TFMCfW_2_5_0_0w_s1_1322x986.png?raw=true)
 ![The Fastest Mouse Clicker v2.5.1.0 group app screenshot](screenshots_new/v2.5.0.0/TFMCfW_2_5_0_0w_s1h_1322x986.png?raw=true)
@@ -49,9 +50,8 @@ interfere parameters from the command line.
 * BRAND NEW Group App to record/play sequences of clicks!
 
 
-# Download the latest Windows installer binaries
+## Downloads
 
-Version 2.5.1.0: BRAND NEW Group App to record/play sequences of clicks!
-------------------------------------------------------------------------
+Download Windows installer: [Install_TheFastestMouseClicker_2.5.2.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.2.0.exe?inline=false)
 
-This is a second mirror, source-only. [The main site is here](https://sourceforge.net/projects/fast-mouse-clicker-pro/) and [first mirror is here](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/). See them for Windows installer binaries to download.
+SHA256(Install_TheFastestMouseClicker_2.5.2.0.exe)= 24954288408731cf917207439817f0b7f07bf216f6548df821ea49715b17bb97

