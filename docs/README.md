@@ -36,9 +36,26 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 * Window Always Top checkbox to keep the app's window topmost.
 
+## Screenshots
+
+* The Fastest Mouse Clicker for Windows version 2.5.2.0: introduce the "Run group app" button.
+
+![The Fastest Mouse Clicker for Windows version 2.5.2.0: introduce the "Run group app" button](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1_1322x986.png?raw=true)
+
+* The Fastest Mouse Clicker for Windows version 2.5.2.0: the brand new Group App in details.
+
+![The Fastest Mouse Clicker for Windows version 2.5.2.0: the brand new Group App in details](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1h_1322x986.png?raw=true)
+
+* The Fastest Mouse Clicker for Windows version 2.5.2.0: running under Wine 4.0.2/Linux(CentOS 6).
+
+![The Fastest Mouse Clicker for Windows version 2.5.2.0: running under Wine 4.0.2/Linux(CentOS 6)](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1w_1322x986.png?raw=true)
+
+* The Fastest Mouse Clicker for Windows version pre-2.x.x.x family: what's old but important.
+
+![The Fastest Mouse Clicker for Windows version pre-2.x.x.x family: what's old but important](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s2_1322x986.png?raw=true)
+
 ## Downloads
 
 Download Windows installer: [Install_TheFastestMouseClicker_2.5.2.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.2.0.exe?inline=false)
 
 SHA256(Install_TheFastestMouseClicker_2.5.2.0.exe)= 24954288408731cf917207439817f0b7f07bf216f6548df821ea49715b17bb97
-
