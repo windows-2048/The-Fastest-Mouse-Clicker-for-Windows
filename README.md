@@ -1,12 +1,15 @@
 The Fastest Mouse Clicker for Windows v2.5.2.0
 ----------------------------------------------
 
+[Official web site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
+------------------------------------------------------------------------------------------
+
 * BRAND NEW Group App to record/play sequences of clicks!
 * Fixed Help text to reflect brand new 'Run group app' button.
 * Fixed 'Can't stop the clicking' bug.
 
-![The Fastest Mouse Clicker v2.5.1.0 single app screenshot](screenshots_new/v2.5.0.0/TFMCfW_2_5_0_0w_s1_1322x986.png?raw=true)
-![The Fastest Mouse Clicker v2.5.1.0 group app screenshot](screenshots_new/v2.5.0.0/TFMCfW_2_5_0_0w_s1h_1322x986.png?raw=true)
+![The Fastest Mouse Clicker v2.5.2.0 single app screenshot](docs/screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1_1322x986.png?raw=true)
+![The Fastest Mouse Clicker v2.5.2.0 group app screenshot](docs/screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1h_1322x986.png?raw=true)
 
 The world's fastest auto clicker. Command line. Parameters auto-save
 --------------------------------------------------------------------
