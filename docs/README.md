@@ -2,6 +2,8 @@
 
 ## Auto-saved. Command line. Random clicking. Custom trigger keys
 
+### The latest version 2.5.2.0 - May 29 2020
+
 Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 SendInput(), making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
 
 ## Features
