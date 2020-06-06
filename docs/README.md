@@ -2,7 +2,12 @@
 
 ## Auto-saved. Command line. Random clicking. Custom trigger keys
 
-### The latest version 2.5.2.0 - May 29 2020
+### The latest version 2.5.3.1 - Jun 06 2020
+
+* BRAND NEW Group App to record/play sequences of clicks!
+* Fixed Help text to reflect brand new 'Run group app' button.
+* Fixed 'Can't stop the clicking' bug.
+* Few tiny bug fixes
 
 Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 SendInput(), making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
 
@@ -40,24 +45,24 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 ## Screenshots
 
-* The Fastest Mouse Clicker for Windows version 2.5.2.0: introduce the "Run group app" button.
+* The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button.
 
-![The Fastest Mouse Clicker for Windows version 2.5.2.0: introduce the "Run group app" button](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1_1322x986.png?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1_1322x986.png?raw=true)
 
-* The Fastest Mouse Clicker for Windows version 2.5.2.0: the brand new Group App in details.
+* The Fastest Mouse Clicker for Windows version 2.5.x.x: the brand new Group App in details.
 
-![The Fastest Mouse Clicker for Windows version 2.5.2.0: the brand new Group App in details](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1h_1322x986.png?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.x.x: the brand new Group App in details](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1h_1322x986.png?raw=true)
 
-* The Fastest Mouse Clicker for Windows version 2.5.2.0: running under Wine 4.0.2/Linux(CentOS 6).
+* The Fastest Mouse Clicker for Windows version 2.5.x.x: running under Wine 4.0.2/Linux(CentOS 6).
 
-![The Fastest Mouse Clicker for Windows version 2.5.2.0: running under Wine 4.0.2/Linux(CentOS 6)](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1w_1322x986.png?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.x.x: running under Wine 4.0.2/Linux(CentOS 6)](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s1w_1322x986.png?raw=true)
 
-* The Fastest Mouse Clicker for Windows version pre-2.x.x.x family: what's old but important.
+* The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important.
 
-![The Fastest Mouse Clicker for Windows version pre-2.x.x.x family: what's old but important](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s2_1322x986.png?raw=true)
+![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s2_1322x986.png?raw=true)
 
 ## Downloads
 
-Download Windows installer: [Install_TheFastestMouseClicker_2.5.2.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.2.0.exe?inline=false)
+Download Windows installer: [Install_TheFastestMouseClicker_2.5.3.1.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.1.exe?inline=false)
 
-SHA256(Install_TheFastestMouseClicker_2.5.2.0.exe)= 24954288408731cf917207439817f0b7f07bf216f6548df821ea49715b17bb97
+SHA256(Install_TheFastestMouseClicker_2.5.3.1.exe)= d917be06f1f2ce6e3fa3680fb7639bb05950c9ccce3a8046a4cd5b46e1bdca86

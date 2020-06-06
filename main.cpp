@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.5.2.0
+* The Fastest Mouse Clicker for Windows version 2.5.3.1
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -840,7 +840,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.2.0", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.3.1", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -1341,7 +1341,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.2.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.3.1 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
