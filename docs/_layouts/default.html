@@ -15,7 +15,7 @@
     <div class="wrapper">
       <header>
         <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
-        
+
         {% if site.logo %}
           <img src="{{site.logo | relative_url}}" alt="Logo" />
         {% endif %}
@@ -31,9 +31,7 @@
         {% endif %}
 
         {% if site.show_downloads %}
-        <ul class="downloads">
-          <li><a href="https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.1.exe?inline=false">Download <strong>Windows Installer</strong></a></li>
-        </ul>
+        <p class="view"><a href="https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.1.exe?inline=false">Download <small>Windows installer</small></a></p>
         {% endif %}
       </header>
       <section>
