@@ -1,3 +1,5 @@
+### Official Site
+
 # The Fastest Mouse Clicker for Windows
 
 ## Auto-saved. Command line. Random clicking. Custom trigger keys
