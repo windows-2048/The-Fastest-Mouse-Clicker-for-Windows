@@ -1,5 +1,5 @@
 title: The Fastest Mouse Clicker for Windows
 logo: /favicon_large.png
-description: The fastest hardware-limited mouse clicker for Windows with command line support.
+description: The fastest hardware-limited arrayed SendInput() mouse clicker for Windows. Up to 100000 clicks/s. Command line support.
 show_downloads: true
 theme: jekyll-theme-minimal
