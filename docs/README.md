@@ -2,6 +2,8 @@
 
 # The Fastest Mouse Clicker for Windows
 
+Please update your links: URL https://sourceforge.net/projects/fast-mouse-clicker-pro/ is obsolete and points to the wrong position!
+
 ## Auto-saved. Command line. Random clicking. Custom trigger keys
 
 ### The latest version 2.5.3.1 - Jun 06 2020
