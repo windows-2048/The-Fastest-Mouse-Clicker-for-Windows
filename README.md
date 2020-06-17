@@ -1,10 +1,10 @@
 The Fastest Mouse Clicker for Windows v2.5.3.2
 ----------------------------------------------
 
-[Official web site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
+[Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 ------------------------------------------------------------------------------------------
 
-### The latest version 2.5.3.2 - Jun 06 2020
+### The latest version 2.5.3.2 - Jun 17 2020
 
 * BRAND NEW Group App to record/play sequences of clicks!
 * Fixed Help text to reflect brand new 'Run group app' button.
