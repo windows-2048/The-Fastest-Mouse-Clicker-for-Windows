@@ -1,4 +1,4 @@
-### Official Site
+### Official Download
 
 # The Fastest Mouse Clicker for Windows
 
