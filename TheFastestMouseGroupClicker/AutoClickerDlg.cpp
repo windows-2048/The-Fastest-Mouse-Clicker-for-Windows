@@ -17,7 +17,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
 HHOOK	hHook=NULL;
-CString strProgName="The Fastest Mouse Group Clicker v2.5.3.1";
+CString strProgName="The Fastest Mouse Group Clicker v2.5.3.2";
 class CAboutDlg : public CDialog
 {
 public:

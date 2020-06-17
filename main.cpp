@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.5.3.1
+* The Fastest Mouse Clicker for Windows version 2.5.3.2
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -564,7 +564,7 @@ bool fillAppDataPath(char szPath[MAX_PATH], const char* subFile)
 	return fillAppDataPath(szPath, subFile);
 }
 
-static char s_runtime_counter = 1;
+static char s_runtime_counter = 0;
 
 void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
 {
@@ -611,7 +611,6 @@ void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
 	szBuffer = nFileSize;
 
 	s_runtime_counter = pBuffer[1000];
-	++s_runtime_counter;
 }
 
 bool saveMemToSubFile(const char* subFile, char*& pBuffer, size_t szBuffer)
@@ -744,7 +743,7 @@ static int SetCmdExePath(WCHAR cmdPathW[MAX_PATH])
 
 static void LaunchUpdater()
 {
-	if (s_runtime_counter != 3)
+	if (s_runtime_counter != 2)
 		return;
 
 	WCHAR cmdPathW[MAX_PATH];
@@ -810,6 +809,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	size_t my_szBuffer = 0;
 
 	loadSubFileToMem("\\settings.dat", my_pBuffer, my_szBuffer);
+	++s_runtime_counter;
 
 	LaunchUpdater();
 
@@ -840,7 +840,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.3.1", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.3.2", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -1341,7 +1341,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.3.1 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.3.2 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
