@@ -2,7 +2,7 @@
 
 # The Fastest Mouse Clicker for Windows
 
-## Free and fast, open source, industry standard mouse auto clicker for Windows. Uses hardware-limited arrayed Win32 SendInput() calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks. Parameters auto-saved. Custom trigger keys
+### Free and fast, open source, industry standard mouse auto clicker for Windows. Uses hardware-limited arrayed Win32 SendInput() calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks. Parameters auto-saved. Custom trigger keys
 
 Please update your links: URL https://sourceforge.net/projects/fast-mouse-clicker-pro/ is obsolete and points to the wrong location. Official site is here.
 
