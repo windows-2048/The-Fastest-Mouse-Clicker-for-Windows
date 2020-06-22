@@ -1,6 +1,6 @@
-### Official Download
-
 # The Fastest Mouse Clicker for Windows
+
+## Official Download
 
 ### Free and fast, open source, industry standard mouse auto clicker for Windows. Uses hardware-limited arrayed Win32 SendInput() calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks. Parameters auto-saved. Custom trigger keys
 
