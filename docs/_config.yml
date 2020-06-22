@@ -3,4 +3,5 @@ logo: /favicon_large.png
 description: Free and fast, open source, industry standard mouse auto clicker for Windows. Uses hardware-limited arrayed Win32 SendInput() calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks.
 show_downloads: true
 theme: jekyll-theme-minimal
-plugins: [jekyll-paginate, jekyll-seo-tag]
+author: The Fastest Mouse Clicker for Windows
+og_title: The Fastest Mouse Clicker for Windows
