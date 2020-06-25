@@ -65,6 +65,16 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 ![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.5.2.0/TFMCfW_2_5_2_0w_s2_1322x986.png?raw=true)
 
+## Partners
+
+* [Chocolatey](https://chocolatey.org/packages/fastest-mouse-clicker)
+
+* [Majorgeeks](http://m.majorgeeks.com/files/details/the_fastest_mouse_clicker_for_windows.html)
+
+* [Osdn.net](https://osdn.net/projects/fastest-clicker/)
+
+* [Softpedia](https://www.softpedia.com/get/System/OS-Enhancements/The-Fastest-Mouse-Clicker-for-Windows.shtml)
+
 ## Downloads
 
 * Jun 17 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.5.3.2.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.2.exe?inline=false)
