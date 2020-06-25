@@ -44,7 +44,8 @@
 
     <div class="wrapper">
       <header>
-        <h1><img class="mylogo" src="{{site.logo | relative_url}}" alt="Logo" /><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+        <h1><img class="mylogo" src="{{site.logo | relative_url}}" alt="Logo" /></h1>
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
@@ -57,7 +58,7 @@
         {% endif %}
 
         {% if site.show_downloads %}
-        <p class="view"><a href="https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.2.exe?inline=false">Download <small>Windows installer v.2.5.3.2 - Jun 17 2020</small></a></p>
+        <p class="view"><a href="https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.2.exe?inline=false">Download the latest version <small>Windows installer v.2.5.3.2 - Jun 17 2020</small></a></p>
         {% endif %}
 
 <p class="view">

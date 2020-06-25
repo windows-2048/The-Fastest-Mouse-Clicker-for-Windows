@@ -2,7 +2,7 @@
 
 ## [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.2.exe?inline=false) - The latest version 2.5.3.2 - Jun 17 2020
 
-### Free and fast, open source, industry standard mouse auto clicker for Windows. Uses hardware-limited arrayed Win32 SendInput() calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks. Parameters auto-saved. Custom trigger keys
+### Free and fast, open source, industry standard mouse auto clicker for Windows. Uses hardware-limited arrayed Win32 SendInput() calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks (since v.2.5.3.2).
 
 Please update your links: URL https://sourceforge.net/projects/fast-mouse-clicker-pro/ is obsolete and points to the wrong location. Official site is here.
 
@@ -43,7 +43,7 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 * Random clicking has been implemented. Just click the "Batch folder" button and see remarks in the *.bat files reside there in order how to use command line arguments and to enable random clicking.
 
-* Group clicking supported via additional application since April 2020.
+* Group clicking (record/play the sequences of clicks) supported via additional application since v.2.5.3.2.
 
 * Window Always Top checkbox to keep the app's window topmost.
 
