@@ -69,9 +69,13 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 * [Chocolatey](https://chocolatey.org/packages/fastest-mouse-clicker), The Package Manager for Windows
 
+* [Github](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows), Built for Developers
+
+* [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows), Simplify Your Workflows
+
 * [Majorgeeks](http://m.majorgeeks.com/files/details/the_fastest_mouse_clicker_for_windows.html), It's Geekalicious
 
-* [Osdn.net](https://osdn.net/projects/fastest-clicker/), Develop and Download Open Source Software
+* [OSDN](https://osdn.net/projects/fastest-clicker/), Develop and Download Open Source Software
 
 * [Softpedia](https://www.softpedia.com/get/System/OS-Enhancements/The-Fastest-Mouse-Clicker-for-Windows.shtml), Free Downloads Encyclopedia
 
