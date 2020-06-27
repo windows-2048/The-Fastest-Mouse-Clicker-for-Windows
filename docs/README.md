@@ -79,6 +79,8 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 * [Softpedia](https://www.softpedia.com/get/System/OS-Enhancements/The-Fastest-Mouse-Clicker-for-Windows.shtml), Free Downloads Encyclopedia
 
+* [Uptodown](https://the-fastest-mouse-clicker-for-windows.en.uptodown.com/windows/download), Download Discover Share
+
 ## Downloads
 
 * Jun 17 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.5.3.2.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.2.exe?inline=false)
