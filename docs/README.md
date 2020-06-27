@@ -73,6 +73,8 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 * [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows), Simplify Your Workflows
 
+* [Lamerkomp](https://lamerkomp.ru/load/sistemnye_utility/avtoklikery/the_fastest_mouse_clicker_for_windows/56-1-0-6328), Download Freeware without Registration
+
 * [Majorgeeks](http://m.majorgeeks.com/files/details/the_fastest_mouse_clicker_for_windows.html), It's Geekalicious
 
 * [OSDN](https://osdn.net/projects/fastest-clicker/), Develop and Download Open Source Software
