@@ -2,8 +2,8 @@
 
 [Setup]
 AppName=The Fastest Mouse Clicker for Windows
-AppVersion=2.5.3.2
-VersionInfoVersion=2.5.3.2
+AppVersion=2.5.3.3
+VersionInfoVersion=2.5.3.3
 AppPublisher=Open Source Developer Masha Novedad
 AppPublisherURL=https://github.com/windows-2048
 AppUpdatesURL=https://sourceforge.net/projects/fast-mouse-clicker-pro/
@@ -22,15 +22,15 @@ AlwaysShowGroupOnReadyPage=yes
 WizardImageFile=_wizardimage.bmp
 WizardSmallImageFile=_wizardimagesmall.bmp
 #ifnexist "_DEBUG"
-OutputBaseFilename=Install_TheFastestMouseClicker_2.5.3.2
+OutputBaseFilename=Install_TheFastestMouseClicker_2.5.3.3
 #else
-OutputBaseFilename=Install_TheFastestMouseClicker_2.5.3.2d
+OutputBaseFilename=Install_TheFastestMouseClicker_2.5.3.3d
 #endif
 CloseApplications=force
 SetupMutex=Setup_TheFastestMouseClicker
 DirExistsWarning=no
 Encryption=yes
-Password=2.5.3.2
+Password=2.5.3.3
 
 [Dirs]
 ; Note it only removes dir if it is empty after automatic file uninstalling done
@@ -372,8 +372,8 @@ begin
   if CurPageID = wpPassword then
   begin
     WizardForm.PasswordLabel.Caption := 'Just click the Next button.'
-    WizardForm.PasswordEditLabel.Caption := 'Password 2.5.3.2 is already entered.'
-    WizardForm.PasswordEdit.Text := '2.5.3.2'
+    WizardForm.PasswordEditLabel.Caption := 'Password 2.5.3.3 is already entered.'
+    WizardForm.PasswordEdit.Text := '2.5.3.3'
   end;
 end;
 
@@ -400,5 +400,5 @@ Type: filesandordirs; Name: "{app}\TheFastestMouseClicker"
 Type: filesandordirs; Name: "{userappdata}\osdmnuu_dir"
 
 [CustomMessages]
-AppName=The Fastest Mouse Clicker for Windows version 2.5.3.2
+AppName=The Fastest Mouse Clicker for Windows version 2.5.3.3
 LaunchProgram=Start application after finishing installation

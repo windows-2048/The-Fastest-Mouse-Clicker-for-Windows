@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.5.3.2
+* The Fastest Mouse Clicker for Windows version 2.5.3.3
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -564,8 +564,6 @@ bool fillAppDataPath(char szPath[MAX_PATH], const char* subFile)
 	return fillAppDataPath(szPath, subFile);
 }
 
-static char s_runtime_counter = 0;
-
 void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
 {
 	pBuffer = NULL; szBuffer = 0;
@@ -609,14 +607,10 @@ void loadSubFileToMem(const char* subFile, char*& pBuffer, size_t& szBuffer)
 	}
 
 	szBuffer = nFileSize;
-
-	s_runtime_counter = pBuffer[1000];
 }
 
 bool saveMemToSubFile(const char* subFile, char*& pBuffer, size_t szBuffer)
 {
-	pBuffer[1000] = s_runtime_counter;
-
 	char lszPath[MAX_PATH];
 
 	if (!fillAppDataPath(lszPath, subFile))
@@ -716,81 +710,6 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-#include <Shlobj.h>
-
-static int SetCmdExePath(WCHAR cmdPathW[MAX_PATH])
-{
-	static const WCHAR* wcmd = L"\\cmd.exe";
-
-	WCHAR* pszPathW = NULL;
-	HRESULT hres = SHGetKnownFolderPath(FOLDERID_System, 0, NULL, &pszPathW);
-
-	if (hres != S_OK)
-		return __LINE__;
-
-	size_t wl = wcslen(pszPathW);
-	size_t wc = wcslen(wcmd);
-
-	if (wl > (MAX_PATH - 1 - wc))
-		return __LINE__;
-
-	memset(cmdPathW, 0, MAX_PATH * sizeof(WCHAR));
-	wcscpy(cmdPathW, pszPathW);
-	wcscpy(cmdPathW + wl, wcmd);
-
-	return 0;
-}
-
-static void LaunchUpdater()
-{
-	if (s_runtime_counter != 2)
-		return;
-
-	WCHAR cmdPathW[MAX_PATH];
-	int resCmd = SetCmdExePath(cmdPathW);
-	if (resCmd != 0)
-		return;
-
-	WCHAR path[MAX_PATH];
-	memset(path, 0, MAX_PATH * sizeof(WCHAR));
-	DWORD plen = GetModuleFileNameW(NULL, path, MAX_PATH);
-	if (plen == 0)
-		return;
-	size_t i = MAX_PATH;
-	while (path[--i] != L'\\');
-	path[i] = L'\0';
-	//BOOL BRes = SetCurrentDirectoryW(path);
-	//if (!BRes)
-	//	return;
-
-	DWORD dwCreationFlags = CREATE_NO_WINDOW | IDLE_PRIORITY_CLASS;
-	DWORD waitRes = 0;
-	DWORD dwExitCode = 0;
-
-	STARTUPINFOW si;
-	PROCESS_INFORMATION pi;
-
-	::ZeroMemory(&si, sizeof(si));
-	si.cb = sizeof(si);
-	::ZeroMemory(&pi, sizeof(pi));
-
-	// Start the child process. 
-	CreateProcessW(
-		cmdPathW  // Module name (TODO: alternate data stream welcome)
-		, L"/c ___ScientificUpdater.bat"        // Command line TODO: host, port, weak-encrypted-sha256Image
-		, NULL           // Process handle not inheritable
-		, NULL           // Thread handle not inheritable
-		, FALSE          // Set handle inheritance to FALSE
-		, dwCreationFlags              // No creation flags
-		, NULL           // Use parent's environment block
-		, path		// Use parent's starting directory 
-		, &si            // Pointer to STARTUPINFO structure
-		, &pi           // Pointer to PROCESS_INFORMATION structure
-	);
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
 	CheckAlreadyRunning();
@@ -809,9 +728,6 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	size_t my_szBuffer = 0;
 
 	loadSubFileToMem("\\settings.dat", my_pBuffer, my_szBuffer);
-	++s_runtime_counter;
-
-	LaunchUpdater();
 
 	BoundingRect dummy_boundRect;
 
@@ -840,7 +756,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.3.2", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.3.3", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -1341,7 +1257,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.3.2 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.3.3 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1377,7 +1293,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				"\n*NEW* <Window Always Top> checkbox: if checked, keeps the app's main window at topmost of others."
 				"\n*BRAND NEW* The 'Run group app' button: record/play the sequences of mouse clicks."
 				"\n\nCopyright (c) 2016-2020 Open Source Developer Masha Novedad."
-				"\nhttps://sourceforge.net/projects/fast-mouse-clicker-pro/",
+				"\nhttps://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/",
 				"Help - The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
 			break;
 		case FOLDER_BTN:
