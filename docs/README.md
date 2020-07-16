@@ -76,13 +76,13 @@ for (UINT iExtra = 0; iExtra < nCntExtra; iExtra += 2)
 UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
 </code></pre>
 
-The size of the <i>arrays</i> is carefully computed based on the click rate given by user. To avoid system event buffer
+The size of the <i>arrays</i> is carefully computed based on the click rate given by end-user. To avoid system event buffer
 overflow, the time in <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleep" target="_blank">Sleep()</a></code> is selected properly according the size of the <i>array</i>.
 
 The GUI of the application seems archaic, but it is made by very base Win32 system calls
 to avoid performance degradation caused by
 high-level third-side libraries such as [Qt](https://www.qt.io/){:target="_blank"} or slow managed code in frameworks like C#/.Net.
-For example, <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getasynckeystate" target="_blank">GetAsyncKeyState()</a></code> is used to detect keys pressed by user:
+For example, <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getasynckeystate" target="_blank">GetAsyncKeyState()</a></code> is used to detect the trigger keys pressed by end-user:
 
 <pre><code title="Base GetAsyncKeyState() example">
 if (!doToggle)
@@ -98,6 +98,40 @@ else
     ...
 }
 </code></pre>
+
+Another benefit of such an approach is compact, statically-linked executable without any external dependencies.
+
+When end-user selects low click rates, actual size of the <i>array</i> of mouse events in <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code>
+is set to 1 and number of clicks per second is regulated by <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleep" target="_blank">Sleep()</a></code> only.
+But when end-user selects high click rates, the size of the <i>array</i> becomes significant. In rare circumstances, it may lead to freeze the whole Windows GUI.
+To avoid that, the helper thread is created to scan <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getasynckeystate" target="_blank">GetAsyncKeyState()</a></code> independently in order end-user has requested to stop the clicking
+and force <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-blockinput" target="_blank">BlockInput()</a></code> because mouse event buffer may be full:
+
+<pre><code title="Helper thread with BlockInput() example">
+DWORD WINAPI MyThreadFunction(LPVOID lpParam)
+{
+    while (true)
+    {
+        if (GetAsyncKeyState(atoi(triggerText2)))
+        {
+            ...
+            BlockInput(TRUE);
+            Sleep(100);
+            BlockInput(FALSE);
+            ...
+            SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
+        }
+
+        Sleep(10);
+    }
+
+    return 0;
+}
+</code></pre>
+
+Complete source code with comments is shipped with Windows installer or can be watched on
+[Github](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}
+and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}.
 
 ## Screenshots
 
