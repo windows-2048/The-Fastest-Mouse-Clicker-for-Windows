@@ -52,7 +52,7 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 Unlike other auto-clickers that use obsolete <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event" target="_blank">mouse_event()</a></code>
 system call from C/C++ source or un-arrayed <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> from C#/.Net source, The Fastest Mouse Clicker for Windows uses
-<i>arrayed</i> <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> with specially prepared <i>arrays</i> of mouse events.
+<i>arrayed</i> <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> with specially prepared <i>arrays</i> of mouse events:
 
 <pre><code title="Arrayed SendInput() example">
 UINT nCntExtra = (nCnt - 1) * 2; // reserved index for DOWN, UP
@@ -79,9 +79,25 @@ UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
 The size of the <i>arrays</i> is carefully computed based on the click rate given by user. To avoid system event buffer
 overflow, the time in <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleep" target="_blank">Sleep()</a></code> is selected properly according the size of the <i>array</i>.
 
-The GUI of the application seems archaic, but it is made by very basic Win32 system calls
+The GUI of the application seems archaic, but it is made by very base Win32 system calls
 to avoid performance degradation caused by
-high-level third-side libraries such as [Qt](https://www.qt.io/){:target="_blank"} or slow managed code in C#/.Net.
+high-level third-side libraries such as [Qt](https://www.qt.io/){:target="_blank"} or slow managed code in frameworks like C#/.Net.
+For example, <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-getasynckeystate" target="_blank">GetAsyncKeyState()</a></code> is used to detect keys pressed by user:
+
+<pre><code title="Base GetAsyncKeyState() example">
+if (!doToggle)
+{
+    if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)))
+        toggleState = 1;
+    ...
+}
+else
+{
+    if (toggleState == 0 && GetAsyncKeyState(atoi(triggerText)))
+        toggleState = 1;
+    ...
+}
+</code></pre>
 
 ## Screenshots
 
