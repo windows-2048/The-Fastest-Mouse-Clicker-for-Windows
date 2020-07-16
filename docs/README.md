@@ -54,6 +54,28 @@ Unlike other auto-clickers that use obsolete <code><a href="https://docs.microso
 system call from C/C++ source or un-arrayed <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> from C#/.Net source, The Fastest Mouse Clicker for Windows uses
 <i>arrayed</i> <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> with specially prepared <i>arrays</i> of mouse events.
 
+<p><code>
+            UINT nCntExtra = (nCnt - 1) * 2; // reserved index for DOWN, UP
+
+            for (UINT iExtra = 0; iExtra < nCntExtra; iExtra += 2)
+            {
+                input[1 + iExtra].type = INPUT_MOUSE;
+
+                input[1 + iExtra].mi.dx = dx;
+                input[1 + iExtra].mi.dy = dy;
+
+                input[1 + iExtra].mi.mouseData = dwData;
+                input[1 + iExtra].mi.time = 0;
+                input[1 + iExtra].mi.dwExtraInfo = dwExtraInfo;
+
+                ...
+            }
+
+            ...
+
+            UINT ret = SendInput(1 + nCntExtra, input, sizeof(INPUT));
+</code></p>
+
 The size of the <i>arrays</i> is carefully computed based on the click rate given by user. To avoid system event buffer
 overflow, the time in <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleep" target="_blank">Sleep()</a></code> is selected properly according the size of the <i>array</i>.
 
