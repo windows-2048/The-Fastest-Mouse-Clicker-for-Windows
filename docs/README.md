@@ -21,6 +21,8 @@ All the versions are shipped with SHA256 fingerprints to ensure you do download 
 
 Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code>, making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
 
+The program is written in vanilla C++ with native Win32 API and linked statically thus it becomes a super-compact executable without external dependencies and can run on a bare Windows installation.
+
 ![The Fastest Mouse Clicker for Windows version 2.5.x.x: program No.1 for cheat on web sites and video games such as CS:GO, Candy Crush, Roblox games, etc.](images/csgo-all.jpg?raw=true)
 
 There are a lot of use-cases of The Fastest Mouse Clicker for Windows.
