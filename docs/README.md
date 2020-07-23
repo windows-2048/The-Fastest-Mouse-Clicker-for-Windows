@@ -17,6 +17,7 @@ Please update your links: URL <span style="color:orange">https://sourceforge.net
 ## Introduction
 
 This is the official site to download various versions of The Fastest Mouse Clicker for Windows. Also there is [official mirror](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}.
+All the versions are shipped with SHA256 fingerprints to ensure you do download the genuine software.
 
 Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code>, making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
 
