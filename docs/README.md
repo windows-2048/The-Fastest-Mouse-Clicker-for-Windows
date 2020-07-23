@@ -1,6 +1,6 @@
-# The Fastest Mouse Clicker for Windows
+## The Fastest Mouse Clicker for Windows
 
-## [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.3.exe?inline=false) - The latest version 2.5.3.3 - Jul 15 2020
+### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.3.exe?inline=false) - The latest version 2.5.3.3 - Jul 15 2020
 
 ### Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks (since v.2.5.3.2).
 
@@ -21,7 +21,7 @@ All the versions are shipped with SHA256 fingerprints to ensure you do download 
 
 Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code>, making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: program #1 for cheat on web sites and video games such as CS:GO, Candy Crush, Roblox games, etc.](images/csgo-all.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.x.x: program No.1 for cheat on web sites and video games such as CS:GO, Candy Crush, Roblox games, etc.](images/csgo-all.jpg?raw=true)
 
 There are a lot of use-cases of The Fastest Mouse Clicker for Windows.
 Amateurs can use it for cheating in various web sites or video games such as Counter-Strike: Global Offensive (CS:GO), Candy Crush Saga, Roblox games, etc.
