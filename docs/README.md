@@ -61,6 +61,13 @@ Professionals can use it for quality assistant and testing purposes because full
 
 * Window Always Top checkbox to keep the app's window topmost.
 
+## Comparison
+
+Feature | [Fast Mouse Clicker](https://sourceforge.net/projects/fastclicker/){:target="_blank"} | [AutoClicker](https://sourceforge.net/projects/orphamielautoclicker/){:target="_blank"} | The Fastest Mouse Clicker for Windows
+------- | ------- | -------
+Hardware-limited fastest clicking | No | No | Yes
+
+
 ## Technology
 
 Unlike other auto-clickers that use obsolete <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event" target="_blank">mouse_event()</a></code>
