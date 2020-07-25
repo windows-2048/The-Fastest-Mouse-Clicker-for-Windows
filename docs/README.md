@@ -68,19 +68,19 @@ Here is the table that summarizes all the key features of 3 most downloaded prog
 
 Feature | [Fast Mouse Clicker](https://sourceforge.net/projects/fastclicker/){:target="_blank"} | [AutoClicker](https://sourceforge.net/projects/orphamielautoclicker/){:target="_blank"} | The Fastest Mouse Clicker for Windows
 ------- | ------- | -------
-Open source project | No | Yes | Yes
-Regular updates and bug fixes | No | No | Yes
-Arbitrary trigger key for clicking | Yes | Yes | Yes
-Mouse button as trigger key for clicking | Yes | No | Yes
-Independent trigger keys in toggle mode | No | Yes | Yes
-All the clicking parameters auto-save | No | Yes | Yes
-Command line support in batch files | No | No | Yes
-Button to open a folder with all the batch files | No | No | Yes
-Button to reset all the clicking parameters to default values | No | No | Yes
-Random clicking in a specified rectangle | No | No | Yes
-Hardware-limited fastest clicking via arrayed <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> | No | No | Yes
-Side DLL/runtime independent (runs on bare Windows) | No | No | Yes
-Checkbox to keep the app window always Top | No | No | Yes
+Open source project | No | **Yes** | **Yes**
+Regular updates and bug fixes | No | No | **Yes**
+Arbitrary trigger key for clicking | **Yes** | **Yes** | **Yes**
+Mouse button as trigger key for clicking | **Yes** | No | **Yes**
+Independent trigger keys in toggle mode | No | **Yes** | **Yes**
+All the clicking parameters auto-save | No | **Yes** | **Yes**
+Command line support in batch files | No | No | **Yes**
+Button to open a folder with all the batch files | No | No | **Yes**
+Button to reset all the clicking parameters to default values | No | No | **Yes**
+Random clicking in a specified rectangle | No | No | **Yes**
+Hardware-limited fastest clicking via arrayed <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> | No | No | **Yes**
+Side DLL/runtime independent (runs on bare Windows) | No | No | **Yes**
+Checkbox to keep the app window always Top | No | No | **Yes**
 
 The Fastest Mouse Clicker for Windows wins this competition because its code is a further developing of the rest 2 popular apps.
 
