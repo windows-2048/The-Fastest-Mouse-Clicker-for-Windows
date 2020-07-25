@@ -63,10 +63,14 @@ Professionals can use it for quality assistant and testing purposes because full
 
 ## Comparison
 
+What about other auto-clickers and their features?
+Here is the table that summarizes all the key features of 3 most downloaded programs.
+The Fastest Mouse Clicker for Windows wins this competition because its code is a further developing of the rest 2 popular apps.
+
 Feature | [Fast Mouse Clicker](https://sourceforge.net/projects/fastclicker/){:target="_blank"} | [AutoClicker](https://sourceforge.net/projects/orphamielautoclicker/){:target="_blank"} | The Fastest Mouse Clicker for Windows
 ------- | ------- | -------
 Hardware-limited fastest clicking | No | No | Yes
-
+Side DLL/runtime independent | No | No | Yes
 
 ## Technology
 
