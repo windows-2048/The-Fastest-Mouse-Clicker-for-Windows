@@ -175,11 +175,11 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 * The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button.
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s1_1322x986.png?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s1_1322x986.jpg?raw=true)
 
 * The Fastest Mouse Clicker for Windows version 2.5.x.x: the brand new Group App in details.
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: the brand new Group App in details](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s1h_1322x986.png?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.x.x: the brand new Group App in details](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s1h_1322x986.jpg?raw=true)
 
 * The Fastest Mouse Clicker for Windows version 2.5.x.x: running under Wine 4.0.2/Linux(CentOS 6).
 
@@ -187,7 +187,7 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 * The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important.
 
-![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s2_1322x986.png?raw=true)
+![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s2_1322x986.jpg?raw=true)
 
 * The Fastest Mouse Clicker for Windows version 2.5.x.x: completely hand-made art by the clicker application.
 
