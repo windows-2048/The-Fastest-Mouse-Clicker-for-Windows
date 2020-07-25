@@ -99,6 +99,8 @@
     <![endif]-->
   </head>
   <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="ho4VFUhe"></script>  
     <div class="wrapper">
       <header>
         <h1><img class="mylogo" src="{{site.logo | relative_url}}" alt="Logo" /><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
@@ -129,7 +131,9 @@
     </a>
 
 </p>
-
+<p class="view">
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+</p>
       </header>
       <section>
 
