@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.5.3.3
+* The Fastest Mouse Clicker for Windows version 2.5.4.0
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -696,7 +696,7 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
 			status = 0;
 			prevStatus = 2;
 			BlockInput(TRUE);
-			Sleep(100);
+			Sleep(1000);
 			BlockInput(FALSE);
 			mtx.unlock();
 			SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -756,7 +756,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.3.3", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
+	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.4.0", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -981,9 +981,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 				if (toggleState == 3 && !GetAsyncKeyState(atoi(triggerText)))
 				{
 					toggleState = 0;
-					BlockInput(TRUE);
-					Sleep(100);
-					BlockInput(FALSE);
+					//BlockInput(TRUE);
+					//Sleep(100);
+					//BlockInput(FALSE);
 				}
 				mtx.unlock();
 			}
@@ -1006,8 +1006,14 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 			{
 				UINT nBatchClicks = 1;
 
-				if (frequency >= 1000)
-					nBatchClicks = 1 + UINT(floor((frequency - 1000) / 1000));
+				if (frequency >= 10000)
+					nBatchClicks = 100 + UINT(floor((frequency - 10000) / 100));
+				else if (frequency >= 5000)
+					nBatchClicks = 50 + UINT(floor((frequency - 5000) / 100));
+				else if (frequency >= 1000)
+					nBatchClicks = 10 + UINT(floor((frequency - 1000) / 100));
+				else if (frequency >= 100)
+					nBatchClicks = 1 + UINT(floor((frequency - 100) / 100));
 				else
 					nBatchClicks = 1;
 
@@ -1257,7 +1263,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.3.3 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.4.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."

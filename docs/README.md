@@ -1,18 +1,19 @@
 ## The Fastest Mouse Clicker for Windows
 
-### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.3.exe?inline=false) - The latest version 2.5.3.3 - Jul 15 2020
+### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0.exe?inline=false) - The latest version 2.5.4.0 - Aug 01 2020
 
 ### Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and sequences of clicks (since v.2.5.3.2).
 
 Please update your links: URL <span style="color:orange">https://sourceforge.net/projects/fast-mouse-clicker-pro/ is obsolete</span> and points to the wrong location. Official site is here.
 
-### What's New - The latest version 2.5.3.3 - Jul 15 2020
+### What's New - The latest version 2.5.4.0 - Aug 01 2020
 
 * BRAND NEW Group App to record/play sequences of clicks!
 * Fixed Help text to reflect brand new 'Run group app' button.
 * Fixed 'Can't stop the clicking' bug.
 * Few tiny bug fixes
 * Few fixes in Windows Installer
+* IMPORTANT! Fixed clicking speed degradation at high clicking rates
 
 ## Introduction
 
@@ -172,7 +173,7 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 ## Screenshots
 
-### Updated for the latest version 2.5.3.3
+### For version 2.5.3.3. The latest version is 2.5.4.0
 
 * The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button.
 
@@ -215,6 +216,10 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 * [Uptodown](https://the-fastest-mouse-clicker-for-windows.en.uptodown.com/windows/download){:target="_blank"}, Download Discover Share
 
 ## Download all the official releases
+
+* Aug 01 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.5.4.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0.exe?inline=false)
+
+SHA256(Install_TheFastestMouseClicker_2.5.4.0.exe)= 738058b7dc1e95b963860e5797bab5761a8801bda90feb0311c038e98477cc31
 
 * Jul 15 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.5.3.3.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.3.3.exe?inline=false)
 
