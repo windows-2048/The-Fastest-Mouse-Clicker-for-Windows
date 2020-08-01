@@ -1,8 +1,8 @@
 The Fastest Mouse Clicker for Windows version 2.5.4.0
 -----------------------------------------------------
 
-[Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}
---------------------------------------------------------------------------------------------------------
+[Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
+--------------------------------------------------------------------------------------
 
 ### The latest version 2.5.4.0 - Aug 01 2020
 
