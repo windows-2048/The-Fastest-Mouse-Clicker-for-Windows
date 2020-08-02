@@ -67,7 +67,7 @@ Professionals can use it for quality assistant and testing purposes because full
 What about other auto-clickers and their features?
 Here is the table that summarizes all the key features of 3 most downloaded programs.
 
-Feature | [Fast Mouse Clicker](https://sourceforge.net/projects/fastclicker/){:target="_blank"} | [AutoClicker](https://sourceforge.net/projects/orphamielautoclicker/){:target="_blank"} | The Fastest Mouse Clicker for Windows
+Feature | [Fast Mouse Clicker](https://sourceforge.net/projects/fastclicker/){:target="_blank"} | [Auto<wbr/>Clicker](https://sourceforge.net/projects/orphamielautoclicker/){:target="_blank"} | The Fastest Mouse Clicker for Windows
 ------- | ------- | -------
 Open source project | No | **Yes** | **Yes**
 Regular updates and bug fixes | No | No | **Yes**
