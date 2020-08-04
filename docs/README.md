@@ -75,7 +75,7 @@ Arbitrary trigger key for clicking | **Yes** | **Yes** | **Yes**
 Mouse button as trigger key for clicking | **Yes** | No | **Yes**
 Independent trigger keys in toggle mode | No | **Yes** | **Yes**
 All the clicking parameters auto-save | No | **Yes** | **Yes**
-Group clicking (sequences of clicks) | No | **Yes** | **Yes**
+Group clicking (record-play the sequences of clicks) | No | **Yes** | **Yes**
 Command line support in batch files | No | No | **Yes**
 Button to open a folder with all the batch files | No | No | **Yes**
 Button to reset all the clicking parameters to default values | No | No | **Yes**
