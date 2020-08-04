@@ -58,7 +58,7 @@ Professionals can use it for quality assistant and testing purposes because full
 
 * Random clicking has been implemented. Just click the "Batch folder" button and see remarks in the *.bat files reside there in order how to use command line arguments and to enable random clicking.
 
-* Group clicking (record/play the sequences of clicks) supported via additional application since v.2.5.3.2.
+* Group clicking (record/play the sequences of clicks) supported via additional application since v.2.5.3.2. You can quickly switch between the applications by clicking the "Run group app"/"Run single app" button.
 
 * Window Always Top checkbox to keep the app's window topmost.
 
