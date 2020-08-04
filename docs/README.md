@@ -173,27 +173,27 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 ## Screenshots
 
-### For version 2.5.3.3. The latest version is 2.5.4.0
+### For the latest version 2.5.4.0
 
-* The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button.
+* The Fastest Mouse Clicker for Windows version 2.5.4.0: introduce the "Run group app" button.
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: introduce the "Run group app" button](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s1_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.4.0: introduce the "Run group app" button](screenshots_new/v2.5.4.0/TFMCfW_2_5_4_0w_s1_1322x986.jpg?raw=true)
 
-* The Fastest Mouse Clicker for Windows version 2.5.x.x: the brand new Group App in details.
+* The Fastest Mouse Clicker for Windows version 2.5.4.0: the brand new Group App in details.
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: the brand new Group App in details](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s1h_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.4.0: the brand new Group App in details](screenshots_new/v2.5.4.0/TFMCfW_2_5_4_0w_s1h_1322x986.jpg?raw=true)
 
-* The Fastest Mouse Clicker for Windows version 2.5.x.x: running under Wine 4.0.2/Linux(CentOS 6).
+* The Fastest Mouse Clicker for Windows version 2.5.4.0: running under Wine 4.0.2/Linux(CentOS 6).
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: running under Wine 4.0.2/Linux(CentOS 6)](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s1w_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.4.0: running under Wine 4.0.2/Linux(CentOS 6)](screenshots_new/v2.5.4.0/TFMCfW_2_5_4_0w_s1w_1322x986.jpg?raw=true)
 
 * The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important.
 
-![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_s2_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.5.4.0/TFMCfW_2_5_4_0w_s2_1322x986.jpg?raw=true)
 
-* The Fastest Mouse Clicker for Windows version 2.5.x.x: completely hand-made art by the clicker application.
+* The Fastest Mouse Clicker for Windows version 2.5.4.0: completely hand-made art by the clicker application.
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: completely hand-made art by the clicker application](screenshots_new/v2.5.3.3/TFMCfW_2_5_3_3w_a1_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.5.4.0: completely hand-made art by the clicker application](screenshots_new/v2.5.4.0/TFMCfW_2_5_4_0w_a1_1322x986.jpg?raw=true)
 
 ## Partners
 
