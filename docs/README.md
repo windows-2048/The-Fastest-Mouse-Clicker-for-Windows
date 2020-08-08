@@ -4,7 +4,9 @@
 
 ### Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
 
-Please update your links: URL <span style="color:DarkOrange;">https://sourceforge.net/projects/fast-mouse-clicker-pro/ is obsolete</span> and points to the wrong location. <span style="color:OliveDrab;"><b>Official site is here</b></span>.
+Please update your links: URL <span style="color:DarkOrange;">https://sourceforge.net/projects/fast-mouse-clicker-pro/ is obsolete</span> and points to the wrong location.
+
+<span style="color:OliveDrab;"><b>Official site is here</b></span>.
 
 ### What's New - The latest version 2.5.4.0 - Aug 01 2020
 
@@ -14,6 +16,9 @@ Please update your links: URL <span style="color:DarkOrange;">https://sourceforg
 * Few tiny bug fixes
 * Few fixes in Windows Installer
 * **IMPORTANT! Fixed clicking speed degradation at high clicking rates**
+
+![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Single" application](screenshots_new/v2.5.4.0/mw_v2.5.4.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Group" application](screenshots_new/v2.5.4.0/mw_groupapp_v2.5.4.0.jpg?raw=true)
+----- | -----
 
 ## Introduction
 
