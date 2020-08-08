@@ -17,8 +17,9 @@ Please update your links: URL <span style="color:DarkOrange;">https://sourceforg
 * Few fixes in Windows Installer
 * **IMPORTANT! Fixed clicking speed degradation at high clicking rates**
 
-![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Single" application](screenshots_new/v2.5.4.0/mw_v2.5.4.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Group" application](screenshots_new/v2.5.4.0/mw_groupapp_v2.5.4.0.jpg?raw=true)
+"Single" application | "Group" application
 ----- | -----
+![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Single" application](screenshots_new/v2.5.4.0/mw_v2.5.4.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Group" application](screenshots_new/v2.5.4.0/mw_groupapp_v2.5.4.0.jpg?raw=true)
 
 ## Introduction
 
