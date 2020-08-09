@@ -4,7 +4,7 @@
 
 ### Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
 
-Please update your links: URLs:
+Please update your URLs:
 * <span style="color:DarkOrange;">https://sourceforge.net/projects/fast-mouse-clicker-pro/</span>
 * <span style="color:DarkOrange;">https://sourceforge.net/projects/fastclicker/</span>
 
