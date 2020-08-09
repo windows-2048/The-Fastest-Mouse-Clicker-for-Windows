@@ -8,7 +8,7 @@ Please update your URLs:
 * <span style="color:DarkOrange;">https://sourceforge.net/projects/fast-mouse-clicker-pro/</span>
 * <span style="color:DarkOrange;">https://sourceforge.net/projects/fastclicker/</span>
 
-— are obsolete and points to the wrong location.
+— are obsolete and points to the wrong locations.
 
 <span style="color:OliveDrab;"><b>Official site is here</b></span>.
 
