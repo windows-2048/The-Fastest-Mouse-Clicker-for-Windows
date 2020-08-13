@@ -34,7 +34,7 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 The program is written in vanilla C++ with native Win32 API and linked statically thus it becomes a super-compact executable without external dependencies and can run on a bare Windows installation.
 
-![The Fastest Mouse Clicker for Windows version 2.5.x.x: program No.1 for cheat on web sites and video games such as CS:GO, Candy Crush, Roblox games, etc.](images/csgo-all.jpg?raw=true)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gCpALY1WqmE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 There are a lot of use-cases of The Fastest Mouse Clicker for Windows.
 Amateurs can use it for cheating in various web sites or video games such as Counter-Strike: Global Offensive (CS:GO), Candy Crush Saga, Roblox games, etc.
