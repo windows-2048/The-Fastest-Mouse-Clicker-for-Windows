@@ -37,7 +37,7 @@ The program is written in vanilla C++ with native Win32 API and linked staticall
 <p>
 Here is a short intro video that tells how to download and install The Fastest Mouse Clicker for Windows.
 Also it shows basic quick-start guide to use automated clicks.
- <video style="outline:none; width:100%; height:100%;" controls preload="none" poster="/videos/TFMCfW_intro.jpg">
+ <video style="outline:none; width:100%; height:100%;" controls preload="none" poster="videos/TFMCfW_intro.jpg">
   <source src="videos/TFMCfW_intro.mp4" type="video/mp4"/>
   Your browser does not support the video tag.
 </video>
