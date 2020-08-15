@@ -35,13 +35,13 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 The program is written in vanilla C++ with native Win32 API and linked statically thus it becomes a super-compact executable without external dependencies and can run on a bare Windows installation.
 
 <p>
-Here is a short video at Youtube that tells how to download and install The Fastest Mouse Clicker for Windows.
-Also it shows the very basic quick-start to use automated clicks.
+Here is a short intro video that tells how to download and install The Fastest Mouse Clicker for Windows.
+Also it shows basic quick-start guide to use automated clicks.
  <video width="560" height="315" controls>
   <source src="videos/TFMCfW_intro.mp4" type="video/mp4"/>
   Your browser does not support the video tag.
 </video>
-[Watch it in Youtube.](https://www.youtube.com/watch?v=gCpALY1WqmE){:target="_blank"}
+<a href="https://www.youtube.com/watch?v=gCpALY1WqmE" target="_blank">Watch intro to The Fastest Mouse Clicker for Windows in Youtube.</a>
 </p>
 
 There are a lot of use-cases of The Fastest Mouse Clicker for Windows.
