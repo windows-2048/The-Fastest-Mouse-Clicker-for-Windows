@@ -12,6 +12,10 @@ Please update your URLs:
 
 <span style="color:OliveDrab;"><b>Official site is here</b></span>.
 
+"Single" application | "Group" application
+----- | -----
+![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Single" application](screenshots_new/v2.5.4.0/mw_v2.5.4.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Group" application](screenshots_new/v2.5.4.0/mw_groupapp_v2.5.4.0.jpg?raw=true)
+
 ### What's New - The latest version 2.5.4.0 - Aug 01 2020
 
 * BRAND NEW Group App to record/play sequences of clicks!
@@ -20,10 +24,6 @@ Please update your URLs:
 * Few tiny bug fixes
 * Few fixes in Windows Installer
 * **IMPORTANT! Fixed clicking speed degradation at high clicking rates**
-
-"Single" application | "Group" application
------ | -----
-![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Single" application](screenshots_new/v2.5.4.0/mw_v2.5.4.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.5.4.0: "Group" application](screenshots_new/v2.5.4.0/mw_groupapp_v2.5.4.0.jpg?raw=true)
 
 ## Introduction
 
