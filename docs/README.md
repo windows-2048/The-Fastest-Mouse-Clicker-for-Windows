@@ -233,6 +233,17 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 * [Uptodown](https://the-fastest-mouse-clicker-for-windows.en.uptodown.com/windows/download){:target="_blank"}, Download Discover Share
 
+## Reviews from our users
+
+<p>
+Wolf0626, young vlogger shows how he uses The Fastest Mouse Clicker for Windows in his gaming process.
+ <video style="outline:none; width:100%; height:100%;" controls preload="none" poster="videos/VideoReview_Wolf0626.jpg">
+  <source src="videos/VideoReview_Wolf0626.mp4" type="video/mp4"/>
+  Your browser does not support the video tag.
+</video>
+<a href="https://www.youtube.com/watch?v=f92nqHFxcmk" target="_blank">Watch the review video "How to Download the fastest mouse clicker for windows!!!" in Youtube.</a>
+</p>
+
 ## Download all the official releases
 
 * Aug 01 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.5.4.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0.exe?inline=false)
