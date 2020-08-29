@@ -105,6 +105,10 @@
 
         <p>{{ site.description | default: site.github.project_tagline }}</p>
 
+        {% if site.show_downloads %}
+        <p class="view"><a href="https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0.exe?inline=false">Download the latest version 2.5.4.0</a></p>
+        {% endif %}
+
 <p class="view">
     <a href="https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/stargazers" target="_blank">
       Github:
@@ -132,10 +136,6 @@
 
         {% if site.github.is_user_page %}
         <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
-        {% endif %}
-
-        {% if site.show_downloads %}
-        <p class="view"><a href="https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0.exe?inline=false">Download the latest version 2.5.4.0</a></p>
         {% endif %}
 
 <p class="view">
