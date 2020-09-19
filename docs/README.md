@@ -285,6 +285,14 @@ regardless the application window state is: normal, maximized, minimized, focus,
 
 You have to type 0.67 inside 'clicks per second' input field. Just click on it, delete previous value, and type new one.
 
+### What is minimal Windows version supported?
+
+Your PC must have Windows 7 or later. Don't use Windows XP. Better use Windows 10.
+
+### Is this FAQ nearly complete?
+
+Oh no :) It has been just started. Feel free to ask your question via email. See the Contacts chapter below.
+
 <a name="Downloads" />
 ## Downloads
 
