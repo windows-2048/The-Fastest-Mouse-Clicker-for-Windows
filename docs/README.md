@@ -14,13 +14,16 @@ Please update your URLs:
 
 ## Table of Contents
 
+* [Introduction](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Introduction)
+* [Features](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Features)
+* [Comparison](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Comparison)
+* [Technology](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Technology)
+* [Screenshots](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Screenshots)
+* [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners)
 * [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
+* [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ) - added on Sep&nbsp;19&nbsp;2020
+* [Downloads](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Downloads)
+* [Contacts](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Contacts)
 
 "Single" application | "Group" application
 ----- | -----
@@ -35,6 +38,7 @@ Please update your URLs:
 * Few fixes in Windows Installer
 * **IMPORTANT! Fixed clicking speed degradation at high clicking rates**
 
+<a name="Introduction" />
 ## Introduction
 
 This is the official site to download various versions of The Fastest Mouse Clicker for Windows. Also there is [official mirror](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}.
@@ -58,6 +62,7 @@ There are a lot of use-cases of The Fastest Mouse Clicker for Windows.
 Amateurs can use it for cheating in various web sites or video games such as Counter-Strike: Global Offensive (CS:GO), Candy Crush Saga, Roblox games, etc.
 Professionals can use it for quality assistant and testing purposes because full support of command line in batch files, PowerShell scripts, etc.
 
+<a name="Features" />
 ## Features
 
 * The world's best click rate up to 100 000 clicks per second, increased by 10 times comparing with the predecessor application "Fast Mouse Clicker". The latest version with fixed performance issue is 100 times faster!
@@ -90,6 +95,7 @@ Professionals can use it for quality assistant and testing purposes because full
 
 * Window Always Top checkbox to keep the app's window topmost.
 
+<a name="Comparison" />
 ## Comparison
 
 What about other auto-clickers and their features?
@@ -114,6 +120,7 @@ Checkbox to keep the app window always Top | No | No | **Yes**
 
 The Fastest Mouse Clicker for Windows wins this competition because its code is a further developing of the rest 2 popular apps.
 
+<a name="Technology" />
 ## Technology
 
 Unlike other auto-clickers that use obsolete <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event" target="_blank">mouse_event()</a></code>
@@ -199,6 +206,7 @@ Complete source code with comments is shipped with Windows installer or can be w
 [Github](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}
 and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}.
 
+<a name="Screenshots" />
 ## Screenshots
 
 ### For the latest version 2.5.4.0
@@ -223,6 +231,7 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 ![The Fastest Mouse Clicker for Windows version 2.5.4.0: completely hand-made art by the clicker application](screenshots_new/v2.5.4.0/TFMCfW_2_5_4_0w_a1_1322x986.jpg?raw=true)
 
+<a name="Partners" />
 ## Partners
 
 * [Bytesin](https://www.bytesin.com/software/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}, Your Daily Dose of Bytes
@@ -264,6 +273,7 @@ BullyWiiPlaza, experienced youtuber shows how he cheats extra scores with The Fa
 <a href="https://www.youtube.com/watch?v=weoSf-CppZU" target="_blank">Watch the review video "[Yu-Gi-Oh! Duel Links] The Fastest Auto Clicker for Windows Gameplay" in Youtube.</a>
 </p>
 
+<a name="FAQ" />
 ## Frequently Asked Questions (FAQ)
 
 ### Does the clicker work when its main GUI window is minimized?
@@ -275,7 +285,8 @@ regardless the application window state is: normal, maximized, minimized, focus,
 
 You have to type 0.67 inside 'clicks per second' input field. Just click on it, delete previous value, and type new one.
 
-## Download all the official releases
+<a name="Downloads" />
+## Downloads
 
 * Aug 01 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.5.4.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0.exe?inline=false)
 
@@ -297,6 +308,7 @@ SHA256(Install_TheFastestMouseClicker_2.5.1.0.exe)= cb13c125212feb8241f4a4258919
 
 SHA256(Install_TheFastestMouseClicker_2.0.0.0.exe)= c12fbeee1a12ce598bcd1f6b39872abcbcfc89d2b21d235882ca479fd26a324a
 
+<a name="Contacts" />
 ## Contacts
 
 #### Copyright 2016-2020 by [Open Source Developer Masha Novedad](https://windows-2048.github.io){:target="_blank"}
