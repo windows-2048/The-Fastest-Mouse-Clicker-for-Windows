@@ -10,7 +10,7 @@
 > <br/>are obsolete and points to the wrong locations.
 > <br/><span style="color:OliveDrab;"><b>Official site is here</b></span>.
 
-## Table of Contents
+## Table of Contents<sub>Updated Sep 19 2020</sub>
 
 * [Introduction](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Introduction)
 * [Features](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Features)
