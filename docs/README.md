@@ -256,6 +256,17 @@ BullyWiiPlaza, experienced youtuber shows how he cheats extra scores with The Fa
 <a href="https://www.youtube.com/watch?v=weoSf-CppZU" target="_blank">Watch the review video "[Yu-Gi-Oh! Duel Links] The Fastest Auto Clicker for Windows Gameplay" in Youtube.</a>
 </p>
 
+## Frequently Asked Questions (FAQ)
+
+### Does the clicker work when its main GUI window is minimized?
+
+Yes, it does. Trigger keys are being intercepted and mouse events are being emitted
+regardless the application window state is: normal, maximized, minimized, focus, blur, etc.
+
+### What if I want to emulate 2 clicks within every 3 seconds, what the 'clicks per second' parameter should be?
+
+You have to type 0.67 inside 'clicks per second' input field. Just click on it, delete previous value, and type new one.
+
 ## Download all the official releases
 
 * Aug 01 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.5.4.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0.exe?inline=false)
