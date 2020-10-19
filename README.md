@@ -1,10 +1,8 @@
-The Fastest Mouse Clicker for Windows version 2.6.1.0
------------------------------------------------------
+# The Fastest Mouse Clicker for Windows
 
-> New release is scheduled to Oct 20 2020. See [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) for details.
+## The Fastest Mouse Clicker for Windows version 2.6.1.0 has been released on Oct 19 2020
 
-Official site is based on Github (by Microsoft) Pages and it is [here](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
---------------------------------------------------------------------------------------
+### See [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) for details
 
 Below you can see a shot excerpt only.
 
