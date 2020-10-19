@@ -4,7 +4,7 @@
 
 ### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) - The latest version&nbsp;2.6.1.0 - Oct&nbsp;19&nbsp;2020
 
-> New big release with FIXED POSITION CLICKING has been released!
+> New big version with FIXED POSITION CLICKING has been released!
 
 ### Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
 
@@ -27,16 +27,19 @@
 * [Downloads](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Downloads)
 * [Contacts](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Contacts)
 
+<a name="Changelog" />
+### What's New - The latest version 2.6.1.0 - Oct 19 2020
+
 "Single" application | "Group" application
 ----- | -----
 ![The Fastest Mouse Clicker for Windows version 2.6.1.0: "Single" application](screenshots_new/v2.6.1.0/mw_v2.6.1.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.6.1.0: "Group" application](screenshots_new/v2.6.1.0/mw_groupapp_v2.6.1.0.jpg?raw=true)
-
-### What's New - The latest version 2.6.1.0 - Oct 19 2020
 
 * Long waiting new feature FIXED POSITION CLICKING!
 * Fixed blurred GUI texts on 4K screens.
 * Fixed wrong question about close old application during installation.
 * Few minor bug fixes.
+
+#### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false)
 
 <a name="Introduction" />
 ## Introduction
