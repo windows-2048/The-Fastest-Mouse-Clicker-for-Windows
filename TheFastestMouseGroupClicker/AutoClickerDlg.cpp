@@ -1,3 +1,9 @@
+/**************************************************************************
+* The Fastest Mouse Group Clicker for Windows version 2.6.1.0
+* Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
+* Released under GNU Public License GPLv3
+**************************************************************************/
+
 #include "stdafx.h"
 #include "AutoClicker.h"
 #include "AutoClickerDlg.h"
@@ -17,7 +23,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
 HHOOK	hHook=NULL;
-CString strProgName="The Fastest Mouse Group Clicker v2.5.4.0";
+CString strProgName="The Fastest Mouse Group Clicker v2.6.1.0";
 class CAboutDlg : public CDialog
 {
 public:

@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.5.4.0
+* The Fastest Mouse Clicker for Windows version 2.6.1.0
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -21,6 +21,10 @@ std::mutex mtx;
 HWND hWnd;
 HWND button;
 HWND outputWindow;
+HWND mouseCoords;
+HWND genFixPosBatch;
+HWND outputMouseX;
+HWND outputMouseY;
 HWND inputFrequency;
 HWND stopAt;
 HWND triggerButton;
@@ -74,6 +78,8 @@ unsigned char keyUpTrig[VK_OEM_CLEAR];
 #define RUNGROUPAPP_BTN 2500
 #define INPUT_TEXT 3000
 #define OUTPUT_TEXT 4000
+#define OUTPUT_MOUSE_X 4100
+#define OUTPUT_MOUSE_Y 4101
 #define RESET_BTN 4500
 #define HELP_BTN 5000
 #define FOLDER_BTN 5500
@@ -681,8 +687,30 @@ void CheckAlreadyRunning()
 			::ReleaseMutex(hMutexOneInstance);
 			::CloseHandle(hMutexOneInstance);
 		}
+
+		MessageBox(hWnd, "Another instance of the application is already running, close it first."
+			, "The Fastest Mouse Clicker for Windows", MB_OK | MB_ICONINFORMATION | MB_TOPMOST);
+
 		::ExitProcess(2);
 	}
+}
+
+static int WriteBinary(const char* cfilename, const unsigned char* pChar, size_t pSize)
+{
+	FILE* fp;
+
+	fp = fopen(cfilename, "wb");
+	if (fp == NULL)
+	{
+		return __LINE__;
+	}
+
+	size_t szw = fwrite(pChar, pSize, 1, fp);
+	if (szw != 1)
+		return __LINE__;
+
+	fclose(fp);
+	return 0;
 }
 
 DWORD WINAPI MyThreadFunction(LPVOID lpParam)
@@ -702,10 +730,109 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
 			SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 		}
 
-		Sleep(10);
+		POINT point;
+		BOOL bGCP = GetCursorPos(&point);
+		if (bGCP == TRUE)
+		{
+			char numStr[12];
+			_itoa_s(point.x, numStr, 12, 10);
+			SetDlgItemText(hWnd, GetDlgCtrlID(outputMouseX), numStr);
+			_itoa_s(point.y, numStr, 12, 10);
+			SetDlgItemText(hWnd, GetDlgCtrlID(outputMouseY), numStr);
+		}
+
+		if (GetAsyncKeyState(VK_F9) && (bGCP == TRUE))
+		{
+			char winTxt[1024];
+
+			memset(winTxt, 0, 1024);
+			GetWindowText(triggerButton2, winTxt, 1024);
+			int my_trigger_key2 = atoi(winTxt);
+
+			memset(winTxt, 0, 1024);
+			GetWindowText(inputFrequency, winTxt, 1024);
+			double my_clicks_per_second = atof(winTxt);
+
+			memset(winTxt, 0, 1024);
+			GetWindowText(triggerButton, winTxt, 1024);
+			int my_trigger_key = atoi(winTxt);
+
+			memset(winTxt, 0, 1024);
+			GetWindowText(stopAt, winTxt, 1024);
+			int my_stop_at = atoi(winTxt);
+
+			Mode my_mode = Mode_Press;
+			LRESULT chkState = SendMessage(toggle, BM_GETCHECK, 0, 0);
+			if (chkState == BST_CHECKED)
+				my_mode = Mode_Toggle;
+
+			//Mode my_mode = doToggle ? Mode_Toggle : Mode_Press; // Not good - this is another thread
+
+			Button my_button = (mouseToClick == 0) ? Button_Left : ((mouseToClick == 1) ? Button_Middle : Button_Right);
+
+			bool my_top_most_win = false;
+			if (SendDlgItemMessage(hWnd, TOP_MOST_CHK_BOX, BM_GETCHECK, 0, 0))
+				my_top_most_win = true;
+
+			char strBatchFolder[MAX_PATH];
+			char strBatchFolderFile[MAX_PATH];
+			fillAppDataPath(strBatchFolder, "\\run_clicker_with_fixed_position.bat");
+			memcpy(strBatchFolderFile, strBatchFolder, MAX_PATH);
+			char* posFile = strstr(strBatchFolder, "\\run_clicker_with_fixed_position.bat");
+			*posFile = '\0';
+
+			char* outBuffer = new char[1024];
+			memset(outBuffer, 0, 1024);
+
+			int npr = _snprintf(outBuffer, 1024, "TheFastestMouseClicker.exe -c %5.2f -t %d -t2 %d -s %d -m %s -b %s -w %s -r %d %d 1 1\r\n", my_clicks_per_second, my_trigger_key, my_trigger_key2, my_stop_at, (my_mode == Mode_Press) ? "p" : "t", (my_button == Button_Left) ? "l" : ((my_button == Button_Middle) ? "m" : "r"), my_top_most_win ? "tm" : "ntm", point.x, point.y);
+
+			if (npr > 0)
+			{
+				int res = WriteBinary(strBatchFolderFile, (unsigned char*)outBuffer, (size_t)npr);
+				if (res == 0)
+				{
+					ShellExecuteA(NULL, "open", strBatchFolder, NULL, NULL, SW_SHOWNORMAL);
+				}
+			}
+		}
+
+		Sleep(40);
 	}
 
 	return 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+void GetDesktopResolution(int& horizontal, int& vertical)
+{
+	RECT desktop;
+	// Get a handle to the desktop window
+	const HWND hDesktop = GetDesktopWindow();
+	// Get the size of screen to the variable desktop
+	GetWindowRect(hDesktop, &desktop);
+	// The top left corner will have coordinates (0,0)
+	// and the bottom right corner will have coordinates
+	// (horizontal, vertical)
+	horizontal = desktop.right;
+	vertical = desktop.bottom;
+}
+
+struct _Sc
+{
+	int factor;
+	_Sc() : factor(1)
+	{
+		int h, v;
+		GetDesktopResolution(h, v);
+		if (v > 1440)
+			factor = 2;
+	}
+} _sc;
+
+int Sc(int x)
+{
+	return x * _sc.factor;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -756,14 +883,16 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd=CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.5.4.0", WS_OVERLAPPEDWINDOW, 100, 100,438,480, NULL, NULL, instanceH, NULL);
+	hWnd = CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.6.1.0", WS_OVERLAPPEDWINDOW, Sc(100), Sc(100), Sc(450), Sc(514), NULL, NULL, instanceH, NULL);
 
-	statusText = CreateWindow("Static","clicking status: idle",WS_VISIBLE|WS_CHILD,5,1,410,35,hWnd,0,0,0);
+	statusText = CreateWindow("Static", "clicking status: idle", WS_VISIBLE | WS_CHILD, Sc(5), Sc(1), Sc(410), Sc(35), hWnd, 0, 0, 0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
-	numberClicks = CreateWindow("Static","number of clicks",WS_VISIBLE|WS_CHILD,5,40,410,20,hWnd,0,0,0);
-	clicksPerSecond = CreateWindow("Static","clicks per second",WS_VISIBLE|WS_CHILD,5,60,410,20,hWnd,0,0,0);
-	triggerKey = CreateWindow("Static","begin/end trigger keys",WS_VISIBLE|WS_CHILD,5,80,410,20,hWnd,0,0,0);
-	clicksStopAt = CreateWindow("Static","stop at",WS_VISIBLE|WS_CHILD,5,100,410,20,hWnd,0,0,0);
+	numberClicks = CreateWindow("Static", "number of clicks", WS_VISIBLE | WS_CHILD, Sc(5), Sc(40), Sc(410), Sc(20), hWnd, 0, 0, 0);
+	mouseCoords = CreateWindow("Static", "mouse pos. (x,y)", WS_VISIBLE | WS_CHILD, Sc(252), Sc(40), Sc(150), Sc(20), hWnd, 0, 0, 0);
+	genFixPosBatch = CreateWindow("Static", "F9 = fix. click batch", WS_VISIBLE | WS_CHILD, Sc(252), Sc(80), Sc(163), Sc(20), hWnd, 0, 0, 0);
+	clicksPerSecond = CreateWindow("Static", "clicks per second", WS_VISIBLE | WS_CHILD, Sc(5), Sc(60), Sc(410), Sc(20), hWnd, 0, 0, 0);
+	triggerKey = CreateWindow("Static", "begin/end trigger keys", WS_VISIBLE | WS_CHILD, Sc(5), Sc(80), Sc(205), Sc(20), hWnd, 0, 0, 0);
+	clicksStopAt = CreateWindow("Static", "stop at", WS_VISIBLE | WS_CHILD, Sc(5), Sc(100), Sc(410), Sc(20), hWnd, 0, 0, 0);
 
 	char numStrInputFrequency[9];
 	_ftoa_s(my_clicks_per_second, numStrInputFrequency, 9, 10);
@@ -779,27 +908,29 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	_itoa_s(my_trigger_key2, numStrTriggerButton2, 4, 10);
 	_itoa_s(my_trigger_key2, triggerText2, 4, 10);
 
-	outputWindow =		CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, 170, 40, 80, 20, hWnd, (HMENU)OUTPUT_TEXT, 0, 0);
-	inputFrequency =	CreateWindow("Edit", numStrInputFrequency, WS_VISIBLE | WS_CHILD | WS_BORDER, 170, 60, 80, 20, hWnd, (HMENU)INPUT_TEXT, 0, 0);
-	triggerButton =		CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN, 0, 0);
-	triggerButton2 =	CreateWindow("Button", numStrTriggerButton2, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 210, 80, 40, 20, hWnd, (HMENU)TRIGGER_BTN2, 0, 0);
-	stopAt =			CreateWindow("Edit", numStrStopAt, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, 170, 100, 80, 20, hWnd, (HMENU)STOP_AT_TEXT, 0, 0);
-	stopButton =		CreateWindow("Button","STOP!",WS_VISIBLE | WS_CHILD,5,125,410/2-3,50,hWnd,(HMENU)STOP_BTN,0,0);
-	runGroupAppButton = CreateWindow("Button", "Run group app", WS_VISIBLE | WS_CHILD, 5+410/2+3, 125, 410/2-3, 50, hWnd, (HMENU)RUNGROUPAPP_BTN, 0, 0);
-	resetButton =		CreateWindow("Button","Reset to defaults", WS_VISIBLE | WS_CHILD, 5, 180, 410/3, 50, hWnd, (HMENU)RESET_BTN, 0, 0);
-	helpButton =		CreateWindow("Button","Help",WS_VISIBLE | WS_CHILD,5+5+410/3,180,410/3-5,50,hWnd,(HMENU)HELP_BTN,0,0);
-	folderButton =		CreateWindow("Button", "Batch folder", WS_VISIBLE | WS_CHILD, 5+5+410/3+410/3, 180, 410/3-3, 50, hWnd, (HMENU)FOLDER_BTN, 0, 0);
+	outputWindow = CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(170), Sc(40), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_TEXT, 0, 0);
+	outputMouseX = CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(252), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_MOUSE_X, 0, 0);
+	outputMouseY = CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(334), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_MOUSE_Y, 0, 0);
+	inputFrequency = CreateWindow("Edit", numStrInputFrequency, WS_VISIBLE | WS_CHILD | WS_BORDER, Sc(170), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)INPUT_TEXT, 0, 0);
+	triggerButton = CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(170), Sc(80), Sc(40), Sc(20), hWnd, (HMENU)TRIGGER_BTN, 0, 0);
+	triggerButton2 = CreateWindow("Button", numStrTriggerButton2, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(210), Sc(80), Sc(40), Sc(20), hWnd, (HMENU)TRIGGER_BTN2, 0, 0);
+	stopAt = CreateWindow("Edit", numStrStopAt, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(170), Sc(100), Sc(80), Sc(20), hWnd, (HMENU)STOP_AT_TEXT, 0, 0);
+	stopButton = CreateWindow("Button", "STOP!", WS_VISIBLE | WS_CHILD, Sc(5), Sc(125), Sc(410 / 2 - 3), Sc(50), hWnd, (HMENU)STOP_BTN, 0, 0);
+	runGroupAppButton = CreateWindow("Button", "Run group app", WS_VISIBLE | WS_CHILD, Sc(5 + 410 / 2 + 3), Sc(125), Sc(410 / 2 - 3), Sc(50), hWnd, (HMENU)RUNGROUPAPP_BTN, 0, 0);
+	resetButton = CreateWindow("Button", "Reset to defaults", WS_VISIBLE | WS_CHILD, Sc(5), Sc(180), Sc(410 / 3), Sc(50), hWnd, (HMENU)RESET_BTN, 0, 0);
+	helpButton = CreateWindow("Button", "Help", WS_VISIBLE | WS_CHILD, Sc(5 + 5 + 410 / 3), Sc(180), Sc(410 / 3 - 5), Sc(50), hWnd, (HMENU)HELP_BTN, 0, 0);
+	folderButton = CreateWindow("Button", "Batch folder", WS_VISIBLE | WS_CHILD, Sc(5 + 5 + 410 / 3 + 410 / 3), Sc(180), Sc(410 / 3 - 3), Sc(50), hWnd, (HMENU)FOLDER_BTN, 0, 0);
 
-	groupBox = CreateWindow("Button","trigger key mode",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,240,410,65,hWnd,(HMENU)T_P_GROUP,0,0);
-	press = CreateWindow("Button", string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, 10, 260, 400, 20, hWnd, (HMENU)T_P_GROUP, 0, 0);
-	toggle = CreateWindow("Button", string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, 10, 280, 400, 20, hWnd, (HMENU)T_P_GROUP, 0, 0);
+	groupBox = CreateWindow("Button", "trigger key mode", WS_VISIBLE | WS_CHILD | BS_GROUPBOX, Sc(5), Sc(240), Sc(410), Sc(65), hWnd, (HMENU)T_P_GROUP, 0, 0);
+	press = CreateWindow("Button", string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, Sc(10), Sc(260), Sc(400), Sc(20), hWnd, (HMENU)T_P_GROUP, 0, 0);
+	toggle = CreateWindow("Button", string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, Sc(10), Sc(280), Sc(400), Sc(20), hWnd, (HMENU)T_P_GROUP, 0, 0);
 
-	rmlGroupBox = CreateWindow("Button","mouse button to click",WS_VISIBLE | WS_CHILD | BS_GROUPBOX,5,310,410,85,hWnd,(HMENU)R_M_L_GROUP,0,0);
-	leftM = CreateWindow("Button","left",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP,10,330,400,20,hWnd,(HMENU)R_M_L_GROUP,0,0);	
-	middleM = CreateWindow("Button","middle",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON,10,350,400,20,hWnd,(HMENU)R_M_L_GROUP,0,0);
-	rightM = CreateWindow("Button","right",WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON,10,370,400,20,hWnd,(HMENU)R_M_L_GROUP,0,0);
+	rmlGroupBox = CreateWindow("Button", "mouse button to click", WS_VISIBLE | WS_CHILD | BS_GROUPBOX, Sc(5), Sc(310), Sc(410), Sc(85), hWnd, (HMENU)R_M_L_GROUP, 0, 0);
+	leftM = CreateWindow("Button", "left", WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, Sc(10), Sc(330), Sc(400), Sc(20), hWnd, (HMENU)R_M_L_GROUP, 0, 0);
+	middleM = CreateWindow("Button", "middle", WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, Sc(10), Sc(350), Sc(400), Sc(20), hWnd, (HMENU)R_M_L_GROUP, 0, 0);
+	rightM = CreateWindow("Button", "right", WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, Sc(10), Sc(370), Sc(400), Sc(20), hWnd, (HMENU)R_M_L_GROUP, 0, 0);
 
-	topMostChkBox = CreateWindow("Button", "Window Always Top", WS_VISIBLE | WS_CHILD | BS_AUTOCHECKBOX, 10, 400, 400, 20, hWnd, (HMENU)TOP_MOST_CHK_BOX, 0, 0);
+	topMostChkBox = CreateWindow("Button", "Window Always Top", WS_VISIBLE | WS_CHILD | BS_AUTOCHECKBOX, Sc(10), Sc(400), Sc(400), Sc(20), hWnd, (HMENU)TOP_MOST_CHK_BOX, 0, 0);
 
 	SendMessage(hWnd, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 
@@ -1263,7 +1394,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.5.4.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.6.1.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1443,7 +1574,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			InvalidateRect(hWnd,NULL,TRUE);
 
 			const CHAR* fontName = "Helvetica";
-			const long nFontSize = 16;
+			const long nFontSize = Sc(16);
 
 			HDC hdc = GetDC(hWnd);
 
@@ -1490,6 +1621,10 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			SendMessage(clicksPerSecond, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(triggerKey, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 			SendMessage(clicksStopAt, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(mouseCoords, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(genFixPosBatch, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(outputMouseX, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
+			SendMessage(outputMouseY, WM_SETFONT, (WPARAM)s_hFont, (LPARAM)MAKELONG(TRUE, 0));
 		}
 		break;
 	case WM_SIZE:
