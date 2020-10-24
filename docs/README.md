@@ -299,7 +299,7 @@ Oh no :) It has been just started. Feel free to ask your question via email. See
 <a name="Downloads" />
 ## Downloads
 
-* Oct 19 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.6.1.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false)
+* Oct 19 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.6.1.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) )
 
 SHA256(Install_TheFastestMouseClicker_2.6.1.0.exe)= eb6a79fcecb598b626b10d34951d6b51b7c56af25c340a59c208b879f3d2e151
 
