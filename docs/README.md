@@ -1,6 +1,6 @@
 ## The Fastest Mouse Clicker for Windows
 
-> Updated Oct 20 2020.
+> Updated Nov 02 2020.
 
 ### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0 - Oct&nbsp;19&nbsp;2020
 
@@ -23,11 +23,11 @@
 * [Screenshots](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Screenshots) - updated on Oct&nbsp;20&nbsp;2020
 * [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners)
 * [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ) - added on Sep&nbsp;19&nbsp;2020
+* [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ) - updated on Nov&nbsp;02&nbsp;2020
 * [Downloads](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Downloads)
 * [Contacts](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Contacts)
 
-<a name="Changelog" />
+<a name="Changelog"></a>
 ### What's New - The latest version 2.6.1.0 - Oct 19 2020
 
 "Single" application | "Group" application
@@ -41,7 +41,7 @@
 
 #### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) )
 
-<a name="Introduction" />
+<a name="Introduction"></a>
 ## Introduction
 
 This is the official site to download various versions of The Fastest Mouse Clicker for Windows. Also there is [official mirror](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}.
@@ -65,7 +65,7 @@ There are a lot of use-cases of The Fastest Mouse Clicker for Windows.
 Amateurs can use it for cheating in various web sites or video games such as Counter-Strike: Global Offensive (CS:GO), Candy Crush Saga, Roblox games, etc.
 Professionals can use it for quality assistant and testing purposes because full support of command line in batch files, PowerShell scripts, etc.
 
-<a name="Features" />
+<a name="Features"></a>
 ## Features
 
 * The world's best click rate up to 100 000 clicks per second, increased by 10 times comparing with the predecessor application "Fast Mouse Clicker". The latest version with fixed performance issue is 100 times faster!
@@ -98,7 +98,7 @@ Professionals can use it for quality assistant and testing purposes because full
 
 * Window Always Top checkbox to keep the app's window topmost.
 
-<a name="Comparison" />
+<a name="Comparison"></a>
 ## Comparison
 
 What about other auto-clickers and their features?
@@ -123,7 +123,7 @@ Checkbox to keep the app window always Top | No | No | **Yes**
 
 The Fastest Mouse Clicker for Windows wins this competition because its code is a further developing of the rest 2 popular apps.
 
-<a name="Technology" />
+<a name="Technology"></a>
 ## Technology
 
 Unlike other auto-clickers that use obsolete <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-mouse_event" target="_blank">mouse_event()</a></code>
@@ -209,7 +209,7 @@ Complete source code with comments is shipped with Windows installer or can be w
 [Github](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}
 and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}.
 
-<a name="Screenshots" />
+<a name="Screenshots"></a>
 ## Screenshots
 
 ### Screenshots for the latest version 2.6.1.0 are here!
@@ -234,7 +234,7 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 ![The Fastest Mouse Clicker for Windows version 2.6.1.0: completely hand-made art by the clicker application](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_a1_1322x986.jpg?raw=true)
 
-<a name="Partners" />
+<a name="Partners"></a>
 ## Partners
 
 * [Bytesin](https://www.bytesin.com/software/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}, Your Daily Dose of Bytes
@@ -255,7 +255,7 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 
 * [Uptodown](https://the-fastest-mouse-clicker-for-windows.en.uptodown.com/windows/download){:target="_blank"}, Download Discover Share
 
-<a name="Reviews_from_our_users" />
+<a name="Reviews_from_our_users"></a>
 ## Video reviews from our users
 
 <p>
@@ -276,7 +276,7 @@ BullyWiiPlaza, experienced youtuber shows how he cheats extra scores with The Fa
 <a href="https://www.youtube.com/watch?v=weoSf-CppZU" target="_blank">Watch the review video "[Yu-Gi-Oh! Duel Links] The Fastest Auto Clicker for Windows Gameplay" in Youtube.</a>
 </p>
 
-<a name="FAQ" />
+<a name="FAQ"></a>
 ## Frequently Asked Questions (FAQ)
 
 ### Does the clicker work when its main GUI window is minimized?
@@ -292,11 +292,16 @@ You have to type 0.67 inside 'clicks per second' input field. Just click on it, 
 
 Your PC must have Windows 7 or later. Don't use Windows XP. Better use Windows 10.
 
+### When I open many windows simultaneously on my desktop and start to emulate mouse clicks, I lose the GUI window of the app. Why?
+
+That's because you forget about checkbox named "Window Always Top". It is specially designed to prevent such a situation.
+Once you check it, main GUI window of the program will be layered always topmost (above all the other windows on your desktop).
+
 ### Is this FAQ nearly complete?
 
 Oh no :) It has been just started. Feel free to ask your question via email. See the Contacts chapter below.
 
-<a name="Downloads" />
+<a name="Downloads"></a>
 ## Downloads
 
 * Oct 19 2020 - Windows installer (32/64-bit): [Install_TheFastestMouseClicker_2.6.1.0.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) )
@@ -323,7 +328,7 @@ SHA256(Install_TheFastestMouseClicker_2.5.1.0.exe)= cb13c125212feb8241f4a4258919
 
 SHA256(Install_TheFastestMouseClicker_2.0.0.0.exe)= c12fbeee1a12ce598bcd1f6b39872abcbcfc89d2b21d235882ca479fd26a324a
 
-<a name="Contacts" />
+<a name="Contacts"></a>
 ## Contacts
 
 #### Copyright 2016-2020 by [Open Source Developer Masha Novedad](https://windows-2048.github.io){:target="_blank"}
