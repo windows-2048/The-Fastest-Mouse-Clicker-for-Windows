@@ -1,6 +1,6 @@
 ## The Fastest Mouse Clicker for Windows
 
-> Updated Nov 05 2020.
+> Updated Nov 06 2020.
 
 ### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0 - Oct&nbsp;19&nbsp;2020
 
@@ -21,7 +21,7 @@
 * [Comparison](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Comparison)
 * [Technology](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Technology)
 * [Screenshots](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Screenshots) - updated on Oct&nbsp;20&nbsp;2020
-* [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) - updated on Nov&nbsp;05&nbsp;2020
+* [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) - updated on Nov&nbsp;06&nbsp;2020
 * [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
 * [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ) - updated on Nov&nbsp;02&nbsp;2020
 * [Downloads](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Downloads)
