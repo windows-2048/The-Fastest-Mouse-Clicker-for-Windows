@@ -1,6 +1,6 @@
 ## The Fastest Mouse Clicker for Windows
 
-> Updated Nov 30 2020.
+> Updated Dec 07 2020.
 
 ### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0 - Oct&nbsp;19&nbsp;2020
 
@@ -23,7 +23,7 @@
 * [Screenshots](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Screenshots) - updated on Oct&nbsp;20&nbsp;2020
 * [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) - updated on Nov&nbsp;06&nbsp;2020
 * [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
-* [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ) - updated on Nov&nbsp;02&nbsp;2020
+* [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ) - updated on Dec&nbsp;07&nbsp;2020
 * [Downloads](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Downloads)
 * [Contacts](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Contacts)
 
@@ -298,6 +298,15 @@ Your PC must have Windows 7 or later. Don't use Windows XP. Better use Windows 1
 
 That's because you forget about checkbox named "Window Always Top". It is specially designed to prevent such a situation.
 Once you check it, main GUI window of the program will be layered always topmost (above all the other windows on your desktop).
+
+### What about sequences of clicks?
+
+Work with sequences of clicks is supported since v2.5.x.x. To avoid GUI complication, second "Group" application is implemented.
+To run that app from main "Single" app just press a "Run group app" button. To return to main app press "Run single app" button.
+
+### Does your program run on bare Windows, like Windows Home on a laptop just from store?
+
+Yes. Unlike all other auto-clickers this app is statically linked and has no external dependencies (e.g. "The application was unable to start correctly (0xc000007b)" from incorrect linkage against MSVC run-time DLLs).
 
 ### Is this FAQ nearly complete?
 
