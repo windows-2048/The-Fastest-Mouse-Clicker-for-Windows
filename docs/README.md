@@ -1,6 +1,6 @@
 ## The Fastest Mouse Clicker for Windows
 
-> Updated Dec 07 2020.
+> Updated Dec 14 2020.
 
 ### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0 - Oct&nbsp;19&nbsp;2020
 
@@ -21,7 +21,7 @@
 * [Comparison](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Comparison)
 * [Technology](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Technology)
 * [Screenshots](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Screenshots) - updated on Oct&nbsp;20&nbsp;2020
-* [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) - updated on Nov&nbsp;06&nbsp;2020
+* [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) - updated on Dec&nbsp;14&nbsp;2020
 * [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users) - added on Aug&nbsp;28&nbsp;2020
 * [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ) - updated on Dec&nbsp;07&nbsp;2020
 * [Downloads](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Downloads)
@@ -248,6 +248,8 @@ and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windo
 * [Lamerkomp](https://lamerkomp.ru/load/sistemnye_utility/avtoklikery/the_fastest_mouse_clicker_for_windows/56-1-0-6328){:target="_blank"}, Download Freeware without Registration
 
 * [Majorgeeks](http://m.majorgeeks.com/files/details/the_fastest_mouse_clicker_for_windows.html){:target="_blank"}, It's Geekalicious
+
+* [Open-Source.tech](https://www.open-source.tech/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}, Collaboration of Open Source Developers, to make effective and safe applications free under terms of GNU GPLv3
 
 * [OSDN](https://osdn.net/projects/fastest-clicker/){:target="_blank"}, Develop and Download Open Source Software
 
