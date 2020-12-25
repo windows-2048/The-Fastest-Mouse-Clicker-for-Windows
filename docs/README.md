@@ -1,6 +1,6 @@
 ## The Fastest Mouse Clicker for Windows
 
-> Updated Dec 14 2020.
+> Updated Dec 25 2020.
 
 ### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0 - Oct&nbsp;19&nbsp;2020
 
@@ -35,6 +35,7 @@
 ![The Fastest Mouse Clicker for Windows version 2.6.1.0: "Single" application](screenshots_new/v2.6.1.0/mw_v2.6.1.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.6.1.0: "Group" application](screenshots_new/v2.6.1.0/mw_groupapp_v2.6.1.0.jpg?raw=true)
 
 * Long waiting new feature FIXED POSITION CLICKING!
+* Live current mouse position indicator.
 * Fixed blurred GUI texts on 4K screens.
 * Fixed wrong question about close old application during installation.
 * Few minor bug fixes.
