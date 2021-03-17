@@ -1,12 +1,18 @@
 ## The Fastest Mouse Clicker for Windows
 
-> Updated Mar 12 2021.
+> Updated Mar 17 2021.
 
-### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0 - Oct&nbsp;19&nbsp;2020
+### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0
+
+SHA256(Install_TheFastestMouseClicker_2.6.1.0.exe)= eb6a79fcecb598b626b10d34951d6b51b7c56af25c340a59c208b879f3d2e151
 
 > New big version with FIXED POSITION CLICKING has been released!
 
-### Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
+### The Fastest Mouse Clicker for Windows uses arrayed Win32 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a> API to reach 100000 cps. Supports command line, random clicks and record/play sequences of clicks.
+
+Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
+
+#### Warning
 
 > Please update your URLs:
 > <br/>— <span style="color:DarkOrange;">https://sourceforge.net/projects/fast-mouse-clicker-pro/</span>
@@ -28,7 +34,7 @@
 * [Contacts](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Contacts)
 
 <a name="Changelog"></a>
-### What's New - The latest version 2.6.1.0 - Oct 19 2020
+### What's New - The latest version 2.6.1.0
 
 "Single" application | "Group" application
 ----- | -----
@@ -40,9 +46,11 @@
 * Fixed wrong question about close old application during installation.
 * Few minor bug fixes.
 
-Found a bug? Create [issue](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/issues){:target="_blank"}!
+Found a bug? Create the [issue](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/issues){:target="_blank"}!
 
 #### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) )
+
+SHA256(Install_TheFastestMouseClicker_2.6.1.0.exe)= eb6a79fcecb598b626b10d34951d6b51b7c56af25c340a59c208b879f3d2e151
 
 <a name="Introduction"></a>
 ## Introduction
