@@ -1,14 +1,14 @@
 ## The Fastest Mouse Clicker for Windows
 
-> Updated Mar 17 2021.
+> Updated Mar 19 2021.
+
+### The Fastest Mouse Clicker for Windows uses arrayed Win32 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a> API to reach 100000 cps. Supports command line, random clicks and record/play sequences of clicks.
 
 ### [Official Download](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0.exe?inline=false) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0
 
 SHA256(Install_TheFastestMouseClicker_2.6.1.0.exe)= eb6a79fcecb598b626b10d34951d6b51b7c56af25c340a59c208b879f3d2e151
 
 > New big version with FIXED POSITION CLICKING has been released!
-
-### The Fastest Mouse Clicker for Windows uses arrayed Win32 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a> API to reach 100000 cps. Supports command line, random clicks and record/play sequences of clicks.
 
 Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
 
