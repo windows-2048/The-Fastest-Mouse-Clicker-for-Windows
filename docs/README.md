@@ -355,4 +355,4 @@ SHA256(Install_TheFastestMouseClicker_2.0.0.0.exe)= c12fbeee1a12ce598bcd1f6b3987
 <a name="Contacts"></a>
 ## Contacts
 
-#### Copyright 2016-2020 by [Open Source Developer Masha Novedad](https://windows-2048.github.io){:target="_blank"}
+#### Copyright (c) 2016-2021 by [Open Source Developer Masha Novedad](https://windows-2048.github.io){:target="_blank"}
