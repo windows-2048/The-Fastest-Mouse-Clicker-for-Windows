@@ -1,8 +1,8 @@
-## The Fastest Mouse Clicker for Windows
+## {{site.title}}
 
-> Updated Apr 09 2021.
+> Updated Apr 13 2021.
 
-### The Fastest Mouse Clicker for Windows uses arrayed Win32 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a> API to reach 100000 cps. Supports command line, random clicks and record/play sequences of clicks.
+### {{site.description}}
 
 ### [Official Download](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/Install_TheFastestMouseClicker_2.6.1.0.exe) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0
 

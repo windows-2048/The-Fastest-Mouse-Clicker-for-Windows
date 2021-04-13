@@ -1,6 +1,6 @@
 title: The Fastest Mouse Clicker for Windows | Official Download
 logo: /favicon_large.png
-description: The Fastest Mouse Clicker for Windows uses arrayed Win32 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a> API to reach 100000 cps. Supports command line, random clicks and record/play sequences of clicks.
+description: The Fastest Mouse Clicker for Windows 2.6.1.0 uses arrayed Win32 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a> API to reach 100000 cps. Supports command line, random clicks and record/play sequences of clicks.
 show_downloads: true
 theme: jekyll-theme-minimal
 author: Open Source Developer Masha Novedad
