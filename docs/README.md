@@ -1,6 +1,6 @@
 ## {{site.title}}
 
-> Updated Apr 22 2021.
+> Updated May 01 2021.
 
 ### {{site.description}}
 
@@ -46,7 +46,7 @@ Free and fast, open source, full-featured, statically-linked mouse auto clicker 
 * Fixed wrong question about close old application during installation.
 * Few minor bug fixes.
 
-Found a bug? Create the [issue](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/issues){:target="_blank"}!
+Found a bug or want a new feature? Create the [issue](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/issues){:target="_blank"}!
 
 #### [Official Download](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/Install_TheFastestMouseClicker_2.6.1.0.exe) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) )
 
@@ -78,6 +78,11 @@ Professionals can use it for quality assistant and testing purposes because full
 
 <a name="Features"></a>
 ## Features
+
+This is not a complete list of all the features of the program. I have just selected several of them most important
+from the point of view of our users.
+Because the Help text is not yet complete and does not reflect all the features implemented, feel free to create
+an [issue]({{site.source_issues_url}}){:target="_blank"} to request a feature of your desire.
 
 * The world's best click rate up to 100 000 clicks per second, increased by 10 times comparing with the predecessor application "Fast Mouse Clicker". The latest version with fixed performance issue is 100 times faster!
 
@@ -320,6 +325,12 @@ To run that app from main "Single" app just press a "Run group app" button. To r
 ### Does your program run on bare Windows, like Windows Home on a laptop just from store?
 
 Yes. Unlike all other auto-clickers this app is statically linked and has no external dependencies (e.g. "The application was unable to start correctly (0xc000007b)" from incorrect linkage against MSVC run-time DLLs).
+
+### Does your app support multiple subsequent mouse clicks?
+
+Yes, it does. But the Help text is not ready yet. Although the GUI is simple and intuitive
+and based on the one of the most famous auto-clickers in the past. To do subsequent clicking,
+just run the main app, click the "Run group app" button and see the "Quick Help" area just below the center of the window.
 
 ### Is this FAQ nearly complete?
 
