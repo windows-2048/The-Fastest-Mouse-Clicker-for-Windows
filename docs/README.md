@@ -1,6 +1,6 @@
 ## {{site.title}}
 
-> Updated May 17 2021.
+> Updated May 19 2021.
 
 ### {{site.description}}
 
@@ -19,6 +19,15 @@ Free and fast, open source, full-featured, statically-linked mouse auto clicker 
 > <br/>— <span style="color:DarkOrange;">https://sourceforge.net/projects/fastclicker/</span>
 > <br/>are obsolete and points to the wrong locations.
 > <br/><span style="color:OliveDrab;"><b>Official site is here</b></span>.
+
+#### Disambiguation
+
+Fast or fastest mouse clicker may refer to a man clicking a hardware mouse by his own hands.
+Typically such a man is called "quickest mouse clicker" or "quick mouse clicker".
+Thus "fastest" do typically refer to a PC program while "quickest" refers to a human being.
+Unprecedented record was done on May 6 2015, when Dylan A. from Las Vegas, Nevada, United States
+clicked his mouse a total of 1051 times in 10 seconds, according to
+[recordsetter.com](https://recordsetter.com/world-record/mouse-clicks-10/41199){:target="_blank"}.
 
 ## Table of Contents
 
