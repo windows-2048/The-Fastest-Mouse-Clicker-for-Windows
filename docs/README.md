@@ -1,6 +1,6 @@
 ## {{site.title}}
 
-> Updated Jun 01 2021.
+> Updated Jun 03 2021.
 
 ### {{site.description}}
 
