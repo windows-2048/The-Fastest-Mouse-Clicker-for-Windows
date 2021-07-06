@@ -103,7 +103,7 @@ an [issue]({{site.source_issues_url}}){:target="_blank"} to request a feature of
 
 * Different independent trigger keys to begin/end the clicking in toggle mode.
 
-* The program works fine even if it is minimized and also it operates on an arbitrary desktop area. The program can stop to ckick automatically, if a certain number of clicks is given by end-user.
+* The program works fine even if it is minimized and also it operates on an arbitrary desktop area. The program can stop to click automatically, if a certain number of clicks is given by end-user.
 
 * This is free, open source application without ads, viruses, trojans, malware, etc. forever.
 
