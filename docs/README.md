@@ -1,6 +1,6 @@
 ## {{site.title}}
 
-> Updated Oct 24 2021.
+> Updated Oct 26 2021.
 
 ### {{site.description}}
 
@@ -8,9 +8,25 @@
 
 SHA256(Install_TheFastestMouseClicker_2.6.1.0.exe)= eb6a79fcecb598b626b10d34951d6b51b7c56af25c340a59c208b879f3d2e151
 
-> New big version with FIXED POSITION CLICKING has been released!
-
 Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
+
+This is a professional tool for both quality assistance workflow and video game cheating.
+Using keyboard keys (or mouse buttons) as a trigger, you can position the mouse, then hit a key to click up to 100000 times every second,
+10 times faster then abandoned project at [sourceforge.net](https://sourceforge.net/projects/fastclicker/){:target="_blank"}.
+{{site.app_name}} allows you to set an activation key to switch automatic clicking . There are two activation modes:
+"press": the app will repeat clicking as long as the activation key is being pressed, and
+"toggle": a Begin activation key press activates automatic clicking until an End activation key press deactivates it.
+Of course, you can select arbitrary Begin and End trigger keys.
+You also have the option to set a click number limitation. The mouse auto-clicker stops automatically when your desired number of clicks is reached.
+
+If you desire to perform a Click Speed Test, go to elegant open source [implementation](https://top-10-mouse-auto-clickers.best/Click-Speed-Test-Online/){:target="_blank"} working right in your web browser.
+The Click Speed Test is a free click per second test, which measures your mouse clicking speed in given time frame. Playing the Click Speed Test is easy and fun at the same time.
+The test is suitable for all types of auto-clicking software as well as for direct human hands testing in all age groups, so do not worry if you are just a high school student or a person with a corporate job or PhD.
+You do find Click Speed Test to be a useful tool while searching for ways to repeatedly click without using the mouse.
+With {{site.app_name}} you just input the speed at which to click, and a keyboard button, and then while you hold that button down, the mouse is clicking for you automatically.
+If you prefer to avoid "cheating", keep the clicking speed around 10-20 clicks/sec.
+
+> New big version with FIXED POSITION CLICKING has been released!
 
 #### Warning
 
