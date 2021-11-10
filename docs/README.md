@@ -1,6 +1,6 @@
 ## {{site.title}}
 
-> Updated Nov 08 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added.
+> Updated Nov 10 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added.
 
 ### {{site.description}}
 
