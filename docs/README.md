@@ -1,6 +1,6 @@
 ## {{site.title}}
 
-> Updated Nov 10 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added.
+> Updated Nov 12 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added.
 
 ### {{site.description}}
 
@@ -87,6 +87,25 @@ Industry standard free open source mouse auto clicker emulates Windows clicks EX
 
 The program is written in vanilla C++ with native Win32 API and linked statically thus it becomes a super-compact executable without external dependencies and can run on a bare Windows installation.
 
+{{site.app_name}} clicks the mouse automatically by emulating mouse clicking events.
+The app has random in a box clicking feature, if you want that for some reason.
+I plan to implement variative time interval between the clicks and allow you to choose a random interval range.
+Hotkeys that trigger mouse clicks will be supported with almost every key modifiers, like SHIFT, CONTROL and ALT thus allow you to have SHIFT+\<Key\>, CONTROL+\<Key\> and ALT+\<Key\> triggers.
+{{site.app_name}} is now suitable for Minecraft and Roblox auto-clicking, thanks to request from Xisuma user.
+Also the program can be used as autoplayer for the game ClickerHeroes.
+It can autoclick, activate skills, buy heroes and upgrades, and ascend and start all over.
+All you need is to record and playback appropriate clicking sequence (see below).
+
+You can auto-click the images, auto-fill the web forms, auto-submit a various type of requests with this auto-clicker.
+For example, {{site.app_name}} can be used for scripting in Steam Summer Monster Minigame.
+Another example, this program can be a bot for PTC websites like shorte.st, linkbucks, admy.link, etc. that automatically skips Ads.
+The Group Clicker is a part of {{site.app_name}}. To run this extension simply click on "Run group app" button on the main window of {{site.app_name}}.
+To return back to the previous app, click "Run single app" button.
+The Group Clicker helps you to maintain separate sheet of data file from which Group Clicker can fetch data and use them row by row.
+Also I plan to implement a schedule stored in a plain text file allowing you to auto-click on a webpage/URL at particular day and time.
+You may add your own features by opening the solution file in Visual Studio and modifying source code.
+The Windows installer opens corresponding folders by default.
+
 <p>
 Here is a short intro video that tells how to download and install The Fastest Mouse Clicker for Windows.
 Also it shows basic quick-start guide to use automated clicks.
@@ -138,6 +157,9 @@ an [issue]({{site.source_issues_url}}){:target="_blank"} to request a feature of
 * Group clicking (record/play the sequences of clicks) supported via additional application since v.2.5.3.2. You can quickly switch between the applications by clicking the "Run group app"/"Run single app" button.
 
 * Window Always Top checkbox to keep the app's window topmost.
+
+* Manual options/settings editing as a bonus to automatic saving: just open C: \ Users \ \<YourWindowsUser\> \ AppData \ Roaming \ TheFastestMouseClicker \ TheFastestMouseClicker \ settings.dat
+in any plain text editor (you might change sub-path TheFastestMouseClicker during installation).
 
 <a name="Comparison"></a>
 ## Comparison
