@@ -1,6 +1,6 @@
 ## {{site.title}}
 
-> Updated Nov 12 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added.
+> Updated Nov 16 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added.
 
 ### {{site.description}}
 
@@ -51,6 +51,7 @@ clicked his mouse a total of 1051 times in 10 seconds, according to
 * [Features](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Features)
 * [Comparison](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Comparison)
 * [Technology](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Technology)
+* [Source Code](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#SourceCode)
 * [Screenshots](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Screenshots)
 * [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners)
 * [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users)
@@ -258,7 +259,8 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
             Sleep(100);
             BlockInput(FALSE);
             ...
-            SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
+            SetMsgStatus(hWnd, GetDlgCtrlID(statusText)
+                , "idle");
         }
 
         Sleep(10);
@@ -267,6 +269,138 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
     return 0;
 }
 </code></pre>
+
+To be more compatible with older versions of Windows, {{site.app_name}} utilizes base Win32 API for widget creation.
+It uses traditional Windows approach to re-draw all the widgets in a Windows event loop.
+To update the view of a particular widget, an event is being sent to that widget in the main thread and
+incoming call is being passed to event loop handler where actual re-draw occurs.
+
+First, we declare a <code><a href="https://docs.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ms633573(v=vs.85)" target="_blank">WindowProc()</a></code> callback function.
+Second, we register a main window class with that callback by <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerclassa" target="_blank">RegisterClass()</a></code>.
+And finally we enter an infinite loop inside event callback function.
+
+<pre><code title="Windows event loop to re-draw the widgets">
+LRESULT CALLBACK winCallBack(
+    HWND hWin
+    , UINT msg
+    , WPARAM wp
+    , LPARAM lp
+    );
+
+...
+
+// Initializing the window class
+windClass.style         = CS_HREDRAW | CS_VREDRAW;
+windClass.lpfnWndProc       = winCallBack;
+windClass.cbClsExtra        = 0;
+windClass.cbWndExtra        = 0;
+windClass.hInstance     = instanceH;
+windClass.hIcon         = LoadIcon(
+                            windClass.hInstance
+                            , MAKEINTRESOURCE(101)
+                            );
+windClass.hCursor           = LoadCursor(
+                            NULL
+                            , IDC_ARROW
+                            );
+windClass.hbrBackground = (HBRUSH)GetStockObject(
+                            WHITE_BRUSH
+                            );
+windClass.lpszClassName = "The Fastest Mouse Clicker "
+                            "for Windows";
+
+//Registering the window class
+RegisterClass(&windClass);
+
+...
+
+LRESULT CALLBACK winCallBack(
+    HWND hWin
+    , UINT msg
+    , WPARAM wp
+    , LPARAM lp
+    )
+{
+    HDC dc;
+    PAINTSTRUCT ps;
+    int local_status = 0;
+    switch (msg)
+    {
+    case WM_COMMAND:
+        switch(LOWORD(wp))
+        {
+        case RESET_BTN:
+
+        ...
+    ...
+}
+</code></pre>
+
+From the other hand, to be more compatible with latest versions of Windows and newest hardware such as professional
+<a href="https://www.pcmag.com/picks/the-best-4k-monitors" target="_blank">4K displays</a>
+and gaming monitors,
+font size adjusting is performed on application start utilizing both variable font size and embedded
+<code><a href="https://docs.microsoft.com/en-us/windows/win32/hidpi/setting-the-default-dpi-awareness-for-a-process" target="_blank">high DPI</a></code> xml manifest.
+
+<pre><code title="Support for 4K displays in C++ code">
+struct _Sc
+{
+    int factor;
+    _Sc() : factor(1)
+    {
+        int h, v;
+        GetDesktopResolution(h, v);
+        if (v > 1440)
+            factor = 2;
+    }
+} _sc;
+
+int Sc(int x)
+{
+    return x * _sc.factor;
+}
+
+...
+
+statusText = CreateWindow(
+    "Static"
+    , "clicking status: idle"
+    , WS_VISIBLE | WS_CHILD
+    , Sc(5)
+    , Sc(1)
+    , Sc(410)
+    , Sc(35)
+    , hWnd
+    , 0
+    , 0
+    , 0
+    );
+</code></pre>
+
+The application embedded xml manifest contains a section with high DPI awareness.
+
+<pre><code title="Support for 4K displays in xml manifest">
+  ...
+
+&lt;asmv3:application&gt;
+  &lt;asmv3:windowsSettings&gt;
+    &lt;dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings"&gt;
+        true
+    &lt;/dpiAware&gt;
+    &lt;dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings"&gt;
+        system
+    &lt;/dpiAwareness&gt;
+  &lt;/asmv3:windowsSettings&gt;
+&lt;/asmv3:application&gt;
+
+  ...
+</code></pre>
+
+There are much more programmatic tricks I used to achieve outstanding performance, compatibility and look-n-feel.
+If you want to discover them, you have to study source code yourself.
+
+<a name="SourceCode"></a>
+## Source Code
 
 Complete source code with comments is shipped with Windows installer or can be watched on
 [Github](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}
@@ -357,7 +491,7 @@ You have to type 0.67 inside 'clicks per second' input field. Just click on it, 
 
 ### What is minimal Windows version supported?
 
-Your PC must have Windows 7 or later. Don't use Windows XP. Better use Windows 10.
+Your PC must have Windows 7 or later. Don't use Windows XP. Better use Windows 10. Windows 11 is also supported.
 
 ### When I open many windows simultaneously on my desktop and start to emulate mouse clicks, I lose the GUI window of the app. Why?
 
@@ -378,6 +512,10 @@ Yes. Unlike all other auto-clickers this app is statically linked and has no ext
 Yes, it does. But the Help text is not ready yet. Although the GUI is simple and intuitive
 and based on the one of the most famous auto-clickers in the past. To do subsequent clicking,
 just run the main app, click the "Run group app" button and see the "Quick Help" area just below the center of the window.
+
+### I observe many other auto-clickers do not support 4K displays. What about your one?
+
+I did that work essentially and have fixed that issue by adjusting font sizes on the fly and embedding a proper xml manifest into app binary.
 
 ### Is this FAQ nearly complete?
 
