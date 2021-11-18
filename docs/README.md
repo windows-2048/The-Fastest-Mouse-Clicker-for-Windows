@@ -1,12 +1,74 @@
 ## {{site.title}}
 
-> Updated Nov 16 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added.
+> Updated Nov 18 2021. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Help [text](index.html#HelpHowToUse) added.
 
-### {{site.description}}
+### {{site.description_rich}}
 
-### [Official Download](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/Install_TheFastestMouseClicker_2.6.1.0.exe) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) ) - The latest version&nbsp;2.6.1.0
+<a name="QuickStart"></a>
+## Quick Start
+
+### [Official Download]({{site.download_link_main}}) ( [mirror]({{site.download_link_mirror}}) ) - The latest version&nbsp;{{site.app_version}}
 
 SHA256(Install_TheFastestMouseClicker_2.6.1.0.exe)= eb6a79fcecb598b626b10d34951d6b51b7c56af25c340a59c208b879f3d2e151
+
+<a name="ChangeLog"></a>
+### What's New - The latest version&nbsp;{{site.app_version}}
+
+"Single" application | "Group" application
+----- | -----
+![{{site.app_name}} version 2.6.1.0: "Single" application](screenshots_new/v2.6.1.0/mw_v2.6.1.0.jpg) | ![{{site.app_name}} version 2.6.1.0: "Group" application](screenshots_new/v2.6.1.0/mw_groupapp_v2.6.1.0.jpg)
+
+#### ChangeLog
+
+* Long waiting new feature FIXED POSITION CLICKING!
+* Live current mouse position indicator.
+* Fixed blurred GUI texts on 4K screens.
+* Fixed wrong question about close old application during installation.
+* Few minor bug fixes.
+
+Found a bug or want a new feature? Create the [issue]({{site.source_issues_url}}){:target="_blank"}!
+
+### Warning
+
+> Please update your URLs:
+> <br/>— <span style="color:DarkOrange;">https://sourceforge.net/projects/fast-mouse-clicker-pro/</span>
+> <br/>— <span style="color:DarkOrange;">https://sourceforge.net/projects/fastclicker/</span>
+> <br/>are obsolete and points to the wrong locations.
+> <br/><span style="color:OliveDrab;"><b>Official site is here</b></span>.
+
+### Disambiguation
+
+Fast or fastest mouse clicker may refer to a man clicking a hardware mouse by his own hands.
+Typically such a man is called "quickest mouse clicker" or "quick mouse clicker".
+Thus "fastest" do typically refer to a PC program while "quickest" refers to a human being.
+Unprecedented record was done on May 6 2015, when Dylan A. from Las Vegas, Nevada, United States
+clicked his mouse a total of 1051 times in 10 seconds, according to
+[recordsetter.com](https://recordsetter.com/world-record/mouse-clicks-10/41199){:target="_blank"}.
+
+## Table of Contents
+
+* [Introduction](index.html#Introduction)
+* [Features](index.html#Features)
+* [Comparison](index.html#Comparison)
+* [Technology](index.html#Technology)
+* [Source Code](index.html#SourceCode)
+* [Help How To Use](index.html#HelpHowToUse)
+* [Screenshots](index.html#Screenshots)
+* [Partners](index.html#Partners)
+* [Video Reviews From Our Users](index.html#Reviews_from_our_users)
+* [Frequently Asked Questions (FAQ)](index.html#FAQ)
+* [Downloads for all the versions](index.html#Downloads)
+* [Contacts](index.html#Contacts)
+
+<a name="Introduction"></a>
+## Introduction
+
+This is the official site to download various versions of {{site.app_name}}. Also there is [official mirror](https://www.open-source.tech/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}.
+All the versions are shipped with SHA256 fingerprints to ensure you do download the genuine software.
+
+Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code>, making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
+
+The program is written in vanilla C++ with native Win32 API and linked statically thus it becomes a super-compact executable without external dependencies and can run on a bare Windows installation.
 
 Free and fast, open source, full-featured, statically-linked mouse auto clicker for Windows written in vanilla C++. Uses hardware-limited arrayed Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code> calls to reach up to 100000 clicks/s. Supports command line, random clicks and record-play the sequences of clicks.
 
@@ -28,66 +90,6 @@ If you prefer to avoid "cheating", keep the clicking speed around 10-20 clicks/s
 
 > New big version with FIXED POSITION CLICKING has been released!
 
-#### Warning
-
-> Please update your URLs:
-> <br/>— <span style="color:DarkOrange;">https://sourceforge.net/projects/fast-mouse-clicker-pro/</span>
-> <br/>— <span style="color:DarkOrange;">https://sourceforge.net/projects/fastclicker/</span>
-> <br/>are obsolete and points to the wrong locations.
-> <br/><span style="color:OliveDrab;"><b>Official site is here</b></span>.
-
-#### Disambiguation
-
-Fast or fastest mouse clicker may refer to a man clicking a hardware mouse by his own hands.
-Typically such a man is called "quickest mouse clicker" or "quick mouse clicker".
-Thus "fastest" do typically refer to a PC program while "quickest" refers to a human being.
-Unprecedented record was done on May 6 2015, when Dylan A. from Las Vegas, Nevada, United States
-clicked his mouse a total of 1051 times in 10 seconds, according to
-[recordsetter.com](https://recordsetter.com/world-record/mouse-clicks-10/41199){:target="_blank"}.
-
-## Table of Contents
-
-* [Introduction](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Introduction)
-* [Features](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Features)
-* [Comparison](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Comparison)
-* [Technology](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Technology)
-* [Source Code](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#SourceCode)
-* [Screenshots](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Screenshots)
-* [Partners](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners)
-* [Video reviews from our users](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Reviews_from_our_users)
-* [Frequently Asked Questions (FAQ)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#FAQ)
-* [Downloads for all the versions](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Downloads)
-* [Contacts](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Contacts)
-
-<a name="Changelog"></a>
-### What's New - The latest version 2.6.1.0
-
-"Single" application | "Group" application
------ | -----
-![The Fastest Mouse Clicker for Windows version 2.6.1.0: "Single" application](screenshots_new/v2.6.1.0/mw_v2.6.1.0.jpg?raw=true) | ![The Fastest Mouse Clicker for Windows version 2.6.1.0: "Group" application](screenshots_new/v2.6.1.0/mw_groupapp_v2.6.1.0.jpg?raw=true)
-
-* Long waiting new feature FIXED POSITION CLICKING!
-* Live current mouse position indicator.
-* Fixed blurred GUI texts on 4K screens.
-* Fixed wrong question about close old application during installation.
-* Few minor bug fixes.
-
-Found a bug or want a new feature? Create the [issue](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/issues){:target="_blank"}!
-
-#### [Official Download](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/Install_TheFastestMouseClicker_2.6.1.0.exe) ( [mirror](https://ipfs.io/ipfs/QmP4v8nCnfbYzP643BmHeuYgiX1GhbiioiEu3zjzVnkgi1/Install_TheFastestMouseClicker_2.6.1.0.exe) )
-
-SHA256(Install_TheFastestMouseClicker_2.6.1.0.exe)= eb6a79fcecb598b626b10d34951d6b51b7c56af25c340a59c208b879f3d2e151
-
-<a name="Introduction"></a>
-## Introduction
-
-This is the official site to download various versions of The Fastest Mouse Clicker for Windows. Also there is [official mirror](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}.
-All the versions are shipped with SHA256 fingerprints to ensure you do download the genuine software.
-
-Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code>, making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
-
-The program is written in vanilla C++ with native Win32 API and linked statically thus it becomes a super-compact executable without external dependencies and can run on a bare Windows installation.
-
 {{site.app_name}} clicks the mouse automatically by emulating mouse clicking events.
 The app has random in a box clicking feature, if you want that for some reason.
 I plan to implement variative time interval between the clicks and allow you to choose a random interval range.
@@ -108,16 +110,16 @@ You may add your own features by opening the solution file in Visual Studio and 
 The Windows installer opens corresponding folders by default.
 
 <p>
-Here is a short intro video that tells how to download and install The Fastest Mouse Clicker for Windows.
+Here is a short intro video that tells how to download and install {{site.app_name}}.
 Also it shows basic quick-start guide to use automated clicks.
  <video style="outline:none; width:100%; height:100%;" controls preload="none" poster="videos/TFMCfW_intro.jpg">
   <source src="videos/TFMCfW_intro.mp4" type="video/mp4"/>
   Your browser does not support the video tag.
 </video>
-<a href="https://www.youtube.com/watch?v=gCpALY1WqmE" target="_blank">Watch intro to The Fastest Mouse Clicker for Windows in Youtube.</a>
+<a href="https://www.youtube.com/watch?v=gCpALY1WqmE" target="_blank">Watch intro to {{site.app_name}} in Youtube.</a>
 </p>
 
-There are a lot of use-cases of The Fastest Mouse Clicker for Windows.
+There are a lot of use-cases of {{site.app_name}}.
 Amateurs can use it for cheating in various web sites or video games such as Counter-Strike: Global Offensive (CS:GO), Candy Crush Saga, Roblox games, etc.
 Professionals can use it for quality assistant and testing purposes because full support of command line in batch files, PowerShell scripts, etc.
 
@@ -405,6 +407,57 @@ If you want to discover them, you have to study source code yourself.
 Complete source code with comments is shipped with Windows installer or can be watched on
 [Github](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}
 and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}.
+
+<a name="HelpHowToUse"></a>
+## Help How To Use
+
+YOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE &lt;trigger key&gt; (13 = Enter). Reading the entire Help is optional.
+
+THE FIELDS YOU CAN NOT MODIFY.
+
+&lt;clicking status&gt; or &lt;random clicking status&gt;, the topmost text field, is either getting 'idle' or 'clicking'.
+ It is shown as &lt;random clicking status&gt; only when all the rectangle sizes to click randomly inside it are specified in the command line correctly.
+ Just press the \[Batch folder\] button and see the remarks in file run_clicker_with_random_clicking.bat.
+
+&lt;number of clicks&gt;, the top text field, indicates total number of clicks performed.
+
+THE FIELDS YOU CAN MODIFY (CALLED THE CLICKING PARAMETERS: THEY COULD BE SET FROM THE COMMAND LINE TOO, SEE BELOW).
+
+&lt;clicks per second&gt;, the middle text field, is the frequency of the clicks measured in clicks per second.
+ This frequency can be as high as one hundred thousands (100000) clicks per second.
+ FRACTIONAL frequences are supported. For example, 0.5 corresponds to 1 click every 2 seconds, 0.25 - to 1 click every 4 seconds, etc.
+
+&lt;begin/end trigger keys&gt;, below that, are the keyboard keys to trigger the mouse events. Just click on them and press an arbitrary key (or hit a mouse button).
+ That key will then trigger the mouse clicks when it remains pressed. If you just press and release the key, only few clicks should be made.
+ This behavior corresponds to &lt;trigger key mode&gt; = 'press', see how it changes on 'toggle' value below.
+ Default number shown in the button, 13, is the 'Enter' key code (for example, 32 is the 'Space' key code, 112 is the 'F1' key code, etc.
+ For all the key codes see [Windows docs](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes){:target="_blank"}.
+
+&lt;stop at&gt;, the lower text field, is the number of clicks before the clicking will automatically stop.
+ 0 is the default and means infinity, i.e. clicking will never stop.
+
+&lt;trigger key mode&gt; is a radio-button group, you can select either 'press' or 'toggle' mode of clicking.
+ In the 'press' mode (default), the mouse events are emitted only when the corresponding trigger key is kept pressed.
+ In the 'toogle' mode, the mouse events are emitted between subsequent short hits to the &lt;begin trigger key&gt; and &lt;end trigger key&gt;.
+
+&lt;mouse button to click&gt; is a radio-button group too, you can select either 'left', 'middle' or 'right' mouse button that will generate the clicks.
+
+Note 1: You can't have the same mouse button be the trigger and clicker.
+<br/>Note 2: You can't change the &lt;trigger key&gt; if you chose the left mouse button; you must press the \[Reset to defaults\] button.
+<br/>Note 3: The &lt;trigger key&gt; still works when this program is minimized. You must close the program to stop a &lt;trigger key&gt; from clicking.
+
+*NEW* All the clicking parameters are saved automatically between application run-times.
+
+ADDITIONAL BUTTONS AND FEATURES.
+
+\[STOP!\] button stops toggled clicking mandatory.
+<br/>\[Help\] button displays this help window.
+<br/>*NEW* \[Reset to defaults\] button sets all the clicking parameters back to their default values.
+<br/>*NEW* \[Batch folder\] button opens the folder in File Explorer where all the batch files reside typically.
+<br/>*NEW* To get help on the command line arguments, just press the \[Batch folder\] button and see the remarks in \*.bat files you find there.
+<br/>*NEW* Independent keys for &lt;trigger key mode&gt; = 'toggle': if &lt;begin trigger key&gt; begins the clicking, then &lt;end trigger key&gt; stops it.
+<br/>*NEW* &lt;Window Always Top&gt; checkbox: if checked, keeps the app's main window at topmost of others.
+<br/>*BRAND NEW* The 'Run group app' button: record/play the sequences of mouse clicks.
 
 <a name="Screenshots"></a>
 ## Screenshots
