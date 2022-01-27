@@ -38,4 +38,4 @@ https://www.youtube.com/watch?v=gCpALY1WqmE
 
 This video as well as many others recorded by our partners you can explore at the official sites above.
 
-#### Copyright (c) 2016-2021 by [Open Source Developer Masha Novedad](https://windows-2048.github.io)
+#### Copyright (c) 2016-2022 by [Open Source Developer Masha Novedad](https://windows-2048.github.io)
