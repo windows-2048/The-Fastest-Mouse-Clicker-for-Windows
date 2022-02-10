@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated Jan 25 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Help [text](index.html#HelpHowToUse) added.
+> Updated Feb 10 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Help [text](index.html#HelpHowToUse) added.
 
 ### {{site.description_rich}}
 

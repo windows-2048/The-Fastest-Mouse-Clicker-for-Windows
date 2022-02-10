@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated Jan 25 2022. Resume [link](https://windows-2048.github.io/resume/) added. Help [text](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#HelpHowToUse) added.
+> Updated Feb 10 2022. Resume [link](https://windows-2048.github.io/resume/) added. Help [text](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#HelpHowToUse) added.
 
 ## See [Official Site 1](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) or brand new [Official Site 2](https://www.open-source.tech/The-Fastest-Mouse-Clicker-for-Windows/) for the hot news, screenshots and downloads
 
