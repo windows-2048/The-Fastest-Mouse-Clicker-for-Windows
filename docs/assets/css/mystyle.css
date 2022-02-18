@@ -264,7 +264,7 @@ a {
 a:hover,
 a:focus {
     color: #036;
-	text-decoration: underline;
+    text-decoration: underline;
 }
 a small {
     font-size: 12px;
@@ -370,7 +370,7 @@ ul.downloads {
 .downloads a:hover,
 .downloads a:focus {
     color: #036;
-	text-decoration: underline;
+    text-decoration: underline;
 }
 .downloads ul a:active {
     background-color: #f0f0f0;
@@ -409,6 +409,9 @@ footer {
     bottom: 50px;
     -webkit-font-smoothing: subpixel-antialiased;
 }
+body {
+    word-wrap: break-word;
+}
 @media print, screen and (max-width: 960px) {
     div.wrapper {
         width: auto;
@@ -440,9 +443,6 @@ footer {
     }
 }
 @media print, screen and (max-width: 720px) {
-    body {
-        word-wrap: break-word;
-    }
     header {
         padding: 0;
     }
