@@ -342,7 +342,7 @@ From the other hand, to be more compatible with latest versions of Windows and n
 <a href="https://www.pcmag.com/picks/the-best-4k-monitors" target="_blank">4K displays</a>
 and gaming monitors,
 font size adjusting is performed on application start utilizing both variable font size and embedded
-<code><a href="https://docs.microsoft.com/en-us/windows/win32/hidpi/setting-the-default-dpi-awareness-for-a-process" target="_blank">high DPI</a></code> xml manifest.
+<a href="https://docs.microsoft.com/en-us/windows/win32/hidpi/setting-the-default-dpi-awareness-for-a-process" target="_blank">high DPI</a> xml manifest.
 
 <pre><code title="Support for 4K displays in C++ code">
 struct _Sc
