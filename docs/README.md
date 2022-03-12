@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated Feb 22 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Help [text](index.html#HelpHowToUse) added.
+> Updated Mar 12 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include){:target="_blank"} library started.
 
 ### {{site.description_rich}}
 
