@@ -1,8 +1,10 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated Mar 12 2022. Resume [link](https://windows-2048.github.io/resume/) added. Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include) library started.
+> Updated Mar 25 2022. Resume [link](https://windows-2048.github.io/resume/) added. Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include) library started.
 
 ## See [Official Site 1](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) or brand new [Official Site 2](https://www.open-source.tech/The-Fastest-Mouse-Clicker-for-Windows/) for the hot news, screenshots and downloads
+
+![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.](screenshots_new/v2.6.1.0/tfmcfw-v2.6.1.0-batch-folder.jpg?raw=true)
 
 ### Brief list of main features
 

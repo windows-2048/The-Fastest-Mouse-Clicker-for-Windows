@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated Mar 12 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include){:target="_blank"} library started.
+> Updated Mar 25 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include){:target="_blank"} library started.
 
 ### {{site.description_rich}}
 
@@ -483,6 +483,10 @@ ADDITIONAL BUTTONS AND FEATURES.
 * The Fastest Mouse Clicker for Windows version 2.6.1.0: completely hand-made art by the clicker application.
 
 ![The Fastest Mouse Clicker for Windows version 2.6.1.0: completely hand-made art by the clicker application](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_a1_1322x986.jpg?raw=true)
+
+* The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.
+
+![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.](screenshots_new/v2.6.1.0/tfmcfw-v2.6.1.0-batch-folder.jpg?raw=true)
 
 <a name="Partners"></a>
 ## Partners
