@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated Mar 28 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include){:target="_blank"} library started. [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added.
+> Updated Apr 01 2022. Resume [link](https://windows-2048.github.io/resume/){:target="_blank"} added. Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include){:target="_blank"} library started. [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added.
 
 ### {{site.description_rich}}
 
