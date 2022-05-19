@@ -1,6 +1,4 @@
-p {
-    line-height: 1.1;
-}
+
 
 .highlight table td {
     padding: 5px;
@@ -222,7 +220,7 @@ p {
 body {
     background-color: #fff;
     padding: 50px;
-    font: 14px Helvetica, Arial, sans-serif;
+    font: 14px/1.2 Helvetica, Arial, sans-serif;
     color: #727272;
     font-weight: normal;
 }
