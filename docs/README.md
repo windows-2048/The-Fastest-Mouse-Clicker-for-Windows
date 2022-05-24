@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated May 19 2022. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include){:target="_blank"} library started. [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added.
+> Updated May 24 2022. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Migration to [WTL](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/tree/master/WTL/Include){:target="_blank"} library started. [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added.
 
 ### {{site.description_rich}}
 
