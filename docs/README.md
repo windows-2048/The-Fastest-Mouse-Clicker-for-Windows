@@ -500,27 +500,27 @@ ADDITIONAL BUTTONS AND FEATURES.
 
 * The Fastest Mouse Clicker for Windows version 2.6.1.0: introduce the "FIXED POSITION CLICKING" feature.
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.0: introduce the "FIXED POSITION CLICKING" feature](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s1_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.1.0: introduce the "FIXED POSITION CLICKING" feature](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s1_1322x986.jpg)
 
 * The Fastest Mouse Clicker for Windows version 2.6.1.0: the brand new Group App in details.
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.0: the brand new Group App in details](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s1h_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.1.0: the brand new Group App in details](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s1h_1322x986.jpg)
 
 * The Fastest Mouse Clicker for Windows version 2.6.1.0: running under Wine 4.0.2/Linux(CentOS 6).
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.0: running under Wine 4.0.2/Linux(CentOS 6)](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s1w_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.1.0: running under Wine 4.0.2/Linux(CentOS 6)](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s1w_1322x986.jpg)
 
 * The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important.
 
-![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s2_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version pre-2.5.x.x family: what's old but important](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_s2_1322x986.jpg)
 
 * The Fastest Mouse Clicker for Windows version 2.6.1.0: completely hand-made art by the clicker application.
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.0: completely hand-made art by the clicker application](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_a1_1322x986.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.1.0: completely hand-made art by the clicker application](screenshots_new/v2.6.1.0/TFMCfW_v2.6.1.0_a1_1322x986.jpg)
 
 * The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.](screenshots_new/v2.6.1.0/tfmcfw-v2.6.1.0-batch-folder.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.](screenshots_new/v2.6.1.0/tfmcfw-v2.6.1.0-batch-folder.jpg)
 
 <a name="Partners"></a>
 ## Partners
