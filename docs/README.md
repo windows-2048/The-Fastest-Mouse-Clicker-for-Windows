@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated Jul 01 2022. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Instead of [WTL](https://sourceforge.net/projects/wtl/){:target="_blank"}, the project migrates to [Qt](https://www.qt.io/){:target="_blank"} with full code rewrite and getting cross-platform (Windows/Linux/MacOS). [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added.
+> Updated Jul 13 2022. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Instead of [WTL](https://sourceforge.net/projects/wtl/){:target="_blank"}, the project migrates to [Qt](https://www.qt.io/){:target="_blank"} with full code rewrite and getting cross-platform (Windows/Linux/MacOS). [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added.
 
 ### {{site.description_rich}}
 
@@ -35,6 +35,18 @@ Found a bug or want a new feature? Create the [issue]({{site.source_issues_url}}
 > <br/>— <span style="color:DarkOrange;">https://sourceforge.net/projects/fastclicker/</span>
 > <br/>are obsolete and points to the wrong locations.
 > <br/><span style="color:OliveDrab;"><b>Official site is here</b></span>.
+
+### All future versions of The Fastest Mouse Clicker for Windows will be cross-platform and made with Qt
+
+First, I have compiled a 64-bit minimalistic, static/static-runtime build of Qt v5.15.5 (LTS) made for Windows 7 to 11 under MSVC 2019 compiler.
+
+Configure options:
+
+```
+C:\qt-src-5.15.5\configure -static -static-runtime -qt-zlib -qt-libjpeg -qt-libpng -qt-freetype -qt-pcre -qt-harfbuzz -no-sse4.1 -no-sse4.2 -no-avx2 -no-avx512 -no-pch -no-ssl -no-openssl -no-opengl -qpa windows -confirm-license -opensource -release -make libs -make tools -prefix c:/qt-5.15.5-static
+```
+
+Download [qt-5.15.5-static.zip](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/qt-5.15.5-static.zip).
 
 ### Disambiguation
 
