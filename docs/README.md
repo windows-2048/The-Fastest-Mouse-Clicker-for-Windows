@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated Jul 15 2022. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Instead of [WTL](https://sourceforge.net/projects/wtl/){:target="_blank"}, the project migrates to [Qt](https://www.qt.io/){:target="_blank"} with full code rewrite and getting cross-platform (Windows/Linux/MacOS). [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added.
+> Updated Jul 20 2022. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Instead of [WTL](https://sourceforge.net/projects/wtl/){:target="_blank"}, the project migrates to [Qt](https://www.qt.io/){:target="_blank"} with full code rewrite and getting cross-platform (Windows/Linux/MacOS). [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added. Disambiguation note has been updated by the video.
 
 ### {{site.description_rich}}
 
@@ -56,6 +56,19 @@ Thus "fastest" do typically refer to a PC program while "quickest" refers to a h
 Unprecedented record was done on May 6 2015, when Dylan A. from Las Vegas, Nevada, United States
 clicked his mouse a total of 1051 times in 10 seconds, according to
 [recordsetter.com](https://recordsetter.com/world-record/mouse-clicks-10/41199){:target="_blank"}.
+
+<p>
+TampaTec, famous Youtube blogger, has shown another real hardware mouse clicking, reaching clicking rate up to 16.5&nbsp;CPS (Clicks Per Second)!
+He described how to win Gow&nbsp;2&nbsp;3 chainsaw duels, World's Fastest mouse clicking, clicker King, urban75.com.
+His commenter Alexander Nielsen writes he achieves up to 100&nbsp;CPS consistently.
+Rather Troy Liebe asserts his personal best is 139&nbsp;CPS with one finger (Brain Bashers).
+In the video below, TampaTec shows the technique how that amazing results can be performed.
+ <video style="outline:none; width:100%; height:100%;" controls preload="none" poster="videos/worlds-fastest-clicker-720p.jpg">
+  <source src="videos/worlds-fastest-clicker-720p.mp4" type="video/mp4"/>
+  Your browser does not support the video tag.
+</video>
+<a href="https://www.youtube.com/watch?v=r8Tlb3FrmhQ" target="_blank">Watch the original video "World's fastest mouse clicker- How to Win Gow Chainsaw duels!" in Youtube.</a>
+</p>
 
 ## Table of Contents
 
