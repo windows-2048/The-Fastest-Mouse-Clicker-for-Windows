@@ -1,6 +1,6 @@
 ## ![Windows](./windows.svg) {{site.title}}
 
-> Updated Jul 20 2022. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Instead of [WTL](https://sourceforge.net/projects/wtl/){:target="_blank"}, the project migrates to [Qt](https://www.qt.io/){:target="_blank"} with full code rewrite and getting cross-platform (Windows/Linux/MacOS). [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added. Disambiguation note has been updated by the video.
+> Updated Jul 22 2022. [Teaser developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](index.html#TheFastestMouseClickerQt) added. [Mouse Polling Rate](index.html#Mouse_Polling_Rate) has been discussed. Anniversary 100 stars at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}! Instead of [WTL](https://sourceforge.net/projects/wtl/){:target="_blank"}, the project migrates to [Qt](https://www.qt.io/){:target="_blank"} with full code rewrite and getting cross-platform (Windows/Linux/MacOS). [Screenshot](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"} with "secret" features added. Disambiguation note has been updated by the video.
 
 ### {{site.description_rich}}
 
@@ -78,6 +78,7 @@ In the video below, TampaTec shows the technique how that amazing results can be
 * [Technology](index.html#Technology)
 * [Mouse Polling Rate](index.html#Mouse_Polling_Rate)
 * [Source Code](index.html#SourceCode)
+* [The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](index.html#TheFastestMouseClickerQt)
 * [Help How To Use](index.html#HelpHowToUse)
 * [Screenshots](index.html#Screenshots)
 * [Partners](index.html#Partners)
@@ -466,6 +467,18 @@ G. Kelly Irish
 Complete source code with comments is shipped with Windows installer or can be watched on
 [Github](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}
 and [Gitlab](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows){:target="_blank"}.
+
+<a name="TheFastestMouseClickerQt"></a>
+## The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)
+
+Migration to cross-platform Qt edition of {{site.app_name}} is in successive progress. New application will get version 3.0.0.0 and will be called
+"The Fastest Mouse Clicker for \<OS\> (cross-platform Qt edition)", where \<OS\> is "Windows", "Linux", "MacOS (M1)".
+QtDesigner \*.ui makeup is ready today. I tease you to look how pleasant and beautiful The Fastest Mouse Clicker v3.0.0.0 will appear
+on your PC screen. Full native support of 4K and Retina displays is here. As always, the application is statically linked and does not
+require 3rd-party DLL or OS component. Meanwhile, among Windows lineage, all the systems from Windows&nbsp;7 to Windows&nbsp;11 are supported.
+Note though, 32-bit OS builds (typically for Windows) have gone to the history. New app will be 64-bit only for all the platforms. Standby!
+
+![Teaser developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](screenshots_new/v3.0.0.0/TheFastestMouseClickerQt.png)
 
 <a name="HelpHowToUse"></a>
 ## Help How To Use
