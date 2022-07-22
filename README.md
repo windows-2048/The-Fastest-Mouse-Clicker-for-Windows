@@ -18,7 +18,7 @@ C:\qt-src-5.15.5\configure -static -static-runtime -qt-zlib -qt-libjpeg -qt-libp
 
 Download [qt-5.15.5-static.zip](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/qt-5.15.5-static.zip).
 
-Migration to cross-platform Qt edition of {{site.app_name}} is in successive progress. New application will get version 3.0.0.0 and will be called
+Migration to cross-platform Qt edition of The Fastest Mouse Clicker for Windows is in successive progress. New application will get version 3.0.0.0 and will be called
 "The Fastest Mouse Clicker for \<OS\> (cross-platform Qt edition)", where \<OS\> is "Windows", "Linux", "MacOS (M1)".
 QtDesigner \*.ui makeup is ready today. I tease you to look how pleasant and beautiful The Fastest Mouse Clicker v3.0.0.0 will appear
 on your PC screen. Full native support of 4K and Retina displays is here. As always, the application is statically linked and does not
