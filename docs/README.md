@@ -90,7 +90,7 @@ In the video below, TampaTec shows the technique how that amazing results can be
 <a name="Introduction"></a>
 ## Introduction
 
-This is the official site to download various versions of {{site.app_name}}. Also there is [official mirror](https://www.open-source.tech/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}.
+This is the official site to download various versions of {{site.app_name}}.
 All the versions are shipped with SHA256 fingerprints to ensure you do download the genuine software.
 
 Industry standard free open source mouse auto clicker emulates Windows clicks EXTREMELY QUICKLY via arrays of 1-1000 mouse events in Win32 <code><a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput" target="_blank">SendInput()</a></code>, making up to 100 000 clicks per second. Brand new group clicking support, Command line for batch files, Auto-save on exit, Random clicking, App's window always topmost are supported. This compact standalone program is compiled and statically linked by gnu/gcc compiler and supports all the Windows 7 to 10 and Linux via Wine emulator. This clicker is the best for incremental games: Cooking, Soda, Minecraft etc.
@@ -574,8 +574,6 @@ ADDITIONAL BUTTONS AND FEATURES.
 * [Lamerkomp](https://lamerkomp.ru/load/sistemnye_utility/avtoklikery/the_fastest_mouse_clicker_for_windows/56-1-0-6328){:target="_blank"}, Download Freeware without Registration
 
 * [Majorgeeks](http://m.majorgeeks.com/files/details/the_fastest_mouse_clicker_for_windows.html){:target="_blank"}, It's Geekalicious
-
-* [Open-Source.tech](https://www.open-source.tech/The-Fastest-Mouse-Clicker-for-Windows/){:target="_blank"}, Collaboration of Open Source Developers, to make effective and safe applications free under terms of GNU GPLv3
 
 * [OSDN](https://osdn.net/projects/fastest-clicker/){:target="_blank"}, Develop and Download Open Source Software
 
