@@ -1,3 +1,5 @@
+rem Copyright (c) 2016-2023 by [Open Source Developer Masha Novedad](https://windows-2048.github.io)
+
 rem In the command line below, the arguments signify as follows:
 rem '-c 100' = clicks per second is 100
 rem '-t 32' = trigger key code is 32 (corresponds to 'Space' key)

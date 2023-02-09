@@ -1,2 +1,4 @@
+Copyright (c) 2016-2023 by [Open Source Developer Masha Novedad](https://windows-2048.github.io)
+
 Project includes MSVC 2013 solution *.sln so open it in Visual Studio and build it. There are no external dependencies.
 id5mzZvGmjh2erJVyMpAt2HG8kuocCwbhUAaYXatKYUo5AQRqKXUqbbB9Uzwn

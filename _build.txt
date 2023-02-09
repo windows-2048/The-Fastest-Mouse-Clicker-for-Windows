@@ -1,3 +1,5 @@
+Copyright (c) 2016-2023 by [Open Source Developer Masha Novedad](https://windows-2048.github.io)
+
 MSVC
 ====
 
