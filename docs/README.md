@@ -489,7 +489,7 @@ Furthermore you can randomize every mouse click or keyboard press. Mouse wheel e
 
 The idea for recording is:
 
-1. To run libuiohook dispatch function in a separate Qt thread:
+* To run libuiohook dispatch function in a separate Qt thread:
 
 <pre><code title="libuiohook dispatch function running in a separate thread">
 void dispatch_proc(uiohook_event* const event)
@@ -524,7 +524,7 @@ private:
 };
 </code></pre>
 
-2. Define custom Qt event to transfer libuiohook event data between Qt threads (worker and UI):
+* Define custom Qt event to transfer libuiohook event data between Qt threads (worker and UI):
 
 <pre><code title="Custom Qt event to transfer libuiohook event data between Qt threads (worker and UI)">
 // Define your custom event identifier
@@ -541,7 +541,7 @@ public:
 };
 </code></pre>
 
-3. It is useful to define postMyCustomEvent() as a public method of main UI class, then implement virtual own customEvent():
+* It is useful to define postMyCustomEvent() as a public method of main UI class, then implement virtual own customEvent():
 
 <pre><code title="Define postMyCustomEvent() as a public method of main UI class, then implement virtual own customEvent()">
 class TheFastestMouseClicker : public QMainWindow
@@ -583,7 +583,7 @@ protected:
 
 The idea for playback is:
 
-4. Implement virtual own QApplication::notify() as a useful way to handle proper Qt events in one place without signals and slots:
+* Implement virtual own QApplication::notify() as a useful way to handle proper Qt events in one place without signals and slots:
 
 <pre><code title="Implement virtual own QApplication::notify() as a useful way to handle proper Qt events in one place">
 class Application : public QApplication
@@ -618,7 +618,7 @@ protected:
 };
 </code></pre>
 
-5. The idea of editing sequence recorded is standard [QListWidget](https://doc.qt.io/qt-5/qlistwidget.html){:target="_blank"}-based approach.
+* The idea of editing sequence recorded is standard [QListWidget](https://doc.qt.io/qt-5/qlistwidget.html){:target="_blank"}-based approach.
 
 Resulting MS Visual Studio 2019 screenshot joining Qt and libuiohook:
 
