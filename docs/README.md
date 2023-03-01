@@ -108,7 +108,7 @@ Using keyboard keys (or mouse buttons) as a trigger, you can position the mouse,
 Of course, you can select arbitrary Begin and End trigger keys.
 You also have the option to set a click number limitation. The mouse auto-clicker stops automatically when your desired number of clicks is reached.
 
-If you desire to perform a Click Speed Test, go to elegant open source [implementation](https://top-10-mouse-auto-clickers.best/Click-Speed-Test-Online/){:target="_blank"} working right in your web browser.
+If you desire to perform a Click Speed Test, go to elegant open source [implementation](https://all-mouse-auto-clickers.software/){:target="_blank"} working right in your web browser.
 The Click Speed Test is a free click per second test, which measures your mouse clicking speed in given time frame. Playing the Click Speed Test is easy and fun at the same time.
 The test is suitable for all types of auto-clicking software as well as for direct human hands testing in all age groups, so do not worry if you are just a high school student or a person with a corporate job or PhD.
 You do find Click Speed Test to be a useful tool while searching for ways to repeatedly click without using the mouse.
@@ -724,7 +724,7 @@ ADDITIONAL BUTTONS AND FEATURES.
 
 * [Softpedia](https://www.softpedia.com/get/System/OS-Enhancements/The-Fastest-Mouse-Clicker-for-Windows.shtml){:target="_blank"}, Free Downloads Encyclopedia
 
-* [Top 10 Mouse Auto Clickers Most Honest Rating](https://top-10-mouse-auto-clickers.best/The-Fastest-Mouse-Clicker-for-Windows/index.html){:target="_blank"}, The Most Honest Rating of Existing Autoclickers
+* [all-mouse-auto-clickers.software](https://all-mouse-auto-clickers.software/){:target="_blank"}, The Most Honest Rating of Existing Autoclickers
 
 * [Uptodown](https://the-fastest-mouse-clicker-for-windows.en.uptodown.com/windows/download){:target="_blank"}, Download Discover Share
 
