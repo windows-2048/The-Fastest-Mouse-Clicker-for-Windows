@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/sitemap.xml
