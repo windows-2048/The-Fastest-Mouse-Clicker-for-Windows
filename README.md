@@ -1,11 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated Mar 01 2023. [Great update on The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#TheFastestMouseClickerQt).
-> The Fastest Mouse Clicker v3.0.0.0 (the Qt edition) will use [cross-platform libuiohook library](https://github.com/kwhat/libuiohook/)
-> to handle system all-displays-wide mouse and keyboard events. Its graphical UI will be completely re-designed to perform fully automatic
-> recording and playback all the mouse and keyboard events. You can even edit the sequence recorded in depth and modify its playback speed.
-> Furthermore you can randomize every mouse click or keyboard press. Mouse wheel events will be also supported.
-> ![Resulting MS Visual Studio 2019 screenshot joining Qt and libuiohook](docs/screenshots_new/v3.0.0.0/qt_libuiohook.png?raw=true)
+> Updated : April 02 2023. Spanish localization of the site is coming soon.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
@@ -30,7 +25,7 @@ on your PC screen. Full native support of 4K and Retina displays is here. As alw
 require 3rd-party DLL or OS component. Meanwhile, among Windows lineage, all the systems from Windows&nbsp;7 to Windows&nbsp;11 are supported.
 Note though, 32-bit OS builds (typically for Windows) have gone to the history. New app will be 64-bit only for all the platforms. Standby!
 
-![Teaser developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](docs/screenshots_new/v3.0.0.0/TheFastestMouseClickerQt.png?raw=true)
+![Teaser developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](screenshots_new/v3.0.0.0/TheFastestMouseClickerQt.png?raw=true)
 
 ### Brief list of main features
 
