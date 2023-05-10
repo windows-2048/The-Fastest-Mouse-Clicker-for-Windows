@@ -1,10 +1,16 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated : Mayo 04 2023. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
+> Updated : May 10 2023. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
 ## [Sitio Oficial En Español](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/)
+
+### 2023 is the project's 7th anniversary
+
+In 2023 my flagman project celebrates the 7th anniversary! You can download and install
+the anniversary re-release
+at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.6.1.0-7th-anniversary).
 
 ![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.](screenshots_new/v2.6.1.0/tfmcfw-v2.6.1.0-batch-folder.jpg?raw=true)
 
