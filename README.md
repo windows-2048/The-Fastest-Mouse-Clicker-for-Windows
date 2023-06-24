@@ -1,6 +1,7 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated : Jun 17 2023. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
+> Updated : Jun 24 2023. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
+New trailer developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 has been added (see below).
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
@@ -34,6 +35,11 @@ require 3rd-party DLL or OS component. Meanwhile, among Windows lineage, all the
 Note though, 32-bit OS builds (typically for Windows) have gone to the history. New app will be 64-bit only for all the platforms. Standby!
 
 ![Teaser developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](screenshots_new/v3.0.0.0/TheFastestMouseClickerQt.png?raw=true)
+
+A great progress is undergoing right now. All the things about how does a cross-platform app function have been investigated.
+Initial code refactoring has been performed. The library [libuiohook](https://github.com/kwhat/libuiohook) is found to be pretty clearly designed.
+
+![Trailer developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](screenshots_new/v3.0.0.0/TheFastestMouseClicker.png?raw=true)
 
 ### Brief list of main features
 
