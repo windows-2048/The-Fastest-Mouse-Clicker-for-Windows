@@ -2,6 +2,7 @@
 * The Fastest Mouse Clicker for Windows version 2.6.1.0
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
+* 7th ANNIVERSARY tag is v2.6.1.0-7th-anniversary
 **************************************************************************/
 
 #undef UNICODE
