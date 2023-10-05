@@ -18,9 +18,9 @@ The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch fold
 
 ![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.](screenshots_new/v2.6.1.0/tfmcfw-v2.6.1.0-batch-folder.jpg?raw=true)
 
-The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 screenshot.
+The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot.
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 screenshot.](screenshots_new/v2.6.1.0/tfmcfw-win11-22h2-sapp.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot.](screenshots_new/v2.6.1.0/tfmcfw-win11-22h2-sapp.jpg?raw=true)
 
 ### All future versions of The Fastest Mouse Clicker for Windows will be cross-platform and made with Qt
 
