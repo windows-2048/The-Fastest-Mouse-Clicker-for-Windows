@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Oct 02 2023. Brand new Windows 11 screenshots have been added. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
+> Updated: Oct 05 2023. Brand new Windows 11 22H2 screenshots have been added. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
 New trailer developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 has been added (see below).
 What do our partners [tell](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) about the famous software tool.
 
@@ -20,7 +20,7 @@ The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch fold
 
 The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 screenshot.
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 screenshot.](screenshots_new/v2.6.1.0/win11-tfmcfw.jpg?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 screenshot.](screenshots_new/v2.6.1.0/tfmcfw-win11-22h2-sapp.jpg?raw=true)
 
 ### All future versions of The Fastest Mouse Clicker for Windows will be cross-platform and made with Qt
 
