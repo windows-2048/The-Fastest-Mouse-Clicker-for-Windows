@@ -22,6 +22,10 @@ The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H
 
 ![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot.](screenshots_new/v2.6.1.0/tfmcfw-win11-22h2-sapp.jpg?raw=true)
 
+* The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot (group application).
+
+![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot (group application).](screenshots_new/v2.6.1.0/tfmcfw-win11-22h2-gapp.jpg?raw=true)
+
 ### All future versions of The Fastest Mouse Clicker for Windows will be cross-platform and made with Qt
 
 First, I have compiled a 64-bit minimalistic, static/static-runtime build of Qt v5.15.5 (LTS) made for Windows 7 to 11 under MSVC 2019 compiler.
