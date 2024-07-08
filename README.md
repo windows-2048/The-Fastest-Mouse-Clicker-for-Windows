@@ -86,4 +86,4 @@ https://www.youtube.com/watch?v=gCpALY1WqmE
 
 This video as well as many others recorded by our partners you can explore at the official sites above.
 
-#### Copyright (c) 2016-2023 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/) | [Desarrolladora de código abierto Masha Novedad](https://windows-2048.github.io/es/)
+#### Copyright (c) 2016-2024 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/) | [Desarrolladora de código abierto Masha Novedad](https://windows-2048.github.io/es/)
