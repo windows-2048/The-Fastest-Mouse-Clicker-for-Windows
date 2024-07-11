@@ -6,12 +6,14 @@ The program has built-in updater service under construction that may perform add
 
 There are installers without Update Service, for users that prefer to keep automatic updates off. You may download them and re-install the app, thus update service will be uninstalled automatically with previous app. Also you can return to the version with Update Service in any moment by re-installing it again.
 
+Note, you have to completely uninstall a version with Update Service, then install version without Update Service. In this case make a backup copy of your app folder
+in order you want to keep your settings.
+
+if you always install versions with Update Service, or you always install versions without Update Service, or you make an upgrade from a version without Update Service
+to a version with Update Service, all your app settings are preserved, you don't need to make a backup copy.
+
 ### The installers without update service
 
-[Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe?inline=false)
+[Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/The-Fastest-Mouse-Clicker-for-Windows/Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe)
 
-SHA256(Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe)= 7efbaa8de969ff8ab3e8359d6d5a8b4d93d7d430e133c193dbab53f750b7f3e9
-
-[Install_TheFastestMouseClicker_2.5.4.0_noupdsrv.exe](https://gitlab.com/mashanovedad/The-Fastest-Mouse-Clicker-for-Windows/-/raw/master/WindowsInstaller/Install_TheFastestMouseClicker_2.5.4.0_noupdsrv.exe?inline=false)
-
-SHA256(Install_TheFastestMouseClicker_2.5.4.0_noupdsrv.exe)= 842e0203152bbf48e8761ffea4bc2b20600be687f1f54d527fbd38beb845af32
+SHA256(Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe)= 2111e7993007c9756411c5ef5de5300c19b176fd91d332d5d54faf00f11bf43e
