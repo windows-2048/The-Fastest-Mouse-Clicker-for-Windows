@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Jul 01 2024. Brand new Windows 11 22H2 screenshots have been added. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
+> Updated: Jul 11 2024. Brand new Windows 11 22H2 screenshots have been added. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
 New trailer developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 has been added (see below).
 What do our partners [tell](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) about the famous software tool.
 
@@ -8,11 +8,11 @@ What do our partners [tell](https://windows-2048.github.io/The-Fastest-Mouse-Cli
 
 ## [Sitio Oficial En Español](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/)
 
-### 2023 is the project's 7th anniversary
+### 2024 is the project's 8th anniversary
 
-In 2023, my flagship project celebrates the 7th anniversary! You can download and install
+In 2024, my flagship project celebrates the 8th anniversary! You can download and install
 the anniversary re-release
-at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.6.1.0-7th-anniversary).
+at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/2.6.1.0-8th-anniversary).
 
 The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.
 
