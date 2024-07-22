@@ -1,5 +1,5 @@
 /**************************************************************************
-* The Fastest Mouse Group Clicker for Windows version 2.6.1.0
+* The Fastest Mouse Group Clicker for Windows version 2.6.1.1
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
 **************************************************************************/
@@ -17,13 +17,15 @@ static char THIS_FILE[] = __FILE__;
 #define WM_KEY_ESCAPE  (WM_USER+1)
 #define WM_KEY_SPACE   (WM_USER+3)
 #define WM_KEY_F3      (WM_USER+5)
+#define WM_GMOUSE_MOVE  (WM_USER+15)
 #define WM_KEY_DELETE  (WM_USER+7)
 #define WM_KEY_RETURN_DOWN  (WM_USER+9)
 #define WM_KEY_RETURN_UP  (WM_USER+11)
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
-HHOOK	hHook=NULL;
-CString strProgName="The Fastest Mouse Group Clicker v2.6.1.0";
+HHOOK	hHook = NULL;
+HHOOK	hHook2 = NULL;
+CString strProgName="The Fastest Mouse Group Clicker v2.6.1.1";
 class CAboutDlg : public CDialog
 {
 public:
@@ -168,6 +170,8 @@ BEGIN_MESSAGE_MAP(CAutoClickerDlg, CDialog)
 	ON_MESSAGE(WM_KEY_ESCAPE,OnKeyEscape)
 	ON_MESSAGE(WM_KEY_SPACE, OnKeySpace)
 	ON_MESSAGE(WM_KEY_F3, OnKeyF3)
+	ON_MESSAGE(WM_GMOUSE_MOVE, OnGMouseMove)
+	ON_WM_CTLCOLOR()
 	ON_MESSAGE(WM_KEY_DELETE, OnKeyDelete)
 	ON_MESSAGE(WM_KEY_RETURN_DOWN, OnKeyReturnDown)
 	ON_MESSAGE(WM_KEY_RETURN_UP, OnKeyReturnUp)
@@ -227,6 +231,23 @@ LRESULT CALLBACK HookMouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	return CallNextHookEx( hHook, nCode, wParam, lParam);
 }
 
+LRESULT CALLBACK HookMouseProc2(int nCode, WPARAM wParam, LPARAM lParam)
+{
+	if (g_hwnd == NULL)
+		g_hwnd = ::FindWindow(NULL, strProgName);
+
+	LRESULT lResult = 0;
+
+	if (nCode == HC_ACTION)
+	{
+		if (wParam == WM_MOUSEMOVE)
+		{
+			::SendMessage(g_hwnd, WM_GMOUSE_MOVE, 1, 1);
+		}
+	}
+
+	return CallNextHookEx(hHook2, nCode, wParam, lParam);
+}
 
 BOOL CAutoClickerDlg::OnInitDialog()
 {
@@ -274,6 +295,10 @@ BOOL CAutoClickerDlg::OnInitDialog()
 
 	//Starting Hooking...
 	hHook = SetWindowsHookEx(WH_KEYBOARD_LL, (HOOKPROC)::HookMouseProc, GetModuleHandle(NULL), 0);
+	hHook2 = SetWindowsHookEx(WH_MOUSE_LL, (HOOKPROC)::HookMouseProc2, GetModuleHandle(NULL), 0);
+	OnGMouseMove(0, 0);
+	SetTimer(3, 500, NULL);
+	m_brBack.CreateSolidBrush(RGB(0xcc, 0xff, 0x99));
 
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
 	GetDlgItem(IDC_SAVE_BTN)->EnableWindow(FALSE);
@@ -423,7 +448,7 @@ void CAutoClickerDlg::OnTimer(UINT nIDEvent)
 	m_tEnd				= CTime::GetCurrentTime();
 	m_tsSpan			= m_tEnd - m_tStart;
 
-	if(nIDEvent==1)
+	if(nIDEvent == 1)
 	{
 		UpdateData(TRUE);
 		m_nCurPos--;
@@ -450,7 +475,7 @@ void CAutoClickerDlg::OnTimer(UINT nIDEvent)
 
 		UpdateData(FALSE);
 	}
-	else if(nIDEvent==2)
+	else if(nIDEvent == 2)
 	{
 		//Keeping clicking automatically
 		UpdateData(TRUE);
@@ -473,6 +498,10 @@ void CAutoClickerDlg::OnTimer(UINT nIDEvent)
 			OnKeyEscape(0, 0);
 
 		UpdateData(FALSE);
+	}
+	else if (nIDEvent == 3)
+	{
+		OnGMouseMove(0, 0);
 	}
 	
 
@@ -547,7 +576,7 @@ long CAutoClickerDlg::OnKeyF3(WPARAM wParam, LPARAM lParam)
 
 	UpdateData(TRUE);
 
-	if (m_nListIdx < 1000)
+	if (m_nListIdx < T1000)
 	{
 		GetCursorPos(&point);
 		m_nX = point.x;
@@ -572,6 +601,32 @@ long CAutoClickerDlg::OnKeyF3(WPARAM wParam, LPARAM lParam)
 	return 1;
 }
 
+long CAutoClickerDlg::OnGMouseMove(WPARAM wParam, LPARAM lParam)
+{
+	UpdateData(TRUE);
+	CPoint point2;
+	if (m_nListIdx < T1000)
+	{
+		GetCursorPos(&point2);
+		m_nX = point2.x;
+		m_nY = point2.y;
+	}
+
+	UpdateData(FALSE);
+
+	return 1;
+}
+
+HBRUSH CAutoClickerDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+	if ((pWnd->GetDlgCtrlID() == IDC_X_EDT) || (pWnd->GetDlgCtrlID() == IDC_Y_EDT))
+	{
+		pDC->SetBkColor(RGB(0xcc, 0xff, 0x99));
+		hbr = m_brBack;
+	}
+	return hbr;
+}
 
 long CAutoClickerDlg::OnKeyDelete(WPARAM wParam, LPARAM lParam)
 {
@@ -687,7 +742,7 @@ void CAutoClickerDlg::OnFileLoad()
 			m_nCount	= 0;
 			m_nListIdx	= 0;
 
-			for(int i = 0; i < 1000; i++)
+			for(int i = 0; i < T1000; i++)
 			{
 				if (xyList[i].x > 0 && xyList[i].y > 0)
 				{
@@ -803,7 +858,7 @@ void CAutoClickerDlg::OnRandomizeList()
 
 	CString strList;
 
-	for (int i = 0; i < 1000; ++i)
+	for (int i = 0; i < T1000; ++i)
 	{
 		xyList[i].x = tclMin.x + int(gen1() % (tclMax.x + 1 - tclMin.x));
 		xyList[i].y = tclMin.y + int(gen2() % (tclMax.y + 1 - tclMin.y));

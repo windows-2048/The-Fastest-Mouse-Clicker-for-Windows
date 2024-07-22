@@ -12,6 +12,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // CAutoClickerDlg dialog
 
+#define T1000 100000
+
 class CAutoClickerDlg : public CDialog
 {
 // Construction
@@ -21,6 +23,8 @@ public:
 	void OnPause();
 	long OnKeySpace(WPARAM wParam, LPARAM lParam);
 	long OnKeyF3(WPARAM wParam, LPARAM lParam);
+	long OnGMouseMove(WPARAM wParam, LPARAM lParam);
+	HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	long OnKeyDelete(WPARAM wParam, LPARAM lParam);
 	long OnKeyReturnDown(WPARAM wParam, LPARAM lParam);
 	long OnKeyReturnUp(WPARAM wParam, LPARAM lParam);
@@ -35,7 +39,7 @@ public:
 		{
 			return (x == that.x) && (y == that.y);
 		}
-	} xyList[1000];
+	} xyList[T1000];
 
 private:
 // Dialog Data
@@ -71,6 +75,7 @@ protected:
 	CTime   m_tStart;
 	CTime   m_tEnd;
 	CTimeSpan m_tsSpan;
+	CBrush m_brBack;
 
 	// Generated message map functions
 	//{{AFX_MSG(CAutoClickerDlg)

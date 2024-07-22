@@ -1,8 +1,8 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.6.1.0
+* The Fastest Mouse Clicker for Windows version 2.6.1.1
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
-* 7th ANNIVERSARY tag is v2.6.1.0-7th-anniversary
+* 7th ANNIVERSARY tag is v2.6.1.1
 **************************************************************************/
 
 #undef UNICODE
@@ -50,6 +50,8 @@ HWND clicksStopAt;
 HWND topMostChkBox;
 
 WNDCLASS windClass;
+WNDCLASS windClass2;
+WNDCLASS windClass3;
 HINSTANCE hInstance;
 
 bool quit=false;
@@ -109,6 +111,8 @@ double countsToSeconds(__int64 a)
 
 
 LRESULT CALLBACK winCallBack(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
+LRESULT CALLBACK winCallBack2(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
+LRESULT CALLBACK winCallBack3(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp);
 void handleMessages()
 {
 	MSG msg;
@@ -731,17 +735,10 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam)
 			SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 		}
 
+		RedrawWindow(outputMouseX, NULL, NULL, RDW_INVALIDATE);
+		RedrawWindow(outputMouseY, NULL, NULL, RDW_INVALIDATE);
 		POINT point;
 		BOOL bGCP = GetCursorPos(&point);
-		if (bGCP == TRUE)
-		{
-			char numStr[12];
-			_itoa_s(point.x, numStr, 12, 10);
-			SetDlgItemText(hWnd, GetDlgCtrlID(outputMouseX), numStr);
-			_itoa_s(point.y, numStr, 12, 10);
-			SetDlgItemText(hWnd, GetDlgCtrlID(outputMouseY), numStr);
-		}
-
 		if (GetAsyncKeyState(VK_F9) && (bGCP == TRUE))
 		{
 			char winTxt[1024];
@@ -871,6 +868,7 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//copy-pasta windows stuff below
 	hInstance=instanceH;
 	// Initializing the window class
+	memset(&windClass, 0, sizeof(WNDCLASS));
 	windClass.style			= CS_HREDRAW | CS_VREDRAW;
 	windClass.lpfnWndProc		= winCallBack;
 	windClass.cbClsExtra		= 0;
@@ -884,7 +882,37 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass);
 
-	hWnd = CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.6.1.0", WS_OVERLAPPEDWINDOW, Sc(100), Sc(100), Sc(450), Sc(514), NULL, NULL, instanceH, NULL);
+	// Initializing the window class
+	memset(&windClass2, 0, sizeof(WNDCLASS));
+	windClass2.style = CS_HREDRAW | CS_VREDRAW;
+	windClass2.lpfnWndProc = winCallBack2;
+	//windClass2.cbClsExtra = 0;
+	//windClass2.cbWndExtra = 0;
+	windClass2.hInstance = instanceH;
+	//windClass2.hIcon = LoadIcon(windClass.hInstance, MAKEINTRESOURCE(101));
+	windClass2.hCursor = LoadCursor(NULL, IDC_ARROW);
+	windClass2.hbrBackground = CreateSolidBrush(0x0099ffcc);
+	windClass2.lpszClassName = "Color2";
+
+	//Registering the window class
+	RegisterClass(&windClass2);
+
+	// Initializing the window class
+	memset(&windClass3, 0, sizeof(WNDCLASS));
+	windClass3.style = CS_HREDRAW | CS_VREDRAW;
+	windClass3.lpfnWndProc = winCallBack3;
+	//windClass3.cbClsExtra = 0;
+	//windClass3.cbWndExtra = 0;
+	windClass2.hInstance = instanceH;
+	//windClass3.hIcon = LoadIcon(windClass.hInstance, MAKEINTRESOURCE(101));
+	windClass3.hCursor = LoadCursor(NULL, IDC_ARROW);
+	windClass3.hbrBackground = CreateSolidBrush(0x0099ffcc);
+	windClass3.lpszClassName = "Color3";
+
+	//Registering the window class
+	RegisterClass(&windClass3);
+
+	hWnd = CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.6.1.1", WS_OVERLAPPEDWINDOW, Sc(100), Sc(100), Sc(450), Sc(514), NULL, NULL, instanceH, NULL);
 
 	statusText = CreateWindow("Static", "clicking status: idle", WS_VISIBLE | WS_CHILD, Sc(5), Sc(1), Sc(410), Sc(35), hWnd, 0, 0, 0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
@@ -910,8 +938,8 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	_itoa_s(my_trigger_key2, triggerText2, 4, 10);
 
 	outputWindow = CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(170), Sc(40), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_TEXT, 0, 0);
-	outputMouseX = CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(252), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_MOUSE_X, 0, 0);
-	outputMouseY = CreateWindow("Edit", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(334), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_MOUSE_Y, 0, 0);
+	outputMouseX = CreateWindow("Color2", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(252), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_MOUSE_X, 0, 0);
+	outputMouseY = CreateWindow("Color3", "0", WS_VISIBLE | WS_CHILD | WS_BORDER | ES_READONLY | ES_NUMBER, Sc(334), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)OUTPUT_MOUSE_Y, 0, 0);
 	inputFrequency = CreateWindow("Edit", numStrInputFrequency, WS_VISIBLE | WS_CHILD | WS_BORDER, Sc(170), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)INPUT_TEXT, 0, 0);
 	triggerButton = CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(170), Sc(80), Sc(40), Sc(20), hWnd, (HMENU)TRIGGER_BTN, 0, 0);
 	triggerButton2 = CreateWindow("Button", numStrTriggerButton2, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(210), Sc(80), Sc(40), Sc(20), hWnd, (HMENU)TRIGGER_BTN2, 0, 0);
@@ -1395,7 +1423,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.6.1.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.6.1.1 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
@@ -1691,5 +1719,69 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 		return DefWindowProc(hWin, msg, wp, lp);
 
 	}
+	return 0;
+}
+
+LRESULT CALLBACK winCallBack2(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
+{
+	switch (msg)
+	{
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		RECT rc;
+		HDC hdc = BeginPaint(hWin, &ps);
+		GetClientRect(hWin, &rc);
+		SetBkColor(hdc, 0x0099ffcc); // red
+		SelectObject(hdc, s_hFont);
+		POINT point;
+		BOOL bGCP = GetCursorPos(&point);
+		if (bGCP == TRUE)
+		{
+			char numStr[12];
+			memset(numStr, 0, 12);
+			_itoa_s(point.x, numStr, 12, 10);
+			ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, numStr, 5, 0);
+		}
+		EndPaint(hWin, &ps);
+	}
+	break;
+
+	default:
+		return DefWindowProc(hWin, msg, wp, lp);
+	}
+
+	return 0;
+}
+
+LRESULT CALLBACK winCallBack3(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
+{
+	switch (msg)
+	{
+	case WM_PAINT:
+	{
+		PAINTSTRUCT ps;
+		RECT rc;
+		HDC hdc = BeginPaint(hWin, &ps);
+		GetClientRect(hWin, &rc);
+		SetBkColor(hdc, 0x0099ffcc); // red
+		SelectObject(hdc, s_hFont);
+		POINT point;
+		BOOL bGCP = GetCursorPos(&point);
+		if (bGCP == TRUE)
+		{
+			char numStr[12];
+			memset(numStr, 0, 12);
+			_itoa_s(point.y, numStr, 12, 10);
+			ExtTextOut(hdc, 0, 0, ETO_OPAQUE, &rc, numStr, 5, 0);
+		}
+		EndPaint(hWin, &ps);
+	}
+	break;
+
+	default:
+		return DefWindowProc(hWin, msg, wp, lp);
+	}
+
 	return 0;
 }
