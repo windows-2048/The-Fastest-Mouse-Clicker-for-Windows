@@ -16,7 +16,7 @@ to a version with Update Service, all your app settings are preserved, you don't
 
 [Install_TheFastestMouseClicker_2.6.1.1_noupdsrv.exe](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/The-Fastest-Mouse-Clicker-for-Windows/Install_TheFastestMouseClicker_2.6.1.1_noupdsrv.exe)
 
-SHA256(Install_TheFastestMouseClicker_2.6.1.1_noupdsrv.exe)= 4448770ad505bf85c1ac44d56a4c9a8d475648d72c8963771b426dee96f2739a
+SHA256(Install_TheFastestMouseClicker_2.6.1.1_noupdsrv.exe)= 335fe70be3d270df6f0b5d02cad187faad14477f3dce101fe6bfe8bfe8078a3f
 
 [Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/The-Fastest-Mouse-Clicker-for-Windows/Install_TheFastestMouseClicker_2.6.1.0_noupdsrv.exe)
 
