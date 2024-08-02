@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Jul 22 2024. Brand new Windows 11 22H2 screenshots have been added. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
+> Updated: Aug 02 2024. Brand new Windows 11 22H2 screenshots have been added. Spanish localization of the site is [READY](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/) | La localización en español del sitio está [LISTO](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/).
 New trailer developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 has been added (see below).
 What do our partners [tell](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) about the famous software tool.
 
@@ -103,3 +103,5 @@ https://www.youtube.com/watch?v=gCpALY1WqmE
 This video as well as many others recorded by our partners you can explore at the official sites above.
 
 #### Copyright (c) 2016-2024 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/) | [Desarrolladora de código abierto Masha Novedad](https://windows-2048.github.io/es/)
+
+[See at indeed.com...](https://profile.indeed.com/p/mashan-hc2ql7c)
