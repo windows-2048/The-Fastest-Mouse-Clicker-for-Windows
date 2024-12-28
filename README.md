@@ -12,6 +12,15 @@ You can download and install
 the latest version
 at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.6.2.0).
 
+#### ChangeLog
+
+* Added long-awaited tooltips for the trigger keys.
+* Live current mouse position indicator gets light green color.
+* Long waiting new feature FIXED POSITION CLICKING.
+* Fixed blurred GUI texts on 4K screens.
+* Fixed wrong question about close old application during installation.
+* Few minor bug fixes.
+
 ### Some screenshots from a new version 2.6.2.0
 
 * The Fastest Mouse Clicker for Windows version 2.6.2.0.
@@ -94,7 +103,7 @@ More information on Windows installers that use or don't use PC resources is [he
 
 https://www.youtube.com/watch?v=gCpALY1WqmE
 
-#### The Fastest Mouse Clicker for Windows version 2.6.1.1 - how to download and install
+#### The Fastest Mouse Clicker for Windows - how to download and install video
 
 https://youtu.be/BwB65SpH3-I
 
