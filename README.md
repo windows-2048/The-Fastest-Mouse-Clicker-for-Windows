@@ -111,6 +111,6 @@ https://youtu.be/BwB65SpH3-I
 
 This video as well as many others recorded by our partners you can explore at the official sites above.
 
-#### Copyright (c) 2016-2025 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/) | [Desarrolladora de código abierto Masha Novedad](https://windows-2048.github.io/es/)
+#### Copyright (c) 2016-2025 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/)
 
 [See at indeed.com...](https://profile.indeed.com/p/mashan-hc2ql7c)
