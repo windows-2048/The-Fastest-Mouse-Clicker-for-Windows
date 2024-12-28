@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: December 24 2024. Brand new Windows 11 22H2 screenshots have been added. [Spanish](https://windows-2048.github.io/es/), [Portuguese](https://windows-2048.github.io/pt/) localization of the site is ready. New trailer developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 has been added (see [there](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#TheFastestMouseClickerQt)). What do our partners [tell](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/index.html#Partners) about the famous software tool.
+> Updated: Dec 28 2024. Added long-awaited tooltips for the trigger keys: now both virtual key codes and their names are displayed.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
@@ -8,23 +8,19 @@
 
 ### 2024 is the project's 8th anniversary
 
-In 2024, my flagship project celebrates the 8th anniversary!
-
-NEW VERSION 2.6.1.1 INCORPORATES LONG AWAITED COLORED MOUSE POSITION GUI FIELDS AND SMALL BUG FIXES.
-
 You can download and install
-the NEW VERSION 2.6.1.1 devoted to the anniversary
-at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.6.1.1).
+the latest version
+at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.6.2.0).
 
-### Some screenshots from a new version 2.6.1.1
+### Some screenshots from a new version 2.6.2.0
 
-* The Fastest Mouse Clicker for Windows version 2.6.1.1.
+* The Fastest Mouse Clicker for Windows version 2.6.2.0.
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.1](screenshots_new/v2.6.1.1/tfmcfw_singleapp_v2.6.1.1.png?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.2.0](screenshots_new/v2.6.2.0/TFMCfW_v2.6.2.0.png?raw=true)
 
-* The Fastest Mouse Clicker for Windows version 2.6.1.1 (group application).
+* The Fastest Mouse Clicker for Windows version 2.6.2.0 (group application).
 
-![The Fastest Mouse Clicker for Windows version 2.6.1.1 (group application)](screenshots_new/v2.6.1.1/tfmcfw_groupapp_v2.6.1.1.png?raw=true)
+![The Fastest Mouse Clicker for Windows version 2.6.2.0 (group application)](screenshots_new/v2.6.2.0/TFMCfW_g_v2.6.2.0.png?raw=true)
 
 ### Some screenshots from a previous version 2.6.1.0
 
@@ -98,12 +94,12 @@ More information on Windows installers that use or don't use PC resources is [he
 
 https://www.youtube.com/watch?v=gCpALY1WqmE
 
-#### The Fastest Mouse Clicker for Windows version 2.6.1.1 - download and install in 2024
+#### The Fastest Mouse Clicker for Windows version 2.6.1.1 - how to download and install
 
 https://youtu.be/BwB65SpH3-I
 
 This video as well as many others recorded by our partners you can explore at the official sites above.
 
-#### Copyright (c) 2016-2024 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/) | [Desarrolladora de código abierto Masha Novedad](https://windows-2048.github.io/es/)
+#### Copyright (c) 2016-2025 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/) | [Desarrolladora de código abierto Masha Novedad](https://windows-2048.github.io/es/)
 
 [See at indeed.com...](https://profile.indeed.com/p/mashan-hc2ql7c)
