@@ -1,13 +1,16 @@
 /**************************************************************************
-* The Fastest Mouse Clicker for Windows version 2.6.1.1
+* The Fastest Mouse Clicker for Windows version 2.6.2.0
 * Copyright (c) 2016-2020 by Open Source Developer Masha Novedad
 * Released under GNU Public License GPLv3
-* 7th ANNIVERSARY tag is v2.6.1.1
+* 8th ANNIVERSARY tag is v2.6.2.0
 **************************************************************************/
 
 #undef UNICODE
 #undef _UNICODE
+#define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
+#include "shellapi.h"
+#include "commctrl.h"
 #include <string>
 #include <sstream>
 #include <vector>
@@ -30,6 +33,8 @@ HWND inputFrequency;
 HWND stopAt;
 HWND triggerButton;
 HWND triggerButton2;
+HWND triggerButtonTT;
+HWND triggerButton2TT;
 HWND stopButton;
 HWND runGroupAppButton;
 HWND resetButton;
@@ -835,6 +840,127 @@ int Sc(int x)
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
+#define MAX_KEY_NAME 32
+
+const char* GetKeyName(int vKey)
+{
+	static char keyName[MAX_KEY_NAME];
+
+	// Special handling for common keys
+	switch (vKey)
+	{
+	case VK_RETURN:  return "Enter";
+	case VK_SPACE:   return "Space";
+	case VK_BACK:    return "Backspace";
+	case VK_TAB:     return "Tab";
+	case VK_ESCAPE:  return "Esc";
+	case VK_DELETE:  return "Delete";
+	case VK_INSERT:  return "Insert";
+	case VK_HOME:    return "Home";
+	case VK_END:     return "End";
+	case VK_PRIOR:   return "Page Up";
+	case VK_NEXT:    return "Page Down";
+	case VK_LEFT:    return "Left";
+	case VK_RIGHT:   return "Right";
+	case VK_UP:      return "Up";
+	case VK_DOWN:    return "Down";
+	case VK_CONTROL: return "Ctrl";
+	case VK_MENU:    return "Alt";
+	case VK_SHIFT:   return "Shift";
+	case VK_CAPITAL: return "Caps Lock";
+	case VK_NUMLOCK: return "Num Lock";
+	case VK_SCROLL:  return "Scroll Lock";
+	case VK_F1:      return "F1";
+	case VK_F2:      return "F2";
+	case VK_F3:      return "F3";
+	case VK_F4:      return "F4";
+	case VK_F5:      return "F5";
+	case VK_F6:      return "F6";
+	case VK_F7:      return "F7";
+	case VK_F8:      return "F8";
+	case VK_F9:      return "F9";
+	case VK_F10:     return "F10";
+	case VK_F11:     return "F11";
+	case VK_F12:     return "F12";
+	}
+
+	// Get scan code for this virtual key
+	UINT scanCode = MapVirtualKey(vKey, MAPVK_VK_TO_VSC);
+	if (scanCode) {
+		// Get key name from Windows
+		if (GetKeyNameTextA(scanCode << 16, keyName, MAX_KEY_NAME) > 0) {
+			return keyName;
+		}
+	}
+
+	// For regular characters
+	BYTE keyState[256] = { 0 };
+	WORD ascii[2] = { 0 };
+
+	if (ToAscii(vKey, scanCode, keyState, ascii, 0) == 1) {
+		keyName[0] = (char)ascii[0];
+		keyName[1] = '\0';
+		return keyName;
+	}
+
+	// If all else fails
+	sprintf(keyName, "Key %d", vKey);
+	return keyName;
+}
+
+HWND CreateToolTip(HWND hwndParent, HWND hwndControl, LPCTSTR text)
+{
+	HWND hwndTip = CreateWindowEx(
+		WS_EX_TOPMOST,
+		TOOLTIPS_CLASS,
+		NULL,
+		WS_POPUP | TTS_NOPREFIX | TTS_ALWAYSTIP,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		hwndParent,
+		NULL,
+		GetModuleHandle(NULL),
+		NULL
+		);
+
+	if (!hwndTip) return NULL;
+
+	TOOLINFO ti = { 0 };
+	ti.cbSize = sizeof(TOOLINFO);
+	ti.uFlags = TTF_SUBCLASS | TTF_IDISHWND;
+	ti.hwnd = hwndParent;
+	ti.uId = (UINT_PTR)hwndControl;
+	ti.lpszText = (LPTSTR)text;
+
+	// Get the coordinates of the control
+	RECT rect;
+	GetClientRect(hwndControl, &rect);
+
+	ti.rect = rect;
+
+	// Associate the tooltip with the control
+	SendMessage(hwndTip, TTM_ADDTOOL, 0, (LPARAM)&ti);
+
+	// Optional: Set tooltip appearance
+	SendMessage(hwndTip, TTM_SETMAXTIPWIDTH, 0, 300); // Set max width
+	SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_INITIAL, 100);  // Show delay (ms)
+	SendMessage(hwndTip, TTM_SETDELAYTIME, TTDT_AUTOPOP, 5000); // Display time (ms)
+
+	return hwndTip;
+}
+
+void UpdateTooltipText(HWND hwndTip, HWND hwndControl, LPCTSTR newText)
+{
+	TOOLINFO ti = { 0 };
+	ti.cbSize = sizeof(TOOLINFO);
+	ti.hwnd = GetParent(hwndControl);
+	ti.uId = (UINT_PTR)hwndControl;
+	ti.lpszText = (LPTSTR)newText;
+	SendMessage(hwndTip, TTM_UPDATETIPTEXT, 0, (LPARAM)&ti);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
 int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_line, int show)
 {
 	CheckAlreadyRunning();
@@ -912,9 +1038,9 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	//Registering the window class
 	RegisterClass(&windClass3);
 
-	hWnd = CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.6.1.1", WS_OVERLAPPEDWINDOW, Sc(100), Sc(100), Sc(450), Sc(514), NULL, NULL, instanceH, NULL);
+	hWnd = CreateWindow("The Fastest Mouse Clicker for Windows","The Fastest Mouse Clicker for Windows v2.6.2.0", WS_OVERLAPPEDWINDOW, Sc(100), Sc(100), Sc(550), Sc(514), NULL, NULL, instanceH, NULL);
 
-	statusText = CreateWindow("Static", "clicking status: idle", WS_VISIBLE | WS_CHILD, Sc(5), Sc(1), Sc(410), Sc(35), hWnd, 0, 0, 0);
+	statusText = CreateWindow("Static", "clicking status: idle", WS_VISIBLE | WS_CHILD, Sc(5), Sc(1), Sc(524), Sc(35), hWnd, 0, 0, 0);
 	SetMsgStatus(hWnd, GetDlgCtrlID(statusText), "idle");
 	numberClicks = CreateWindow("Static", "number of clicks", WS_VISIBLE | WS_CHILD, Sc(5), Sc(40), Sc(410), Sc(20), hWnd, 0, 0, 0);
 	mouseCoords = CreateWindow("Static", "mouse pos. (x,y)", WS_VISIBLE | WS_CHILD, Sc(252), Sc(40), Sc(150), Sc(20), hWnd, 0, 0, 0);
@@ -943,6 +1069,10 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	inputFrequency = CreateWindow("Edit", numStrInputFrequency, WS_VISIBLE | WS_CHILD | WS_BORDER, Sc(170), Sc(60), Sc(80), Sc(20), hWnd, (HMENU)INPUT_TEXT, 0, 0);
 	triggerButton = CreateWindow("Button", numStrTriggerButton, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(170), Sc(80), Sc(40), Sc(20), hWnd, (HMENU)TRIGGER_BTN, 0, 0);
 	triggerButton2 = CreateWindow("Button", numStrTriggerButton2, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(210), Sc(80), Sc(40), Sc(20), hWnd, (HMENU)TRIGGER_BTN2, 0, 0);
+
+	triggerButtonTT = CreateToolTip(hWnd, triggerButton, GetKeyName(my_trigger_key));
+	triggerButton2TT = CreateToolTip(hWnd, triggerButton2, GetKeyName(my_trigger_key2));
+	
 	stopAt = CreateWindow("Edit", numStrStopAt, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER, Sc(170), Sc(100), Sc(80), Sc(20), hWnd, (HMENU)STOP_AT_TEXT, 0, 0);
 	stopButton = CreateWindow("Button", "STOP!", WS_VISIBLE | WS_CHILD, Sc(5), Sc(125), Sc(410 / 2 - 3), Sc(50), hWnd, (HMENU)STOP_BTN, 0, 0);
 	runGroupAppButton = CreateWindow("Button", "Run group app", WS_VISIBLE | WS_CHILD, Sc(5 + 410 / 2 + 3), Sc(125), Sc(410 / 2 - 3), Sc(50), hWnd, (HMENU)RUNGROUPAPP_BTN, 0, 0);
@@ -950,9 +1080,12 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 	helpButton = CreateWindow("Button", "Help", WS_VISIBLE | WS_CHILD, Sc(5 + 5 + 410 / 3), Sc(180), Sc(410 / 3 - 5), Sc(50), hWnd, (HMENU)HELP_BTN, 0, 0);
 	folderButton = CreateWindow("Button", "Batch folder", WS_VISIBLE | WS_CHILD, Sc(5 + 5 + 410 / 3 + 410 / 3), Sc(180), Sc(410 / 3 - 3), Sc(50), hWnd, (HMENU)FOLDER_BTN, 0, 0);
 
-	groupBox = CreateWindow("Button", "trigger key mode", WS_VISIBLE | WS_CHILD | BS_GROUPBOX, Sc(5), Sc(240), Sc(410), Sc(65), hWnd, (HMENU)T_P_GROUP, 0, 0);
-	press = CreateWindow("Button", string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, Sc(10), Sc(260), Sc(400), Sc(20), hWnd, (HMENU)T_P_GROUP, 0, 0);
-	toggle = CreateWindow("Button", string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, Sc(10), Sc(280), Sc(400), Sc(20), hWnd, (HMENU)T_P_GROUP, 0, 0);
+	const char* strKeyName = GetKeyName(my_trigger_key);
+	const char* strKeyName2 = GetKeyName(my_trigger_key2);
+
+	groupBox = CreateWindow("Button", "trigger key mode", WS_VISIBLE | WS_CHILD | BS_GROUPBOX, Sc(5), Sc(240), Sc(524), Sc(65), hWnd, (HMENU)T_P_GROUP, 0, 0);
+	press = CreateWindow("Button", string_format("press (clicking while: key <%d> '%s' keeps hit down)", my_trigger_key, strKeyName).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, Sc(10), Sc(260), Sc(512), Sc(20), hWnd, (HMENU)T_P_GROUP, 0, 0);
+	toggle = CreateWindow("Button", string_format("toggle (clicking begin: hit <%d> '%s', end: hit <%d> '%s')", my_trigger_key, strKeyName, my_trigger_key2, strKeyName2).c_str(), WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON, Sc(10), Sc(280), Sc(512), Sc(20), hWnd, (HMENU)T_P_GROUP, 0, 0);
 
 	rmlGroupBox = CreateWindow("Button", "mouse button to click", WS_VISIBLE | WS_CHILD | BS_GROUPBOX, Sc(5), Sc(310), Sc(410), Sc(85), hWnd, (HMENU)R_M_L_GROUP, 0, 0);
 	leftM = CreateWindow("Button", "left", WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | WS_GROUP, Sc(10), Sc(330), Sc(400), Sc(20), hWnd, (HMENU)R_M_L_GROUP, 0, 0);
@@ -1088,13 +1221,16 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 						_itoa_s(i, triggerText, 4, 10);
 						SetFocus(outputWindow);
 						SetDlgItemText(hWnd, GetDlgCtrlID(triggerButton), triggerText);
-						my_trigger_key = atoi(triggerText);
+						my_trigger_key = i;
 						char winTxt[1024];
 						memset(winTxt, 0, 1024);
 						GetWindowText(triggerButton2, winTxt, 1024);
 						my_trigger_key2 = atoi(winTxt);
-						SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
-						SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str());
+						const char* strKeyName = GetKeyName(my_trigger_key);
+						const char* strKeyName2 = GetKeyName(my_trigger_key2);
+						SetWindowTextA(press, string_format("press (clicking while: key <%d> '%s' keeps hit down)", my_trigger_key, strKeyName).c_str());
+						SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d> '%s', end: hit <%d> '%s')", my_trigger_key, strKeyName, my_trigger_key2, strKeyName2).c_str());
+						UpdateTooltipText(triggerButtonTT, triggerButton, strKeyName);
 						waitingForTrigger = false;
 					}
 					if (waitingForTrigger2)
@@ -1102,13 +1238,16 @@ int WINAPI WinMain(HINSTANCE instanceH, HINSTANCE prevInstanceH, LPSTR command_l
 						_itoa_s(i, triggerText2, 4, 10);
 						SetFocus(outputWindow);
 						SetDlgItemText(hWnd, GetDlgCtrlID(triggerButton2), triggerText2);
-						my_trigger_key2 = atoi(triggerText2);
+						my_trigger_key2 = i;
 						char winTxt[1024];
 						memset(winTxt, 0, 1024);
 						GetWindowText(triggerButton, winTxt, 1024);
 						my_trigger_key = atoi(winTxt);
-						SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
-						SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str());
+						const char* strKeyName = GetKeyName(my_trigger_key);
+						const char* strKeyName2 = GetKeyName(my_trigger_key2);
+						SetWindowTextA(press, string_format("press (clicking while: key <%d> '%s' keeps hit down)", my_trigger_key, strKeyName).c_str());
+						SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d> '%s', end: hit <%d> '%s')", my_trigger_key, strKeyName, my_trigger_key2, strKeyName2).c_str());
+						UpdateTooltipText(triggerButton2TT, triggerButton2, strKeyName2);
 						waitingForTrigger2 = false;
 					}
 					clickedOnceForTriggerFlag = false;
@@ -1389,8 +1528,13 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 				SetWindowTextA(triggerButton, numStrTriggerButton);
 				SetWindowTextA(triggerButton2, numStrTriggerButton2);
 
-				SetWindowTextA(press, string_format("press (clicking while: key <%d> keeps hit down)", my_trigger_key).c_str());
-				SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d>, end: hit <%d>)", my_trigger_key, my_trigger_key2).c_str());
+				UpdateTooltipText(triggerButtonTT, triggerButton, GetKeyName(my_trigger_key));
+				UpdateTooltipText(triggerButton2TT, triggerButton2, GetKeyName(my_trigger_key2));
+
+				const char* strKeyName = GetKeyName(my_trigger_key);
+				const char* strKeyName2 = GetKeyName(my_trigger_key2);
+				SetWindowTextA(press, string_format("press (clicking while: key <%d> '%s' keeps hit down)", my_trigger_key, strKeyName).c_str());
+				SetWindowTextA(toggle, string_format("toggle (clicking begin: hit <%d> '%s', end: hit <%d> '%s')", my_trigger_key, strKeyName, my_trigger_key2, strKeyName2).c_str());
 
 				if (my_mode == Mode_Toggle)
 					doToggle = true;
@@ -1423,7 +1567,7 @@ LRESULT CALLBACK winCallBack(HWND hWin, UINT msg, WPARAM wp, LPARAM lp)
 			}
 			break;
 		case HELP_BTN:
-			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.6.1.1 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
+			MessageBox(hWnd, "The Fastest Mouse Clicker for Windows v2.6.2.0 (Independent Keys For Toggle Clicking; Window Always Top; Random Clicking)."
 				"\n\nYOU CAN START THE AUTO-CLICKING AT ANY MOMENT BY PRESSING THE <trigger key> (13 = Enter). Reading the entire Help is optional."
 				"\n\nTHE FIELDS YOU CAN NOT MODIFY."
 				"\n<clicking status> or <random clicking status>, the topmost text field, is either getting 'idle' or 'clicking'."
