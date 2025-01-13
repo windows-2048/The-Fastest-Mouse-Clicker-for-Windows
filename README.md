@@ -8,7 +8,7 @@
 
 ## [Site Oficial em Português](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/)
 
-### 2024 is the project's 8th anniversary
+### 2025 is the project's 9th anniversary
 
 You can download and install
 the latest version
