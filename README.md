@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Dec 28 2024. Added long-awaited tooltips for the trigger keys: now both virtual key codes and their names are displayed.
+> Updated: Jan 13 2025. Added long-awaited tooltips for the trigger keys: now both virtual key codes and their names are displayed.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
