@@ -14,9 +14,9 @@ to a version with Update Service, all your app settings are preserved, you don't
 
 ### The installers without update service
 
-[Install_TFMCfW_v2.6.2.0_noupdsrv.exe](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/The-Fastest-Mouse-Clicker-for-Windows/Install_TFMCfW_v2.6.2.0_noupdsrv.exe)
+[Install_TFMCfW_v2.6.2.0_noupdsrv.exe](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/The-Fastest-Mouse-Clicker-for-Windows/Install_TFMCfW_sfx_v2.6.2.0_noupdsrv.exe)
 
-SHA256(Install_TFMCfW_v2.6.2.0_noupdsrv.exe)= 70acb35df17b73e72df0bb46931a5ec162d87672e1f5af273b9b1d204808a9ca
+SHA256(Install_TFMCfW_sfx_v2.6.2.0.exe)= 3da71153d674d26f139ca44763a35b2db52998fe88f76efc198834d9481a82e9
 
 [Install_TheFastestMouseClicker_2.6.1.1_noupdsrv.exe](https://filedn.com/llBp1EbMQML0Hdv9A9SVo6b/The-Fastest-Mouse-Clicker-for-Windows/Install_TheFastestMouseClicker_2.6.1.1_noupdsrv.exe)
 
