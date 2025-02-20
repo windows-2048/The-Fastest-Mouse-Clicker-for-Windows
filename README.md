@@ -12,7 +12,9 @@
 
 You can download and install
 the latest version
-at [GitHub](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.6.2.0).
+at the [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/).
+
+Mark this application as **\#clean** in your Windows Defender, Windows Smart Screen, other antivirus software.
 
 #### ChangeLog
 
