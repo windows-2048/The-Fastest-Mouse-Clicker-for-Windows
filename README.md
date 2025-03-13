@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Mar 01 2025. Add new menu, language, link concept to the Official Site.
+> Updated: Mar 13 2025. Add Portuguese text; update downloads.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
