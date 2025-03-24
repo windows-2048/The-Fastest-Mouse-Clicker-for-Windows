@@ -121,3 +121,5 @@ This video as well as many others recorded by our partners you can explore at th
 #### Copyright (c) 2016-2025 by [Open Source Developer Masha Novedad](https://windows-2048.github.io/)
 
 [See at indeed.com...](https://profile.indeed.com/p/mashan-hc2ql7c)
+
+[See at tumblr.com...](https://www.tumblr.com/fastest-mouse-clicker-windows)
