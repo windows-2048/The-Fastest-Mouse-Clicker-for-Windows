@@ -1,11 +1,14 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Apr 09 2025. Added page
+> Updated: Apr 12 2025. Added page
 [Best Auto Clicker Settings for Popular Games](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Best-Auto-Clicker-Settings-for-Popular-Games/)
 to the Official Site, localized to
-[English](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Best-Auto-Clicker-Settings-for-Popular-Games/),
 [Spanish](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/La-Mejor-Configuracion-de-Clic-Automatico-para-Juegos-Populares/),
-[Portuguese](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/Melhores-Configuracoes-de-Auto-Clicker-para-Jogos-Populares/).
+[Portuguese](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/Melhores-Configuracoes-de-Auto-Clicker-para-Jogos-Populares/);
+page [Multiple Display Setups](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Multiple-Display-Setups/),
+localized to
+[Spanish](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/Configuraciones-de-Pantalla-Multiple/),
+[Portuguese](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/Configuracoes-de-Exibicao-Multipla/).
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
