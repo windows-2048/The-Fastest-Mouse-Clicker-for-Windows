@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Apr 12 2025. Added page
+> Updated: May 03 2025. Added page
 [Best Auto Clicker Settings for Popular Games](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Best-Auto-Clicker-Settings-for-Popular-Games/)
 to the Official Site, localized to
 [Spanish](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/La-Mejor-Configuracion-de-Clic-Automatico-para-Juegos-Populares/),
