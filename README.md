@@ -1,8 +1,8 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Aug 20 2025. Added [Click Speed Test](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Click-Speed-Test/) to the Official Site,
+> Updated: Sep 03 2025. Added [Click Speed Test](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Click-Speed-Test/) to the Official Site,
 [Spanish](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/Prueba-de-Velocidad-de-Clic/),
-[Portuguese](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/Teste-de-Velocidade-de-Clique/). Added English/Spanish shorts on Youtube.
+[Portuguese](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/Teste-de-Velocidade-de-Clique/). Roblox Gambling With Auto Clicker: From Geoduck To Jackpot And Twins.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
