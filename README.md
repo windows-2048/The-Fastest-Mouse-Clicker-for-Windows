@@ -1,8 +1,8 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Sep 19 2025. Added [Click Speed Test](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Click-Speed-Test/) to the Official Site,
-[Spanish](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/Prueba-de-Velocidad-de-Clic/),
-[Portuguese](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/Teste-de-Velocidade-de-Clique/). Added multi-lingual Source Code chapter to the official site.
+> Updated: Oct 01 2025. Added multi-lingual chapter [Help How To Use](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/Help-How-To-Use/) to the Official Site,
+[Ayuda Cómo Usar, Spanish](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/Ayuda-Como-Usar/),
+[Ajuda Como Usar, Portuguese](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/Ajuda-Como-Usar/).
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
