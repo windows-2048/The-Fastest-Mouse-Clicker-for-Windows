@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Oct 27 2025. Added The Fastest Mouse Clicker for Windows Classic v2.1.6.0-classic without GitHub issue #20.
+> Updated: Oct 27 2025. Added The Fastest Mouse Clicker for Windows Classic [v2.1.6.0-classic](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.1.6.0-classic) without GitHub issue #20.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
