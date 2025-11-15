@@ -1,0 +1,38 @@
+#include <windows.h>
+
+
+
+//1 RT_MANIFEST manifest.txt
+
+// Icon
+IDI_ICON1 ICON "Resources/favicon.ico"
+
+// Version Info
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     3,0,0,0
+PRODUCTVERSION  3,0,0,0
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       0
+FILEOS          VOS__WINDOWS32
+FILETYPE        VFT_APP
+FILESUBTYPE     0
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904E4" // U.S. English - multilingual (hex)
+        BEGIN
+            VALUE "CompanyName",      "The Fastest Mouse Clicker for Windows"
+            VALUE "FileDescription",  "Professional cross-platform auto-clicker for PC (using Win32 API SendInput() on Windows)"
+            VALUE "FileVersion",      "3.0.0.0"
+            VALUE "InternalName",     "TheFastestMouseClickerv3"
+            VALUE "LegalCopyright",   "(c) 2016-2025 The Fastest Mouse Clicker for Windows"
+            VALUE "OriginalFilename", "TheFastestMouseClickerv3.exe"
+            VALUE "ProductName",      "The Fastest Mouse Clicker for Windows version 3"
+            VALUE "ProductVersion",   "3.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END

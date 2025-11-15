@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/favicon.ico</file>
+        <!-- Add other resources as needed -->
+    </qresource>
+</RCC>
