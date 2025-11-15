@@ -1,4 +1,0 @@
-Copyright (c) 2016-2023 by [Open Source Developer Masha Novedad](https://windows-2048.github.io)
-
-Under construction. This file will contain build instructions for Windows/MSVC.
-idntmz3SgkHGsNim3fx1RdRwnbj3ymw2xPG6M7Ym7kA6joWEvzBtNRucc8Ss4j9wi4eEysthjMYwqvtvC869PmxY1fzimzAQ7jWcw3BWhStmnpjSjcdL2Vt2Ksdp
