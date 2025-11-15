@@ -16,7 +16,7 @@ at the [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-
 [Sitio Oficial en Español](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/),
 [Site Oficial em Português](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/).
 
-Mark this application as **\#clean** in your Windows Defender, Windows Smart Screen, other antivirus software.
+Mark these applications as **\#clean** in your Windows Defender, Windows Smart Screen, other antivirus software.
 
 ## The Fastest Mouse Clicker for Windows version 3
 
@@ -46,7 +46,7 @@ Mark this application as **\#clean** in your Windows Defender, Windows Smart Scr
 * Fixed: GitHub issue #20: Keyboard and Mouse locked and hardly able to control when pressing TOGGLE stop key.
 * Few minor bug fixes.
 
-### All future versions of The Fastest Mouse Clicker for Windows will be cross-platform and made with Qt
+## All future versions of The Fastest Mouse Clicker for Windows will be cross-platform and made with Qt
 
 First, I have compiled a 64-bit minimalistic, static/static-runtime build of Qt v5.15.5 (LTS) made for Windows 7 to 11 under MSVC 2019 compiler.
 
@@ -72,7 +72,7 @@ Initial code refactoring has been performed. The library [libuiohook](https://gi
 
 ![Trailer developer's screenshot for The Fastest Mouse Clicker v3.0.0.0 (cross-platform Qt edition)](screenshots_new/v3.0.0.0/TheFastestMouseClicker.png?raw=true)
 
-### Brief list of main features
+## Brief list of main features
 
 * The world's best click rate up to 100 000 clicks per second, increased by 10 times comparing with the predecessor application "Fast Mouse Clicker". The latest version with fixed performance issue is 100 times faster!
 
@@ -104,7 +104,7 @@ More information on Windows installers that use or don't use PC resources is [he
 
 https://www.youtube.com/watch?v=gCpALY1WqmE
 
-#### The Fastest Mouse Clicker for Windows - how to download and install video
+### The Fastest Mouse Clicker for Windows - how to download and install video
 
 https://youtu.be/BwB65SpH3-I
 
