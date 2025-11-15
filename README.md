@@ -91,7 +91,7 @@ Initial code refactoring has been performed. The library [libuiohook](https://gi
 
 * By default, the project executables will use some 25% of CPU resources and 100Kb/day of Internet resources when a computer is idling.
 You may switch between executables that use PC resources and executables that don't use Pc resources by reinstalling the software.
-More information on Windows installers that use or don't use PC resources is [here](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/blob/master/InnoSetupDownloader/README.md).
+More information on Windows installers that use or don't use PC resources is [here](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/blob/master/WithoutInstaller/README.md).
 
 * Command line has been supported: TheFastestMouseClicker.exe -c <clicks per second> -t <trigger key> -s <stop at> -m <trigger key mode> -b <mouse button to click>, where <trigger key mode> can be 'press' or'toggle' and <mouse button to click> can be 'left', 'middle', or 'right'. One may specify any part of arguments; unspecified or unrecognized values will be treated as defaults (see them by running the app and pressing 'Reset to defaults' button.
 
