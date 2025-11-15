@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Oct 27 2025. Added The Fastest Mouse Clicker for Windows Classic [v2.1.6.0-classic](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.1.6.0-classic) without GitHub issue #20.
+> Updated: Nov 15 2025. Added brand new cross-platform app written from scratch [v3.0.0.0](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v3.0.0.0). Added The Fastest Mouse Clicker for Windows Classic x64 [v2.1.6.0-classic](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.1.6.0-classic) without GitHub issue #20.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
@@ -11,43 +11,40 @@
 ### 2025 is the project's 9th anniversary
 
 You can download and install
-the latest version
-at the [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/).
+the latest version v3.0.0.0 or classic version v2.1.6.0 (MSI Windows Installer with 64-bit Windows executable)
+at the [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/),
+[Sitio Oficial en Español](https://windows-2048.github.io/es/El-Clicker-de-Raton-Mas-Rapido-para-Windows/),
+[Site Oficial em Português](https://windows-2048.github.io/pt/O-Mais-Rapido-Mouse-Clicker-para-Windows/).
 
 Mark this application as **\#clean** in your Windows Defender, Windows Smart Screen, other antivirus software.
 
+## The Fastest Mouse Clicker for Windows version 3
+
+![The Fastest Mouse Clicker for Windows version 3](tfmcfw_v3.png?raw=true)
+
+### What's New - The latest version 3 v3.0.0.0
+
 #### ChangeLog
 
+* Written from scratch cross-platform 64-bit application utilizing Qt, libuiohook technologies.
+* Various mouse buttons and wheel rotations can trigger key pressed events and vice versa.
+* Supports random mouse clicking in both time intervals and screen coordinates.
+* Ultimately clean UI supports nice tooltip hint in the bottom right display corner while main window is minimized.
+* Ideal for Roblox and Minecraft.
+
+## The Fastest Mouse Clicker for Windows Classic x64
+
+![The Fastest Mouse Clicker for Windows Classic x64](tfmcfw_classic64.png?raw=true)
+
+### What's New - The classic version 2 v2.1.6.0
+
+#### ChangeLog
+
+* Recompiled as 64-bit application.
 * Added long-awaited tooltips for the trigger keys.
-* Live current mouse position indicator gets light green color.
-* Long waiting new feature FIXED POSITION CLICKING.
 * Fixed blurred GUI texts on 4K screens.
-* Fixed wrong question about close old application during installation.
+* Fixed: GitHub issue #20: Keyboard and Mouse locked and hardly able to control when pressing TOGGLE stop key.
 * Few minor bug fixes.
-
-### Some screenshots from a new version 2.6.2.0
-
-* The Fastest Mouse Clicker for Windows version 2.6.2.0.
-
-![The Fastest Mouse Clicker for Windows version 2.6.2.0](screenshots_new/v2.6.2.0/TFMCfW_v2.6.2.0.png?raw=true)
-
-* The Fastest Mouse Clicker for Windows version 2.6.2.0 (group application).
-
-![The Fastest Mouse Clicker for Windows version 2.6.2.0 (group application)](screenshots_new/v2.6.2.0/TFMCfW_g_v2.6.2.0.png?raw=true)
-
-### Some screenshots from a previous version 2.6.1.0
-
-The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.
-
-![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Main app with batch folder that reveals "secret" features.](screenshots_new/v2.6.1.0/tfmcfw-v2.6.1.0-batch-folder.jpg?raw=true)
-
-The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot.
-
-![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot.](screenshots_new/v2.6.1.0/tfmcfw-win11-22h2-sapp.jpg?raw=true)
-
-* The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot (group application).
-
-![The Fastest Mouse Clicker for Windows version 2.6.1.0 - Brand new Windows 11 22H2 screenshot (group application).](screenshots_new/v2.6.1.0/tfmcfw-win11-22h2-gapp.jpg?raw=true)
 
 ### All future versions of The Fastest Mouse Clicker for Windows will be cross-platform and made with Qt
 
@@ -99,7 +96,7 @@ More information on Windows installers that use or don't use PC resources is [he
 
 * Fractional values for clicks/s parameter are supported. For example, 0.5 clicks/s equals to 1 click every 2 seconds.
 
-* Random clicking has been implemented. Just click the "Batch folder" button and see remarks in the *.bat files reside there in order how to use command line arguments and to enable random clicking.
+* Random clicking has been implemented in version 3.
 
 * This is free, open source application without ads, viruses, trojans, malware, etc. forever.
 
