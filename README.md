@@ -1,6 +1,6 @@
 # The Fastest Mouse Clicker for Windows
 
-> Updated: Nov 21 2025. Added brand new cross-platform app written from scratch [v3.0.0.0](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v3.0.0.0). Added The Fastest Mouse Clicker for Windows Classic x64 [v2.1.6.0-classic](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.1.6.0-classic) without GitHub issue #20. Added brand new [Youtube](https://youtu.be/PfF1XbnHFDw) video and separate i18n screenshots page.
+> Updated: Dec 07 2025. Added brand new cross-platform app written from scratch [v3.0.0.0](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v3.0.0.0). Added The Fastest Mouse Clicker for Windows Classic x64 [v2.1.6.0-classic](https://github.com/windows-2048/The-Fastest-Mouse-Clicker-for-Windows/releases/tag/v2.1.6.0-classic) without GitHub issue #20. Added brand new [Youtube](https://youtu.be/PfF1XbnHFDw) video and separate i18n screenshots page. Some i18n text cleaning on Official Site.
 
 ## [Official Site](https://windows-2048.github.io/The-Fastest-Mouse-Clicker-for-Windows/)
 
